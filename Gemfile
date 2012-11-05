@@ -6,8 +6,9 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rails-api'
+gem 'rest-client'
+#gem 'sqlite3'
 
-gem 'sqlite3'
 
 
 # To use ActiveModel has_secure_password
