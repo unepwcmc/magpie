@@ -4,8 +4,10 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  database: magpie_development
   pool: 5
   timeout: 5000
 
@@ -13,13 +15,16 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  database: magpie_test
   pool: 5
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: magpie_production
+  username: postgres
   pool: 5
   timeout: 5000

@@ -58,5 +58,8 @@ module Magpie
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Multi tenant database switch
+    config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request| request.params["tenant"] }
   end
 end

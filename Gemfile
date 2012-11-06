@@ -7,9 +7,12 @@ gem 'rails', '3.2.7'
 
 gem 'rails-api'
 gem 'rest-client'
-#gem 'sqlite3'
 
+# storage
+gem 'pg'
 
+# multi tenancy
+gem 'apartment'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
