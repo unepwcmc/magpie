@@ -1,4 +1,6 @@
-# magpie
+# magpie 
+[![Build Status](https://secure.travis-ci.org/unepwcmc/magpie.png)](https://travis-ci.org/unepwcmc/magpie)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/unepwcmc/magpie)
 
 ## Development
 We're using the apartment gem for PostgreSQL schema based multi tenancy. Most important consequences of that are:
