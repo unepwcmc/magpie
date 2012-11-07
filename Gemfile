@@ -28,3 +28,15 @@ gem 'apartment'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :test, :development do
+  gem "rspec-rails"
+  gem "database_cleaner"
+end
+
+group :test do
+  gem 'rspec_api_documentation'
+  gem "factory_girl_rails", "~> 4.0"
+  gem "json_spec"
+  gem 'simplecov', :require => false
+end
