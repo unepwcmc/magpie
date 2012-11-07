@@ -43,4 +43,10 @@ We're using the apartment gem for PostgreSQL schema based multi tenancy. Most im
 
         {"created_at":"2012-11-07T14:11:56Z","id":7,"name":"Good stuff","updated_at":"2012-11-07T14:15:56Z"}
 
-TODO:  switch to docs generated from specs: rspec spec --format RspecApiDocumentation::ApiFormatter
+## Generated documentation
+To generate the api documentation from specs:
+  rspec spec --format RspecApiDocumentation::ApiFormatter
+
+To generate the coverage report: coverage report is generated automatically when you run:
+  rspec spec
+  
