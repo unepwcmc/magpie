@@ -1,0 +1,17 @@
+language: ruby
+bundler_args: --without development production staging
+rvm:
+  - 1.9.3
+# uncomment this line if your project needs to run something other than `rake`:
+before_script:
+  - psql -c 'create database magpie_test' -U postgres
+  - RAILS_ENV=test bundle exec rake db:migrate
+script: 
+  - bundle exec rspec spec
+notifications:
+  email:
+    - agnieszka.figiel@unep-wcmc.org
+    - simao.belchior@unep-wcmc.org
+branches:
+  only:
+    - master
