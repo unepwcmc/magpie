@@ -1,10 +1,7 @@
 class PolygonsController < ApplicationController
 
   def create
-    @analysis = Analysis.find_by_id(params[:analysis_id])
-    unless @analysis
-      @analysis = Analysis.create!(:name => 'My Analysis')
-    end
+    @analysis = Analysis.create!(:name => 'My Analysis')
     @polygon = Polygon.create(
       params[:polygon].merge({:analysis_id => @analysis.id})
     )
@@ -13,16 +10,14 @@ class PolygonsController < ApplicationController
 
   def update
     #TODO Apartment custom elevator causes path params not to appear in params
-    @polygon = Polygon.find_by_id(request.path_parameters[:id])
-    if @polygon
-      @polygon.update_attributes(params[:polygon])
-    end
+    @polygon = Polygon.find(request.path_parameters[:id])
+    @polygon.update_attributes(params[:polygon])
     render :json => @polygon
   end
 
   def show
     #TODO Apartment custom elevator causes path params not to appear in params
-    @polygon = Polygon.find_by_id(request.path_parameters[:id])
+    @polygon = Polygon.find(request.path_parameters[:id])
     render :json => @polygon
   end
 
