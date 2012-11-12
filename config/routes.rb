@@ -1,8 +1,10 @@
 Magpie::Application.routes.draw do
+
   resources :analyses, :only => [:update, :show], :shallow => true do
     resources :polygons, :only => [:update, :show]
   end
   post "polygons" => "polygons#create"
+  resources :layers, :only => [:index]
 
   get "tenants/index"
 

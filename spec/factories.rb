@@ -1,4 +1,13 @@
 FactoryGirl.define do
+  factory :tenant do
+    name 'CarbonCalculator'
+  end
+  factory :layer do
+    name 'carbon'
+  end
+  factory :tenant_layer do
+    layer
+  end
   factory :analysis do
     name 'my interesting polygons'
   end
