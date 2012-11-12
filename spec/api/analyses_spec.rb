@@ -6,13 +6,18 @@ resource "Analysis" do
     parameter :id, "Analysis ID"
 
     let(:analysis) { create(:analysis) }
-    let(:id) { analysis.id }
 
     example_request "Getting a specific analysis" do
       explanation "curl localhost:3000/analyses/2"
-      do_request
+      @id = analysis.id 
+      do_request(:id => analysis.id)
       status.should == 200
       response_body.should be_json_eql analysis.to_json
+    end
+    example_request "Getting an analysis which does not exist" do
+      do_request(:id= => -1)
+      status.should == 200
+      response_body.should be_json_eql({:error => 'Resource not found'}.to_json)
     end
   end
 
