@@ -11,6 +11,9 @@ FactoryGirl.define do
   factory :analysis do
     name 'my interesting polygons'
   end
+  factory :area do
+    name 'AOI#1'
+  end
   factory :polygon do
     data [50, 50].to_json
   end

@@ -24,8 +24,9 @@ resource "Polygon" do
       do_request
       status.should == 200
       response_body.should have_json_path 'analysis'
+      response_body.should have_json_path 'area'
       response_body.should be_json_eql(params.to_json).
-        excluding("analysis").excluding("analysis_id")
+        excluding("analysis").excluding("area").excluding("area_id")
     end
   end
 
@@ -40,7 +41,7 @@ resource "Polygon" do
       do_request
       status.should == 200
       response_body.should be_json_eql(params["polygon"].to_json).
-        excluding("analysis_id")
+        excluding("area_id")
     end
   end
 

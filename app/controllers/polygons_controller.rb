@@ -1,11 +1,17 @@
 class PolygonsController < ApplicationController
 
   def create
-    @analysis = Analysis.create!(:name => 'My Analysis')
+    if params[:area_id].blank?
+      @analysis = Analysis.create!(:name => 'My Analysis')
+      @area = Area.create(:name => 'AOI#1', :analysis_id => @analysis.id)
+      @analysis.areas << @area
+    else
+      @area = Area.find(params[:area_id])
+    end
     @polygon = Polygon.create(
-      params[:polygon].merge({:analysis_id => @analysis.id})
+      params[:polygon].merge({:area_id => @area.id})
     )
-    render :json => {:polygon => @polygon, :analysis => @analysis}
+    render :json => {:polygon => @polygon, :analysis => @analysis, :area => @area}
   end
 
   def update
