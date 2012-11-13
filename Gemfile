@@ -29,6 +29,13 @@ gem 'apartment'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :development do
+  # Deploy with Capistrano
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'brightbox', '>=2.3.9'
+end
+
 group :test, :development do
   gem "rspec-rails"
   gem "database_cleaner"

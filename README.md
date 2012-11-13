@@ -14,6 +14,9 @@ We're using the apartment gem for PostgreSQL schema based multi tenancy. Most im
 * migrations should run on all schemas, therefore make sure you use:
         rake apartment:migrate
 
+**Important deployment note**: the database user needs to be able to create schemas, therefore:
+    GRANT CREATE ON DATABASE magpie_staging TO wcmc;
+
 ## API calls
 
 ###Resource: polygon
