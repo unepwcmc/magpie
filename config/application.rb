@@ -61,7 +61,7 @@ module Magpie
 
     # Multi tenant database switch
     config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
-      if request.params["tenant"].blank?
+      if request.params["tenant"].blank? && Rails.env == 'staging'
         'carbon'
       else
         request.params["tenant"]
