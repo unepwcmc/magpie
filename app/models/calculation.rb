@@ -12,7 +12,9 @@
 
 class Calculation < ActiveRecord::Base
   attr_accessible :display_name, :layer_id, :operation_id
+
   belongs_to :layer
   belongs_to :operation
   has_many :calculated_stats
+
 end

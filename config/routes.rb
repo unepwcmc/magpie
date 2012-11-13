@@ -10,6 +10,7 @@ Magpie::Application.routes.draw do
   end
   post "polygons" => "polygons#create"
   resources :layers, :only => [:index]
+  get "layer_calculations" => "layers#layer_calculations"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -39,10 +39,10 @@ resource "Area" do
   end
 
   get "/area/:id/calculated_stats" do
-    paremeter :id, "Area id"
+    parameter :id, "Area id"
     let(:analysis) { create(:analysis) }
     let(:area) { create(:area, :analysis_id => analysis.id) }
     let(:id) { area.id }
-    let(:calculated_stat) { create(:calculated_stat, :area_id => id) }
+    let(:calculated_stat) { create(:calculated_stat, :area_id => id) }
   end
 end

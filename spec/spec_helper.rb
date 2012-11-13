@@ -38,7 +38,12 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
+    FactoryGirl.create(:tenant, :name => 'carbon')
     DatabaseCleaner.strategy = :transaction
+  end
+
+  config.after(:suite) do
+    ActiveRecord::Base.connection.execute('DROP SCHEMA carbon CASCADE')
   end
 
   config.before(:all) do

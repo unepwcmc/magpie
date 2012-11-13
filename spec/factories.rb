@@ -20,9 +20,9 @@ FactoryGirl.define do
   end
   factory :operation do
     name "Avg"
-    display_name "Average of Carbon"
   end
   factory :calculation do
+    display_name "Average of Carbon"
     layer
     operation
   end
