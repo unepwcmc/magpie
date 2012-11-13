@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113104510) do
+ActiveRecord::Schema.define(:version => 20121113134304) do
 
   create_table "analyses", :force => true do |t|
     t.string   "name"
@@ -49,8 +49,12 @@ ActiveRecord::Schema.define(:version => 20121113104510) do
     t.datetime "updated_at", :null => false
   end
 
-# Could not dump table "polygons" because of following StandardError
-#   Unknown type 'json' for column 'data'
+  create_table "polygons", :force => true do |t|
+    t.integer  "area_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "geometry"
+  end
 
   create_table "tenant_layers", :force => true do |t|
     t.integer  "layer_id"

@@ -16,6 +16,6 @@ FactoryGirl.define do
     is_summary false
   end
   factory :polygon do
-    data [50, 50].to_json
+    geometry [50, 50].to_json
   end
 end

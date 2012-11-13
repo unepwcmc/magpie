@@ -17,8 +17,8 @@ resource "Polygon" do
   end
 
   post "/polygons" do
-    parameter :data, "Polygon geometry geojson"
-    let(:data) { [50,50].to_json }
+    parameter :geometry, "Polygon geometry geojson"
+    let(:geometry) { [50,50].to_json }
     scope_parameters :polygon, :all
     example_request "Creating a new polygon" do
       do_request
@@ -32,10 +32,10 @@ resource "Polygon" do
 
   put "/polygons/:id" do
     parameter :id, "Polygon id"
-    parameter :data, "Polygon geometry geojson"
+    parameter :geometry, "Polygon geometry geojson"
     let(:polygon) { create(:polygon) }
     let(:id) { polygon.id }
-    let(:data) { [60,60].to_json }
+    let(:geometry) { [60,60].to_json }
     scope_parameters :polygon, :all
     example_request "Updating an existing polygon" do
       do_request
