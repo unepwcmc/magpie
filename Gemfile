@@ -29,6 +29,12 @@ gem 'apartment'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+
+group :staging, :production do
+  gem 'exception_notification', :require => 'exception_notifier'
+  gem 'newrelic_rpm'
+end
+
 group :development do
   # Deploy with Capistrano
   gem 'capistrano'
