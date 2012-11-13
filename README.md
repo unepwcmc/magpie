@@ -3,6 +3,9 @@
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/unepwcmc/magpie)
 
 ## Development
+
+### Database
+
 We're using the apartment gem for PostgreSQL schema based multi tenancy. Most important consequences of that are:
 * a new schema is created for each application (with the same name). This is hooked as an after_create block, but can also be done manually if needed:
 
@@ -14,8 +17,26 @@ We're using the apartment gem for PostgreSQL schema based multi tenancy. Most im
 * migrations should run on all schemas, therefore make sure you use:
         rake apartment:migrate
 
-**Important deployment note**: the database user needs to be able to create schemas, therefore:
+## Deployment
+
+### Database
+
+The database user needs to be able to create schemas, therefore:
     GRANT CREATE ON DATABASE magpie_staging TO wcmc;
+
+
+### CORS
+
+To enable cross domain requests in development, you can use rack-cors middleware.
+
+Staging and production environments should have the appropriate headers defined in Apache config:
+
+    <VirtualHost *:80>
+      Header set Access-Control-Allow-Origin *
+      Header set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+      Header set Access-Control-Allow-Headers "X-Requested-With, X-Prototype-Version"
+      Header set Access-Control-Max-Age 1728000
+      ...
 
 ## API calls
 
