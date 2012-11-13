@@ -15,7 +15,7 @@ resource "Analysis" do
       response_body.should be_json_eql analysis.to_json
     end
     example_request "Getting an analysis which does not exist" do
-      do_request(:id= => -1)
+      do_request(:id => -1)
       status.should == 200
       response_body.should be_json_eql({:error => 'Resource not found'}.to_json)
     end

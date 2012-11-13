@@ -1,12 +1,12 @@
 Magpie::Application.routes.draw do
 
   resources :analyses, :only => [:update, :show], :shallow => true do
-    resources :polygons, :only => [:update, :show]
+    resources :areas, :only => [:update, :show], :shallow => true do
+      resources :polygons, :only => [:update, :show]
+    end
   end
   post "polygons" => "polygons#create"
   resources :layers, :only => [:index]
-
-  get "tenants/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

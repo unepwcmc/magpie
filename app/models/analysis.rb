@@ -7,6 +7,8 @@ class Analysis < ActiveRecord::Base
 
   private
   def prepare_summary
-    areas << Area.new(:name => 'Summary', :is_summary => true)
+    summary = Area.new(:name => 'Summary')
+    summary.is_summary = true
+    areas << summary
   end
 end

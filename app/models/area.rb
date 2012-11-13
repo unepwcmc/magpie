@@ -1,4 +1,4 @@
 class Area < ActiveRecord::Base
-  attr_accessible :analysis_id, :is_summary, :name
+  attr_accessible :analysis_id, :name
   has_many :polygons
 end
