@@ -18,4 +18,16 @@ FactoryGirl.define do
   factory :polygon do
     data [50, 50].to_json
   end
+  factory :operation do
+    name "Avg"
+    display_name "Average of Carbon"
+  end
+  factory :calculation do
+    layer
+    operation
+  end
+  factory :calculated_stat do
+    area
+    calculation
+  end
 end
