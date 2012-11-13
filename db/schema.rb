@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(:version => 20121113134304) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "calculated_stats", :force => true do |t|
+    t.integer  "calculation_id"
+    t.integer  "area_id"
+    t.float    "value"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "calculations", :force => true do |t|
     t.string   "display_name"
     t.integer  "operation_id"

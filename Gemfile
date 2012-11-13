@@ -40,6 +40,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'brightbox', '>=2.3.9'
+  gem 'annotate'
 end
 
 group :test, :development do
