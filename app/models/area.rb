@@ -16,7 +16,7 @@ class Area < ActiveRecord::Base
   has_many :calculated_stats
   has_many :calculations, :through => :calculated_stats
 
-  def calculated_stats_as_json
+  def calculated_stats_formatted
     calculated_stats = []
     records = self.calculations.includes(:calculated_stats)
     records.map{|r| r.layer_id}.uniq.sort.each do |layer_id|
@@ -32,6 +32,6 @@ class Area < ActiveRecord::Base
         end
       }
     end
-    { calculated_stats: calculated_stats.as_json }
+    { calculated_stats: calculated_stats }
   end
 end
