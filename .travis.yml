@@ -5,7 +5,6 @@ rvm:
 # uncomment this line if your project needs to run something other than `rake`:
 before_script:
   - psql -c 'CREATE DATABASE magpie_test' -U postgres
-  - psql -c 'CREATE EXTENSION json' -U postgres magpie_test
   - RAILS_ENV=test bundle exec rake db:migrate
 script: 
   - bundle exec rspec spec

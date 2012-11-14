@@ -1,6 +1,6 @@
 Magpie::Application.routes.draw do
 
-  resources :analyses, :only => [:update, :show], :shallow => true do
+  resources :analyses, :only => [:create, :update, :show], :shallow => true do
     resources :areas, :only => [:update, :show], :shallow => true do
       resources :polygons, :only => [:update, :show]
       member do
