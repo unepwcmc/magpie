@@ -18,14 +18,14 @@ resource "Polygon" do
 
   post "/polygons" do
     parameter :geometry, "Polygon geometry geojson"
+    parameter :area_id, "Area ID"
     let(:geometry) { [50,50].to_json }
+    let(:area) { create(:area, :analysis_id => create(:analysis).id) }
+    let(:area_id) { area.id }
     example_request "Creating a new polygon" do
       do_request
       status.should == 200
-      response_body.should have_json_path 'analysis'
-      response_body.should have_json_path 'area'
-      response_body.should be_json_eql({polygon: params}.to_json).
-        excluding("analysis").excluding("area").excluding("area_id")
+      response_body.should be_json_eql(params.to_json)
     end
   end
 
