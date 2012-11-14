@@ -63,5 +63,10 @@ end
 def public_scope
   Apartment::Database.switch()
   yield
-  Apartment::Database.switch('carbon')
+  begin
+    Apartment::Database.switch('carbon')
+  rescue Apartment::SchemaNotFound
+    FactoryGirl.create(:tenant, :name => 'carbon')
+    Apartment::Database.switch('carbon')
+  end
 end
