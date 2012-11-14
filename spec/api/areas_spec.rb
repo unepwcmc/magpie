@@ -40,15 +40,26 @@ resource "Area" do
 
   get "/areas/:id/calculated_stats" do
     parameter :id, "Area id"
-    let(:analysis) { create(:analysis) }
-    let(:area) { create(:area, :analysis_id => analysis.id) }
-    let(:id) { area.id }
-    let(:calculated_stat) { create(:calculated_stat, :area_id => id) }
-
+    let!(:analysis) { create(:analysis) }
+    let!(:area) { create(:area, :analysis_id => analysis.id) }
+    let!(:id) { area.id }
+    let!(:calculation) { create(:calculation) }
+    let!(:calculated_stat) { create(:calculated_stat, :area_id => id, :calculation_id => calculation.id, :value => 2) }
     example_request "Getting the calculated stats for an existing area" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(area.calculated_stats_formatted.to_json)
+      expected = {
+        :calculated_stats => [{
+          :layer_id => calculation.layer_id,
+          :stats => [{
+            :id => calculated_stat.id,
+            :value => calculated_stat.value,
+            :stat_id => calculation.operation_id,
+            :display_name => calculation.display_name
+          }]
+        }]
+      }
+      response_body.should be_json_eql(expected.to_json)
     end
   end
 end

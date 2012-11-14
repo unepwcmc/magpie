@@ -13,7 +13,8 @@ class AreasController < ApplicationController
   end
 
   def calculated_stats
-    @area = Area.find(request.path_parameters[:id])
-    render :json => @area.calculated_stats_formatted
+    area = Area.find(request.path_parameters[:id])
+    @records = area.layers
+    render
   end
 end

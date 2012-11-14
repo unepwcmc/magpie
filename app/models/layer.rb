@@ -13,4 +13,5 @@
 class Layer < ActiveRecord::Base
   attr_accessible :name, :type, :url
   has_many :calculations
+  has_many :calculated_stats, :through => :calculations
 end
