@@ -1,52 +1,44 @@
 require 'spec_helper'
 
 describe TenantLayer do
-  context "available calculations for a particular layer" do
+
+  context "available calculations for layers" do
+
+    public_scope do
+      let(:carbon_layer){ create(:layer, :name => 'carbon') }
+      let(:forest_layer){ create(:layer, :name => 'forest') }
+      let(:average){ create(:operation, :name => 'average') }
+      let(:sum){ create(:operation, :name => 'sum') }
+      let!(:carbon_average){ create(
+          :calculation,
+          :layer_id => carbon_layer.id,
+          :operation_id => average.id
+        )
+      }
+      let!(:carbon_sum){ create(
+          :calculation,
+          :layer_id => carbon_layer.id,
+          :operation_id => sum.id
+        )
+      }
+      let!(:forest_average){ create(
+          :calculation,
+          :layer_id => forest_layer.id,
+          :operation_id => average.id
+        )
+      }
+    end
+
     before(:each) do
-      Apartment::Database.switch()
-      layer = create(:layer)
-      operation1 = create(:operation)
-      operation2 = create(:operation)
-      calculation = create(
-        :calculation,
-        :layer_id => layer.id,
-        :operation_id => operation1.id
-      )
-      calculation = create(
-        :calculation,
-        :layer_id => layer.id,
-        :operation_id => operation2.id
-      )
-      Apartment::Database.switch('carbon')
-      create(:tenant_layer, :layer_id => layer.id)
+      @tenant_layer = create(:tenant_layer, :layer_id => carbon_layer.id)
+      create(:tenant_layer, :layer_id => forest_layer.id)
     end
-    it "should return 1 element array" do
-      TenantLayer.layer_calculations.count.should == 1
+    it "should return 1 element if layer is specified" do
+      TenantLayer.layers_with_calculations(@tenant_layer.layer_id).count.should == 1
     end
-  end
-  context "available calculations for available layers" do
-    before(:each) do
-      Apartment::Database.switch()
-      layer1 = create(:layer)
-      layer2 = create(:layer)
-      operation1 = create(:operation)
-      operation2 = create(:operation)
-      calculation = create(
-        :calculation,
-        :layer_id => layer1.id,
-        :operation_id => operation1.id
-      )
-      calculation = create(
-        :calculation,
-        :layer_id => layer2.id,
-        :operation_id => operation2.id
-      )
-      Apartment::Database.switch('carbon')
-      create(:tenant_layer, :layer_id => layer1.id)
-      create(:tenant_layer, :layer_id => layer2.id)
-    end
-    it "should return 2 elements" do
-      TenantLayer.layer_calculations.count.should == 2
+
+    it "should return 2 elements if layer is unspecified" do
+      TenantLayer.layers_with_calculations.count.should == 2
     end
   end
 end

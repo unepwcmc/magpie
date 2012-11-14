@@ -1,8 +1,10 @@
 class LayersController < ApplicationController
   def index
-    render :json => TenantLayer.includes(:layer).map{ |tl| tl.layer }
+    @layers = TenantLayer.joins(:layer).includes(:layer).map(&:layer)
+    render "layers/index"
   end
   def layer_calculations
-    render :json => TenantLayer.layer_calculations(params[:layer_id])
+    @layers_with_calculations = TenantLayer.layers_with_calculations(params[:layer_id])
+    render "layers/calculations"
   end
 end

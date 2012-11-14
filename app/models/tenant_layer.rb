@@ -13,19 +13,12 @@ class TenantLayer < ActiveRecord::Base
 
   belongs_to :layer
 
-  def self.layer_calculations(layer_id = nil)
-    calculations_rel = joins(:layer => :calculations).includes(:layer => :calculations)
+  def self.layers_with_calculations(layer_id = nil)
+    calculations = joins(:layer => :calculations).includes(:layer)
     unless layer_id.blank?
-      calculations_rel = calculations_rel.find(layer_id)
+      calculations = calculations.where(:layer_id => layer_id)
     end
-    calculations_rel.map do |tl|
-      {
-        :layer_id => tl.layer_id,
-        :calculations => tl.layer.calculations.map do |c|
-          c.attributes.select { |k,v| ['id', 'display_name'].include? k }
-        end
-      }
-    end
+    calculations.map(&:layer)
   end
 
 end

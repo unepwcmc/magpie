@@ -82,6 +82,9 @@ GEM
     newrelic_rpm (3.4.2.1)
     pg (0.14.1)
     polyglot (0.3.3)
+    rabl (0.7.3)
+      activesupport (>= 2.3.14)
+      multi_json (~> 1.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -150,6 +153,7 @@ GEM
     webmock (1.9.0)
       addressable (>= 2.2.7)
       crack (>= 0.1.7)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -166,9 +170,11 @@ DEPENDENCIES
   json_spec
   newrelic_rpm
   pg
+  rabl
   rails (= 3.2.7)
   rails-api
   rest-client
   rspec-rails
   rspec_api_documentation
   simplecov
+  yajl-ruby
