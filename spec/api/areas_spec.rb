@@ -38,11 +38,17 @@ resource "Area" do
     end
   end
 
-  get "/area/:id/calculated_stats" do
+  get "/areas/:id/calculated_stats" do
     parameter :id, "Area id"
     let(:analysis) { create(:analysis) }
     let(:area) { create(:area, :analysis_id => analysis.id) }
     let(:id) { area.id }
     let(:calculated_stat) { create(:calculated_stat, :area_id => id) }
+    
+    example_request "Getting the calculated stats for an existing area" do
+      do_request
+      status.should == 200
+      response_body.should be_json_eql(area.calculated_stats_formatted.to_json)
+    end
   end
 end
