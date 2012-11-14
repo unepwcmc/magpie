@@ -4,12 +4,11 @@ class PolygonsController < ApplicationController
     if params[:area_id].blank?
       @analysis = Analysis.create!(:name => 'My Analysis')
       @area = Area.create(:name => 'AOI#1', :analysis_id => @analysis.id)
-      @analysis.areas << @area
     else
       @area = Area.find(params[:area_id])
     end
     @polygon = Polygon.create(
-      params[:polygon].merge({:area_id => @area.id})
+      params.merge({:area_id => @area.id})
     )
     render :json => {:polygon => @polygon, :analysis => @analysis, :area => @area}
   end
@@ -17,7 +16,7 @@ class PolygonsController < ApplicationController
   def update
     #TODO Apartment custom elevator causes path params not to appear in params
     @polygon = Polygon.find(request.path_parameters[:id])
-    @polygon.update_attributes(params[:polygon])
+    @polygon.update_attributes(params)
     render :json => @polygon
   end
 

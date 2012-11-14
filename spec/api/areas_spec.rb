@@ -44,7 +44,7 @@ resource "Area" do
     let(:area) { create(:area, :analysis_id => analysis.id) }
     let(:id) { area.id }
     let(:calculated_stat) { create(:calculated_stat, :area_id => id) }
-    
+
     example_request "Getting the calculated stats for an existing area" do
       do_request
       status.should == 200
