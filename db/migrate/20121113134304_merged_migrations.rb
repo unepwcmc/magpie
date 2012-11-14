@@ -1,4 +1,4 @@
-class ChangeDataToGeometryInPolygons < ActiveRecord::Migration
+class MergedMigrations < ActiveRecord::Migration
   def up
     create_table "analyses", :force => true do |t|
       t.string   "name"
