@@ -21,6 +21,14 @@ resource "Analysis" do
     end
   end
 
+  post "/analyses" do
+    example_request "Creating a new analysis" do
+      do_request
+      status.should == 200
+      response_body.should be_json_eql(create(:analysis, :name => nil).to_json)
+    end
+  end
+
   put "/analyses/:id" do
     parameter :id, "Analysis id"
     parameter :name, "Analysis name"

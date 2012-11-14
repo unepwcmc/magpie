@@ -1,4 +1,10 @@
 class AnalysesController < ApplicationController
+
+  def create
+    @analysis = Analysis.create
+    render :json => @analysis
+  end
+
   def update
     #TODO Apartment custom elevator causes path params not to appear in params
     @analysis = Analysis.find(request.path_parameters[:id])
