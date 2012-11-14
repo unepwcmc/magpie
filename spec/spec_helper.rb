@@ -59,3 +59,9 @@ RSpec.configure do |config|
   end
 
 end
+
+def public_scope
+  Apartment::Database.switch()
+  yield
+  Apartment::Database.switch('carbon')
+end
