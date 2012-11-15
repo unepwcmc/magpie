@@ -38,28 +38,4 @@ resource "AreaOfInterest" do
     end
   end
 
-  get "/areas_of_interest/:id/calculated_stats" do
-    parameter :id, "Area ID"
-    let!(:workspace) { create(:workspace) }
-    let!(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
-    let!(:id) { area_of_interest.id }
-    let!(:calculation) { create(:calculation) }
-    let!(:calculated_stat) { create(:calculated_stat, :area_id => id, :calculation_id => calculation.id, :value => 2) }
-    example_request "Getting the calculated stats for an existing area" do
-      do_request
-      status.should == 200
-      expected = {
-        :calculated_stats => [{
-          :layer_id => calculation.layer_id,
-          :stats => [{
-            :id => calculated_stat.id,
-            :value => calculated_stat.value,
-            :stat_id => calculation.operation_id,
-            :display_name => calculation.display_name
-          }]
-        }]
-      }
-      response_body.should be_json_eql(expected.to_json)
-    end
-  end
 end
