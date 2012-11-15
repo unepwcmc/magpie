@@ -1,5 +1,6 @@
 Magpie::Application.routes.draw do
 
+  resources :apps, :only => [:show]
   resources :workspaces, :only => [:create, :show], :shallow => true do
     resources :areas_of_interest, :only => [:update, :show], :shallow => true do
       resources :polygons, :only => [:update, :show]

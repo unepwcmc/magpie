@@ -10,7 +10,6 @@
 
 class App < ActiveRecord::Base
   attr_accessible :id, :name
-
   after_create :prepare_app
 
   private

@@ -2,11 +2,18 @@ FactoryGirl.define do
   factory :app do
     name 'CarbonCalculator'
   end
+
   factory :app_layer do
-    layer
+    display_name "Carbon Layer"
+    provider_id "carbon_layer_xpto"
+    tile_url "http://"
+    is_displayed true
+    type ""
   end
+
   factory :workspace do
   end
+
   factory :area_of_interest do
     name 'AOI#1'
     is_summary false
