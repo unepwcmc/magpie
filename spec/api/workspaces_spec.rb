@@ -7,11 +7,11 @@ resource "Workspace" do
 
     let(:workspace) { create(:workspace) }
     let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id, :name => "AOI#1") }
-    let!(:polygon) { create(:polygon, :area_of_interest_id => area_of_interest.id) }
-    let!(:result) { create(:result, :area_of_interest_id => area_of_interest.id, :value => 20, :name => "AOI#2") }
-    let!(:area_of_interest2) { create(:area_of_interest, :workspace_id => workspace.id) }
+    let!(:polygon) { create(:polygon, :area_of_interest_id => area_of_interest.id, :geometry => [2000, 2000].to_json) }
+    let!(:result) { create(:result, :area_of_interest_id => area_of_interest.id, :value => 20) }
+    let!(:area_of_interest2) { create(:area_of_interest, :workspace_id => workspace.id, :name => "AOI#2") }
     let!(:polygon2) { create(:polygon, :area_of_interest_id => area_of_interest2.id) }
-    let!(:result2) { create(:result, :area_of_interest_id => area_of_interest2.id, :value => 30) }
+    let!(:result2) { create(:result, :area_of_interest_id => area_of_interest2.id, :value => 300) }
 
     example_request "Getting a specific workspace" do
       explanation "curl localhost:3000/workspaces/2"
