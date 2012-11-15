@@ -59,12 +59,12 @@ module Magpie
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Multi tenant database switch
+    # Multi application database switch
     config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
-      if request.params["tenant"].blank? && Rails.env == 'staging'
+      if request.params["app"].blank? && Rails.env == 'staging'
         'carbon'
       else
-        request.params["tenant"]
+        request.params["app"]
       end
     }
   end

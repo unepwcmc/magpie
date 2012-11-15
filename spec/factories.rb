@@ -1,17 +1,14 @@
 FactoryGirl.define do
-  factory :tenant do
+  factory :app do
     name 'CarbonCalculator'
   end
-  factory :layer do
-    name 'carbon'
-  end
-  factory :tenant_layer do
+  factory :app_layer do
     layer
   end
-  factory :analysis do
+  factory :workspace do
     name 'my interesting polygons'
   end
-  factory :area do
+  factory :area_of_interest do
     name 'AOI#1'
     is_summary false
   end
@@ -26,8 +23,8 @@ FactoryGirl.define do
     layer
     operation
   end
-  factory :calculated_stat do
-    area
+  factory :calculation_result do
+    area_of_interest
     calculation
   end
 end

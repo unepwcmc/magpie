@@ -38,7 +38,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
-    FactoryGirl.create(:tenant, :name => 'carbon')
+    private_scope
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -63,5 +63,14 @@ end
 def public_scope
   Apartment::Database.switch()
   yield
-  Apartment::Database.switch('carbon')
+  private_scope
+end
+
+def private_scope
+  begin
+    Apartment::Database.switch('carbon')
+  rescue Apartment::SchemaNotFound => e
+    App.create(:name => 'carbon')
+    Apartment::Database.switch('carbon')
+  end
 end

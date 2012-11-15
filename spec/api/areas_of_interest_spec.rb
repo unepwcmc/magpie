@@ -1,48 +1,48 @@
 require "spec_helper"
 
-resource "Area" do
+resource "AreaOfInterest" do
 
-  get "/areas/:id" do
+  get "/areas_of_interest/:id" do
     parameter :id, "Area ID"
 
-    let(:analysis){ create(:analysis) }
-    let(:area) { create(:area, :analysis_id => analysis.id) }
+    let(:workspace){ create(:workspace) }
+    let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
 
     example_request "Getting a specific area" do
-      explanation "curl localhost:3000/areas/2"
-      @id = area.id 
-      do_request(:id => area.id)
+      explanation "curl localhost:3000/areas_of_interest/2"
+      @id = area_of_interest.id 
+      do_request(:id => area_of_interest.id)
       status.should == 200
-      response_body.should be_json_eql area.to_json
+      response_body.should be_json_eql area_of_interest.to_json
     end
-    example_request "Getting an area which does not exist" do
+    example_request "Getting an area of interest which does not exist" do
       do_request(:id => -1)
       status.should == 200
       response_body.should be_json_eql({:error => 'Resource not found'}.to_json)
     end
   end
 
-  put "/areas/:id" do
-    parameter :id, "Area id"
-    parameter :name, "Area name"
-    let(:analysis) { create(:analysis) }
-    let(:area) { create(:area, :analysis_id => analysis.id) }
-    let(:id) { area.id }
+  put "/areas_of_interest/:id" do
+    parameter :id, "Area of interest ID"
+    parameter :name, "Area of interest name"
+    let(:workspace) { create(:workspace) }
+    let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
+    let(:id) { area_of_interest.id }
     let(:name) { 'Even more interesting area' }
     scope_parameters :area, :all
     example_request "Updating an existing area" do
       do_request
       status.should == 200
       response_body.should be_json_eql(params["area"].to_json).
-        excluding('analysis_id').excluding('is_summary')
+        excluding('workspace_id').excluding('is_summary')
     end
   end
 
-  get "/areas/:id/calculated_stats" do
-    parameter :id, "Area id"
-    let!(:analysis) { create(:analysis) }
-    let!(:area) { create(:area, :analysis_id => analysis.id) }
-    let!(:id) { area.id }
+  get "/areas_of_interest/:id/calculated_stats" do
+    parameter :id, "Area ID"
+    let!(:workspace) { create(:workspace) }
+    let!(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
+    let!(:id) { area_of_interest.id }
     let!(:calculation) { create(:calculation) }
     let!(:calculated_stat) { create(:calculated_stat, :area_id => id, :calculation_id => calculation.id, :value => 2) }
     example_request "Getting the calculated stats for an existing area" do

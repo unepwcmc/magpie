@@ -1,16 +1,13 @@
 Magpie::Application.routes.draw do
 
-  resources :analyses, :only => [:create, :update, :show], :shallow => true do
-    resources :areas, :only => [:update, :show], :shallow => true do
+  resources :workspaces, :only => [:create, :update, :show], :shallow => true do
+    resources :areas_of_interest, :only => [:update, :show], :shallow => true do
       resources :polygons, :only => [:update, :show]
       member do
         get :calculated_stats
       end
     end
   end
-  post "polygons" => "polygons#create"
-  resources :layers, :only => [:index]
-  get "layer_calculations" => "layers#layer_calculations"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

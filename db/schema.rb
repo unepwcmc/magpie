@@ -11,68 +11,60 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113134304) do
+ActiveRecord::Schema.define(:version => 20121115133632) do
 
-  create_table "analyses", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "areas", :force => true do |t|
-    t.string   "name"
-    t.boolean  "is_summary",  :default => false, :null => false
-    t.integer  "analysis_id",                    :null => false
+  create_table "app_layers", :force => true do |t|
+    t.string   "display_name",                   :null => false
+    t.string   "type",                           :null => false
+    t.integer  "provider_id",                    :null => false
+    t.string   "tile_url",                       :null => false
+    t.boolean  "is_displayed", :default => true, :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
 
-  create_table "calculated_stats", :force => true do |t|
-    t.integer  "calculation_id"
-    t.integer  "area_id"
-    t.float    "value"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "calculations", :force => true do |t|
-    t.string   "display_name"
-    t.integer  "operation_id"
-    t.integer  "layer_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "layers", :force => true do |t|
-    t.string   "name"
-    t.integer  "type"
-    t.string   "url"
+  create_table "apps", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  create_table "areas_of_interest", :force => true do |t|
+    t.string   "name",                            :null => false
+    t.integer  "workspace_id",                    :null => false
+    t.boolean  "is_summary",   :default => false, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "calculations", :force => true do |t|
+    t.string   "display_name", :null => false
+    t.string   "unit"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "operations", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "polygons", :force => true do |t|
-    t.integer  "area_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.text     "geometry"
-  end
-
-  create_table "tenant_layers", :force => true do |t|
-    t.integer  "layer_id"
+    t.text     "geometry",   :null => false
+    t.integer  "area_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tenants", :force => true do |t|
-    t.string   "name"
-    t.string   "subdomain"
+  create_table "results", :force => true do |t|
+    t.float    "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "workspaces", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
