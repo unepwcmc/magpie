@@ -38,7 +38,6 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
-    puts "before_suite"
     App.create(:name => 'carbon')
     DatabaseCleaner.strategy = :transaction
   end
