@@ -1,8 +1,8 @@
 class PolygonsController < ApplicationController
 
   def create
-    area_of_interest = AreaOfInterest.find(request.path_parameters[:area_of_interest_id])
-    @polygon = area_of_interest.polygons.create(:geometry => params[:geometry])
+    aoi = AreaOfInterest.find(request.path_parameters[:area_of_interest_id])
+    @polygon = aoi.polygons.create(:geometry => params[:geometry])
     render 'polygons/show'
   end
 
