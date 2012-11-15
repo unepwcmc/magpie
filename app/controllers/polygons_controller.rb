@@ -1,8 +1,9 @@
 class PolygonsController < ApplicationController
 
   def create
-    @polygon = Polygon.create(params)
-    render :json => @polygon
+    area_of_interest = AreaOfInterest.find(request.path_parameters[:area_of_interest_id])
+    @polygon = area_of_interest.polygons.create(:geometry => params[:geometry])
+    render
   end
 
   def update

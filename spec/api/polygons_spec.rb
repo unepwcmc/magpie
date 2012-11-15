@@ -16,16 +16,23 @@ resource "Polygon" do
     end
   end
 
-  post "/polygons" do
+  post "/areas_of_interest/:area_of_interest_id/polygons" do
+    parameter :area_of_interest_id, "Area of Interest ID"
     parameter :geometry, "Polygon geometry geojson"
-    parameter :area_id, "Area ID"
-    let(:geometry) { [50,50].to_json }
-    let(:area_of_interest) { create(:area_of_interest, :workspace_id => create(:workspace).id) }
+    let(:area_of_interest) { create(:area_of_interest) }
     let(:area_of_interest_id) { area_of_interest.id }
+    let(:geometry) { [50,50].to_json }
+    let(:polygon) { create(:polygon, :geometry => geometry, :area_of_interest_id => area_of_interest.id)}
+
     example_request "Creating a new polygon" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(params.to_json)
+      expected = {
+        :id => polygon.id,
+        :geometry => geometry,
+        :area_of_interest_id => area_of_interest_id
+      }
+      response_body.should be_json_eql(expected.to_json)
     end
   end
 
