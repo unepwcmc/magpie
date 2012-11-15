@@ -22,6 +22,18 @@ resource "AreaOfInterest" do
     end
   end
 
+  post "/workspaces/:workspace_id/areas_of_interest" do
+    parameter :workspace_id, "Workspace ID"
+    parameter :name, "Area of interest name"
+    let(:workspace_id) { create(:workspace).id }
+    let(:name) { "An interesting area" }
+    example_request "Creating a new area of interest" do
+      do_request
+      status.should == 200
+      response_body.should be_json_eql(params.to_json).excluding('workspace_id')
+    end
+  end
+
   put "/areas_of_interest/:id" do
     parameter :id, "Area of interest ID"
     parameter :name, "Area of interest name"
@@ -29,12 +41,11 @@ resource "AreaOfInterest" do
     let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
     let(:id) { area_of_interest.id }
     let(:name) { 'Even more interesting area' }
-    scope_parameters :area, :all
     example_request "Updating an existing area" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(params["area"].to_json).
-        excluding('workspace_id').excluding('is_summary')
+      response_body.should be_json_eql(area_of_interest.attributes.merge(params).to_json).
+        excluding('is_summary').excluding('workspace_id')
     end
   end
 
