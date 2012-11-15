@@ -12,7 +12,12 @@ resource "Polygon" do
       explanation "curl localhost:3000/polygons/2"
       do_request
       status.should == 200
-      response_body.should be_json_eql polygon.to_json
+      expected = {
+        :id => polygon.id,
+        :geometry => polygon.geometry,
+        :area_of_interest_id => polygon.area_of_interest_id
+      }
+      response_body.should be_json_eql expected.to_json
     end
   end
 
