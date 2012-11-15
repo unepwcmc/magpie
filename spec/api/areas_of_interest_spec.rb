@@ -7,13 +7,28 @@ resource "AreaOfInterest" do
 
     let(:workspace){ create(:workspace) }
     let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
+    let!(:polygon) { create(:polygon, :area_of_interest_id => area_of_interest.id) }
+    let!(:result) { create(:result, :area_of_interest_id => area_of_interest.id, :value => 20) }
 
     example_request "Getting a specific area" do
       explanation "curl localhost:3000/areas_of_interest/2"
-      @id = area_of_interest.id 
       do_request(:id => area_of_interest.id)
       status.should == 200
-      response_body.should be_json_eql area_of_interest.to_json
+      expected = {
+        :id => area_of_interest.id,
+        :name => area_of_interest.name,
+        :polygons => [{
+          :id => polygon.id,
+          :geometry => polygon.geometry
+        }],
+        :results => [{
+          :value => result.value,
+          :unit => result.calculation.unit,
+          :display_name => result.calculation.display_name,
+          :app_layer_id => result.calculation.app_layer_id
+        }]
+      }
+      response_body.should be_json_eql expected.to_json
     end
     example_request "Getting an area of interest which does not exist" do
       do_request(:id => -1)

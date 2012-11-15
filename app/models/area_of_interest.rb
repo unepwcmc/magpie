@@ -15,4 +15,5 @@ class AreaOfInterest < ActiveRecord::Base
   has_many :results
   belongs_to :workspace
   has_many :polygons
+  has_many :results
 end

@@ -7,8 +7,12 @@
 #  unit         :string(255)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  app_layer_id :integer
+#  operation_id :integer
 #
 
 class Calculation < ActiveRecord::Base
   attr_accessible :display_name, :unit
+  belongs_to :app_layer
+  belongs_to :operation
 end

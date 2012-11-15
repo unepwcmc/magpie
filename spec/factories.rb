@@ -28,10 +28,11 @@ FactoryGirl.define do
   end
   factory :calculation do
     display_name "Average of Carbon"
-    layer
+    unit 'Kg'
+    app_layer
     operation
   end
-  factory :calculation_result do
+  factory :result do
     area_of_interest
     calculation
   end

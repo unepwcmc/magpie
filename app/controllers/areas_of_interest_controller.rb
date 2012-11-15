@@ -17,7 +17,7 @@ class AreasOfInterestController < ApplicationController
   def show
     #TODO Apartment custom elevator causes path params not to appear in params
     @aoi = AreaOfInterest.find(request.path_parameters[:id])
-    render :json => @aoi
+    render
   end
 
   def calculated_stats

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115180223) do
+ActiveRecord::Schema.define(:version => 20121115180841) do
 
   create_table "app_layers", :force => true do |t|
     t.string   "display_name",                   :null => false
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20121115180223) do
     t.string   "unit"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "app_layer_id"
+    t.integer  "operation_id"
   end
 
   create_table "operations", :force => true do |t|

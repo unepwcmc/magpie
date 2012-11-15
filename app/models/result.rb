@@ -12,4 +12,6 @@
 
 class Result < ActiveRecord::Base
   attr_accessible :value
+  belongs_to :calculation
+  belongs_to :area_of_interest
 end
