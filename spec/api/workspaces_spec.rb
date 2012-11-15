@@ -25,7 +25,7 @@ resource "Workspace" do
     example_request "Creating a new workspace" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(create(:workspace, :name => nil).to_json)
+      response_body.should be_json_eql(create(:workspace, :name => "A Name").to_json)
     end
   end
 

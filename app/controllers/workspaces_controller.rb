@@ -1,7 +1,7 @@
 class WorkspacesController < ApplicationController
 
   def create
-    @workspace = Workspace.create
+    @workspace = Workspace.create(:name => "A Name")
     render :json => @workspace
   end
 
