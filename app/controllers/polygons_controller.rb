@@ -10,7 +10,7 @@ class PolygonsController < ApplicationController
     #TODO Apartment custom elevator causes path params not to appear in params
     @polygon = Polygon.find(request.path_parameters[:id])
     @polygon.update_attributes(params)
-    render :json => @polygon
+    render 'polygons/show'
   end
 
   def show
