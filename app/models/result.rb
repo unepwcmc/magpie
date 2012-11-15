@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: workspaces
+# Table name: results
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)      not null
+#  value      :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Workspace < ActiveRecord::Base
-  attr_accessible :name
+class Result < ActiveRecord::Base
+  attr_accessible :value
 end

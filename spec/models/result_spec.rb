@@ -1,13 +1,15 @@
 # == Schema Information
 #
-# Table name: workspaces
+# Table name: results
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)      not null
+#  value      :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Workspace < ActiveRecord::Base
-  attr_accessible :name
+require 'spec_helper'
+
+describe Result do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

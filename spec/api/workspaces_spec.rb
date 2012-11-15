@@ -29,15 +29,4 @@ resource "Workspace" do
     end
   end
 
-  put "/workspaces/:id" do
-    parameter :id, "Workspace ID"
-    let(:workspace) { create(:workspace) }
-    let(:id) { workspace.id }
-    example_request "Updating an existing workspace" do
-      do_request
-      status.should == 200
-      response_body.should be_json_eql(params.to_json)
-    end
-  end
-
 end
