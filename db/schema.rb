@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115143216) do
+ActiveRecord::Schema.define(:version => 20121115180223) do
 
   create_table "app_layers", :force => true do |t|
     t.string   "display_name",                   :null => false
@@ -59,8 +59,10 @@ ActiveRecord::Schema.define(:version => 20121115143216) do
 
   create_table "results", :force => true do |t|
     t.float    "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "area_of_interest_id"
+    t.integer  "calculation_id"
   end
 
   create_table "workspaces", :force => true do |t|
