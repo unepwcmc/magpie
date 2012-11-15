@@ -6,7 +6,6 @@ FactoryGirl.define do
     layer
   end
   factory :workspace do
-    name 'my interesting polygons'
   end
   factory :area_of_interest do
     name 'AOI#1'

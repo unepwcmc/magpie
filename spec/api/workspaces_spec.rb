@@ -25,20 +25,18 @@ resource "Workspace" do
     example_request "Creating a new workspace" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(create(:workspace, :name => nil).to_json)
+      response_body.should be_json_eql(create(:workspace).to_json)
     end
   end
 
   put "/workspaces/:id" do
-    parameter :id, "Workspace id"
-    parameter :name, "Workspace name"
+    parameter :id, "Workspace ID"
     let(:workspace) { create(:workspace) }
     let(:id) { workspace.id }
-    let(:name) { 'Even more interesting workspace' }
     example_request "Updating an existing workspace" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(params["workspace"].to_json)
+      response_body.should be_json_eql(params.to_json)
     end
   end
 
