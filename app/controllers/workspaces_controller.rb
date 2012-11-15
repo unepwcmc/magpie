@@ -2,7 +2,7 @@ class WorkspacesController < ApplicationController
 
   def create
     @workspace = Workspace.create
-    render :json => @workspace
+    render
   end
 
   def show
