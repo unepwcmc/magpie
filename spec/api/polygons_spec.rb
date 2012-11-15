@@ -50,8 +50,12 @@ resource "Polygon" do
     example_request "Updating an existing polygon" do
       do_request
       status.should == 200
-      response_body.should be_json_eql(params.to_json).
-        excluding("area_id")
+      expected = {
+        :id => polygon.id,
+        :geometry => geometry,
+        :area_of_interest_id => polygon.area_of_interest_id
+      }
+      response_body.should be_json_eql(expected.to_json)
     end
   end
 
