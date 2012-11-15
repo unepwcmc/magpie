@@ -67,7 +67,3 @@ def public_scope
   yield
   Apartment::Database.switch('carbon')
 end
-
-def get_spec_app
-  App.find_by_name("carbon")
-end
