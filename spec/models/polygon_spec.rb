@@ -2,11 +2,11 @@
 #
 # Table name: polygons
 #
-#  id         :integer          not null, primary key
-#  geometry   :text             not null
-#  area_id    :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                  :integer          not null, primary key
+#  geometry            :text             not null
+#  area_of_interest_id :integer          not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 require 'spec_helper'

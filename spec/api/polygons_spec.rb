@@ -20,8 +20,8 @@ resource "Polygon" do
     parameter :geometry, "Polygon geometry geojson"
     parameter :area_id, "Area ID"
     let(:geometry) { [50,50].to_json }
-    let(:area) { create(:area, :workspace_id => create(:workspace).id) }
-    let(:area_id) { area.id }
+    let(:area_of_interest) { create(:area_of_interest, :workspace_id => create(:workspace).id) }
+    let(:area_of_interest_id) { area_of_interest.id }
     example_request "Creating a new polygon" do
       do_request
       status.should == 200
