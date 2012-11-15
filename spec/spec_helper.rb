@@ -38,7 +38,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
-    private_scope
+    puts "before_suite"
+    App.create(:name => 'carbon')
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -61,16 +62,8 @@ RSpec.configure do |config|
 end
 
 def public_scope
+  puts "public_scope"
   Apartment::Database.switch()
   yield
-  private_scope
-end
-
-def private_scope
-  begin
-    Apartment::Database.switch('carbon')
-  rescue Apartment::SchemaNotFound => e
-    App.create(:name => 'carbon')
-    Apartment::Database.switch('carbon')
-  end
+  Apartment::Database.switch('carbon')
 end
