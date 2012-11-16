@@ -60,9 +60,25 @@ resource "Workspace" do
   post "/workspaces" do
     example_request "Creating a new workspace" do
       do_request
-      status.should == 200
+      status.should == 201
       response_body.should be_json_eql({:id => create(:workspace).id}.to_json)
     end
   end
 
+  delete "/workspaces/:id" do
+    parameter :id, 'Workspace ID'
+    let(:workspace) { create(:workspace) }
+    let(:id) {workspace.id}
+    example_request "Deleting an existing workspace" do
+      explanation "curl -i http://localhost:3000/workspaces/15 -X DELETE"
+      do_request(:id => id)
+      status.should == 200
+    end
+    example_request "Deleting a non existing workspace" do
+      explanation "curl -i http://localhost:3000/workspaces/-1 -X DELETE"
+      do_request(:id => -1)
+      status.should == 200
+      response_body.should be_json_eql({:error => 'Resource not found'}.to_json)
+    end
+  end
 end

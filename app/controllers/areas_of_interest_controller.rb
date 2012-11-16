@@ -4,7 +4,7 @@ class AreasOfInterestController < ApplicationController
     @aoi = AreaOfInterest.create(params.merge({
       :workspace_id => request.path_parameters[:workspace_id]
     }))
-    render 'areas_of_interest/save'
+    render 'areas_of_interest/save', :status => 201
   end
 
   def update
@@ -20,9 +20,12 @@ class AreasOfInterestController < ApplicationController
     render
   end
 
-  def calculated_stats
-    aoi = AreaOfInterest.find(request.path_parameters[:id])
-    @records = aoi.app_layers
-    render
+  def destroy
+    @aoi = AreaOfInterest.find(request.path_parameters[:id])
+    if @aoi.destroy
+      head :ok
+    else
+      head :unauthorized
+    end
   end
 end
