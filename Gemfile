@@ -12,7 +12,6 @@ gem 'yajl-ruby', :require => "yajl"
 
 # storage
 gem 'pg'
-gem 'foreigner'
 
 # multi tenancy
 gem 'apartment'
