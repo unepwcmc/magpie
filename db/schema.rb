@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115180841) do
+ActiveRecord::Schema.define(:version => 20121116100346) do
 
   create_table "app_layers", :force => true do |t|
     t.string   "display_name",                   :null => false
@@ -71,5 +71,15 @@ ActiveRecord::Schema.define(:version => 20121115180841) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_foreign_key "areas_of_interest", "workspaces", :name => "areas_of_interest_workspace_id_fk", :dependent => :delete
+
+  add_foreign_key "calculations", "app_layers", :name => "calculations_app_layer_id_fk", :dependent => :delete
+  add_foreign_key "calculations", "operations", :name => "calculations_operation_id_fk", :dependent => :delete
+
+  add_foreign_key "polygons", "areas_of_interest", :name => "polygons_area_of_interest_id_fk", :dependent => :delete
+
+  add_foreign_key "results", "areas_of_interest", :name => "results_area_of_interest_id_fk", :dependent => :delete
+  add_foreign_key "results", "calculations", :name => "results_calculation_id_fk", :dependent => :delete
 
 end
