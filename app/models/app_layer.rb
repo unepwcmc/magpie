@@ -13,5 +13,5 @@
 #
 
 class AppLayer < ActiveRecord::Base
-  attr_accessible :id, :is_displayed, :name, :provider_id, :tile_url, :type
+  attr_accessible :id, :is_displayed, :display_name, :provider_id, :tile_url, :type
 end

@@ -12,7 +12,7 @@
 #
 
 class Calculation < ActiveRecord::Base
-  attr_accessible :display_name, :unit
+  attr_accessible :display_name, :unit, :app_layer_id, :operation_id
   belongs_to :app_layer
   belongs_to :operation
 end
