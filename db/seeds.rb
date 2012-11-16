@@ -21,14 +21,14 @@
   Apartment::Database.switch('carbon')
   mangroves = AppLayer.create(
     :display_name => 'Mangroves', 
-    :type => 'Raster',
+    :type => 'RasterLayer',
     :provider_id => 1,
     :tile_url => 'TODO',
     :is_displayed => true
   )
   seagrass = AppLayer.create(
     :display_name => 'Seagrass',
-    :type => 'Raster',
+    :type => 'RasterLayer',
     :provider_id => 2,
     :tile_url => 'TODO',
     :is_displayed => true
