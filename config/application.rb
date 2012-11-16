@@ -61,10 +61,10 @@ module Magpie
 
     # Multi application database switch
     config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
-      if request.params["app"].blank? && Rails.env == 'staging'
-        'carbon'
-      else
-        request.params["app"]
+      begin
+        App.find(request.headers['HTTP_X_MAGPIE_APPID']).name
+      rescue
+        nil
       end
     }
   end
