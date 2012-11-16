@@ -64,4 +64,18 @@ resource "AreaOfInterest" do
     end
   end
 
+  delete "/areas_of_interest/:id" do
+    parameter :id, 'AreaOfInterest ID'
+    let(:area_of_interest) { create(:area_of_interest) }
+    let(:id) {area_of_interest.id}
+    example_request "Deleting an existing area of interest" do
+      do_request(:id => id)
+      status.should == 200
+    end
+    example_request "Deleting a non existing area of interest" do
+      do_request(:id => -1)
+      status.should == 200
+      response_body.should be_json_eql({:error => 'Resource not found'}.to_json)
+    end
+  end
 end

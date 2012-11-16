@@ -61,7 +61,7 @@ resource "Polygon" do
   delete "/polygons/:id" do
     parameter :id, 'Polygon ID'
     let(:polygon) { create(:polygon) }
-    let(:id) {workspace.id}
+    let(:id) {polygon.id}
     example_request "Deleting an existing polygon" do
       do_request(:id => id)
       status.should == 200
