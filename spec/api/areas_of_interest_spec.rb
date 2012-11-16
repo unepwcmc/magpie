@@ -52,8 +52,13 @@ resource "AreaOfInterest" do
   put "/areas_of_interest/:id" do
     parameter :id, "Area of interest ID"
     parameter :name, "Area of interest name"
-    let(:workspace) { create(:workspace) }
-    let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id) }
+    parameter :workspace_id, "Workspace ID"
+    let(:workspace_id) { create(:workspace).id }
+    let(:area_of_interest) { create(
+      :area_of_interest,
+      :workspace_id => workspace_id,
+      :name => "An interesting area"
+    ) }
     let(:id) { area_of_interest.id }
     let(:name) { 'Even more interesting area' }
     example_request "Updating an existing area" do

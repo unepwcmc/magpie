@@ -1,16 +1,20 @@
 class AreasOfInterestController < ApplicationController
   def create
     #TODO Apartment custom elevator causes path params not to appear in params
-    @aoi = AreaOfInterest.create(params.merge({
-      :workspace_id => request.path_parameters[:workspace_id]
-    }))
+    @aoi = AreaOfInterest.create({
+      :workspace_id => request.path_parameters[:workspace_id],
+      :name => params[:name]
+    })
     render 'areas_of_interest/save', :status => 201
   end
 
   def update
     #TODO Apartment custom elevator causes path params not to appear in params
     @aoi = AreaOfInterest.find(request.path_parameters[:id])
-    @aoi.update_attributes(params)
+    @aoi.update_attributes({
+      :workspace_id => params[:workspace_id],
+      :name => params[:name]
+    })
     render 'areas_of_interest/save'
   end
 

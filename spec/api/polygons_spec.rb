@@ -44,7 +44,9 @@ resource "Polygon" do
   put "/polygons/:id" do
     parameter :id, "Polygon id"
     parameter :geometry, "Polygon geometry geojson"
-    let(:polygon) { create(:polygon) }
+    parameter :area_of_interest_id, "Area of interest ID"
+    let(:area_of_interest_id) { create(:area_of_interest).id }
+    let(:polygon) { create(:polygon, :area_of_interest_id => area_of_interest_id) }
     let(:id) { polygon.id }
     let(:geometry) { [60,60].to_json }
     example_request "Updating an existing polygon" do
