@@ -31,7 +31,7 @@ resource "Polygon" do
 
     example_request "Creating a new polygon" do
       do_request
-      status.should == 200
+      status.should == 201
       expected = {
         :id => polygon.id,
         :geometry => geometry,

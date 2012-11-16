@@ -44,7 +44,7 @@ resource "AreaOfInterest" do
     let(:name) { "An interesting area" }
     example_request "Creating a new area of interest" do
       do_request
-      status.should == 200
+      status.should == 201
       response_body.should be_json_eql(params.to_json).excluding('workspace_id')
     end
   end

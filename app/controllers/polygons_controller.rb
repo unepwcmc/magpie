@@ -3,7 +3,7 @@ class PolygonsController < ApplicationController
   def create
     aoi = AreaOfInterest.find(request.path_parameters[:area_of_interest_id])
     @polygon = aoi.polygons.create(:geometry => params[:geometry])
-    render 'polygons/show'
+    render 'polygons/show', :status => 201
   end
 
   def update

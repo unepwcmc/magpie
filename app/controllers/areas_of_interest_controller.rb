@@ -4,7 +4,7 @@ class AreasOfInterestController < ApplicationController
     @aoi = AreaOfInterest.create(params.merge({
       :workspace_id => request.path_parameters[:workspace_id]
     }))
-    render 'areas_of_interest/save'
+    render 'areas_of_interest/save', :status => 201
   end
 
   def update

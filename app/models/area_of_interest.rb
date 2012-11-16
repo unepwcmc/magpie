@@ -14,6 +14,6 @@ class AreaOfInterest < ActiveRecord::Base
   attr_accessible :name, :workspace_id
   has_many :results
   belongs_to :workspace
-  has_many :polygons
-  has_many :results
+  has_many :polygons, :dependent => :destroy
+  has_many :results, :dependent => :destroy
 end
