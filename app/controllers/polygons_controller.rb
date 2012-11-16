@@ -19,4 +19,12 @@ class PolygonsController < ApplicationController
     render
   end
 
+  def destroy
+    @polygon = Polygon.find(request.path_parameters[:id])
+    if @polygon.destroy
+      head :ok
+    else
+      head :unauthorized
+    end
+  end
 end
