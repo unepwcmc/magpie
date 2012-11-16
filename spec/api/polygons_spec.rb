@@ -63,10 +63,12 @@ resource "Polygon" do
     let(:polygon) { create(:polygon) }
     let(:id) {polygon.id}
     example_request "Deleting an existing polygon" do
+      explanation "curl -i http://localhost:3000/polygons/2 -X DELETE"
       do_request(:id => id)
       status.should == 200
     end
     example_request "Deleting a non existing polygon" do
+      explanation "curl -i http://localhost:3000/polygons/-1 -X DELETE"
       do_request(:id => -1)
       status.should == 200
       response_body.should be_json_eql({:error => 'Resource not found'}.to_json)

@@ -69,10 +69,12 @@ resource "AreaOfInterest" do
     let(:area_of_interest) { create(:area_of_interest) }
     let(:id) {area_of_interest.id}
     example_request "Deleting an existing area of interest" do
+      explanation "curl -i http://localhost:3000/areas_of_interest/2 -X DELETE"
       do_request(:id => id)
       status.should == 200
     end
     example_request "Deleting a non existing area of interest" do
+      explanation "curl -i http://localhost:3000/areas_of_interest/-1 -X DELETE"
       do_request(:id => -1)
       status.should == 200
       response_body.should be_json_eql({:error => 'Resource not found'}.to_json)
