@@ -106,10 +106,6 @@ GEM
       activesupport (= 3.2.7)
       bundler (~> 1.0)
       railties (= 3.2.7)
-    rails-api (0.0.2)
-      actionpack (>= 3.2.0)
-      railties (>= 3.2.0)
-      tzinfo (~> 0.3.31)
     railties (3.2.7)
       actionpack (= 3.2.7)
       activesupport (= 3.2.7)
@@ -189,7 +185,6 @@ DEPENDENCIES
   rabl
   rack-cors
   rails (= 3.2.7)
-  rails-api
   rest-client
   rspec-rails
   rspec_api_documentation

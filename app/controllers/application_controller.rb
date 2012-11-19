@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :not_found
   before_filter :ensure_app
 

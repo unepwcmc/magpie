@@ -1,0 +1,9 @@
+<h1>Add a new App</h1>
+<div>
+  <%= form_for @app, do |f| %>
+    <p><%= f.label :name %>: <%= f.text_field :name %></p>
+    <p><%= label_tag :rasters %>: <%= select_tag :rasters, [], :multiple => true %>
+    <p><%= label_tag :operations %>: <%= select_tag :operations, [], :multiple => true %>
+    <p><%= submit_tag "Create" %></p>
+  <% end %>
+</div>
