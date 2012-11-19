@@ -16,6 +16,8 @@ gem 'pg'
 # multi tenancy
 gem 'apartment'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
