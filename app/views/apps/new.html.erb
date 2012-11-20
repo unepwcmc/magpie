@@ -2,7 +2,7 @@
 <div>
   <%= form_for @app, do |f| %>
     <p><%= f.label :name %>: <%= f.text_field :name %></p>
-    <p><%= label_tag :rasters %>: <%= select_tag :rasters, [], :multiple => true %>
+    <p><%= label_tag :rasters %>: <%= select_tag :rasters, options_for_select(@rasters.collect{|r| [r["display_name"], "#{r["id"]},#{r["display_name"]}"]}), :multiple => true %>
     <p><%= label_tag :operations %>: <%= select_tag :operations, [], :multiple => true %>
     <p><%= submit_tag "Create" %></p>
   <% end %>

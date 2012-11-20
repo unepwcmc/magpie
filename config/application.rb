@@ -62,7 +62,7 @@ module Magpie
     # Multi application database switch
     config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
       begin
-        App.find(request.headers['HTTP_X_MAGPIE_APPID']).name
+        App.find(request.headers['HTTP_X_MAGPIE_APPID']).name.downcase
       rescue
         nil
       end

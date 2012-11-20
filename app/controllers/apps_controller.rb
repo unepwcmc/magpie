@@ -9,9 +9,18 @@ class AppsController < ApplicationController
 
   def new
     @app = App.new
+    @rasters = JSON.parse(RestClient.get('http://localhost:3000/rasters.json'))
   end
 
   def create
-    render :json => { error: 'Sorry, this is not available yet' }
+    @app = App.new(params[:app])
+    if @app.save && @app.use
+      params[:rasters].each do |l|
+        id, name = l.split(',')
+        AppLayer.create(:type => "RasterLayer", :provider_id => id, :display_name => name, :tile_url => "derp")
+      end
+      request.headers['HTTP_X_MAGPIE_APPID'] = @app.id
+      render :create
+    end
   end
 end

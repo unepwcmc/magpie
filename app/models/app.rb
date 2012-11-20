@@ -12,10 +12,14 @@ class App < ActiveRecord::Base
   attr_accessible :id, :name
   after_create :prepare_app
 
+  def use
+    Apartment::Database.switch(name.downcase)
+  end
+
   private
 
   def prepare_app
-    Apartment::Database.create(name)
+    Apartment::Database.create(name.downcase)
   end
 
 end
