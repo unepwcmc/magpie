@@ -19,9 +19,10 @@ class Polygon < ActiveRecord::Base
       features: [{
         type: "Feature",
         id: self.id,
+        properties: {},
         geometry: {
-          type: "MultiPolygon",
-          coordinates: self.geometry
+          type: "Polygon",
+          coordinates: JSON.parse(self.geometry)
         }
       }]
     }.to_json
