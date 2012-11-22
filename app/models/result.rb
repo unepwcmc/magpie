@@ -16,7 +16,12 @@ class Result < ActiveRecord::Base
   belongs_to :area_of_interest
 
   def get
-    value= JSON.parse(RestClient.get "http://raster-stats.unep-wcmc.org/rasters/#{self.calculation.app_layer.provider_id}/operations/#{self.calculation.operation.name}", {:params => {:polygon => self.area_of_interest.polygons.first.geom_as_GeoJSON}})["value"]
-    save
+    response = JSON.parse(RestClient.get "http://raster-stats.unep-wcmc.org/rasters/#{self.calculation.app_layer.provider_id}/operations/#{self.calculation.operation.name}", {:params => {:polygon => self.area_of_interest.polygons.first.geom_as_GeoJSON}})
+    if response
+      self.value= response["value"]
+    else
+      self.value = 1000000000
+    end
+    self.save
   end
 end
