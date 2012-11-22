@@ -21,7 +21,7 @@ class Polygon < ActiveRecord::Base
         id: self.id,
         properties: {},
         geometry: {
-          type: "Polygon",
+          type: "MultiPolygon",
           coordinates: JSON.parse(self.geometry)
         }
       }]
