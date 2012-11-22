@@ -5,7 +5,7 @@ FactoryGirl.define do
 
   factory :app_layer do
     display_name "Carbon Layer"
-    provider_id "carbon_layer_xpto"
+    provider_id 2
     tile_url "http://"
     is_displayed true
     type ""
@@ -20,11 +20,11 @@ FactoryGirl.define do
     workspace
   end
   factory :polygon do
-    geometry [50, 50].to_json
+    geometry "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"id\":0,\"properties\":{\"id\":null,\"name\":8,\"AREA\":7435.85032686457},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-55.1991338309051,14.166474645080788],[-139.868730478081,21.093987098031544],[-166.29590761341169,80.61927928634917],[-19.022124354384474,82.67187556870495],[-55.1991338309051,14.166474645080788]]]}}]}"
     area_of_interest
   end
   factory :operation do
-    name "Avg"
+    name "sum"
   end
   factory :calculation do
     display_name "Average of Carbon"

@@ -9,7 +9,8 @@ class AppsController < ApplicationController
 
   def new
     @app = App.new
-    @rasters = JSON.parse(RestClient.get('http://localhost:3000/rasters.json'))
+    @rasters = JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/rasters.json'))
+    @operations = JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/operations.json'))
   end
 
   def create

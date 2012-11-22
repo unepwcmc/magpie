@@ -14,4 +14,9 @@ class Result < ActiveRecord::Base
   attr_accessible :value
   belongs_to :calculation
   belongs_to :area_of_interest
+
+  def get
+    value= RestClient.get "http://raster-stats.unep-wcmc.org/rasters/#{self.calculation.app_layer.provider_id}/stats/#{self.calculation.operation.name}", {:params => {:polygon => self.area_of_interest.polygons.first.geometry}}
+    save
+  end
 end
