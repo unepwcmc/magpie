@@ -20,7 +20,7 @@ class Result < ActiveRecord::Base
     if response
       self.value= response["value"].to_f
     else
-      self.value = 10000
+      self.value = -1
     end
     self.save
   end
