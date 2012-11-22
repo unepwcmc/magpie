@@ -12,4 +12,14 @@
 class Polygon < ActiveRecord::Base
   attr_accessible :area_of_interest_id, :geometry
   belongs_to :area_of_interest
+
+  def geom_as_GeoJSON
+    {
+       type: "Feature",
+       geometry: {
+         type: "MultiPolygon",
+         coordinates: self.geometry
+       }
+    }.to_json
+  end
 end
