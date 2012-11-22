@@ -18,9 +18,9 @@ class Result < ActiveRecord::Base
   def get
     response = JSON.parse(RestClient.get "http://raster-stats.unep-wcmc.org/rasters/#{self.calculation.app_layer.provider_id}/operations/#{self.calculation.operation.name}", {:params => {:polygon => self.area_of_interest.polygons.first.geom_as_GeoJSON}})
     if response
-      self.value= response["value"]
+      self.value= response["value"].to_f
     else
-      self.value = 1000000000
+      self.value = 10000
     end
     self.save
   end
