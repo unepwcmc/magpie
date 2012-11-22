@@ -13,10 +13,10 @@
     App.create(:name => 'carbon')
   end
   sum = Operation.create(
-    :name => 'SUM'
+    :name => 'sum'
   )
   avg = Operation.create(
-    :name => 'AVG'
+    :name => 'avg'
   )
   Apartment::Database.switch('carbon')
   mangroves = AppLayer.create(
