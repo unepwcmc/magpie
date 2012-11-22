@@ -15,11 +15,15 @@ class Polygon < ActiveRecord::Base
 
   def geom_as_GeoJSON
     {
-       type: "Feature",
-       geometry: {
-         type: "MultiPolygon",
-         coordinates: self.geometry
-       }
+      type: "FeatureCollection",
+      features: [{
+        type: "Feature",
+        id: self.id,
+        geometry: {
+          type: "MultiPolygon",
+          coordinates: self.geometry
+        }
+      }]
     }.to_json
   end
 end
