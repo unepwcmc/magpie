@@ -5,7 +5,7 @@ FactoryGirl.define do
 
   factory :app_layer do
     display_name "Carbon Layer"
-    provider_id 2
+    provider_id 1
     tile_url "http://"
     is_displayed true
     type ""
