@@ -28,7 +28,4 @@ class Polygon < ActiveRecord::Base
     }.to_json
   end
 
-  def geometry
-    JSON.parse(self.geometry)
-  end
 end

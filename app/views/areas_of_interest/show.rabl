@@ -2,7 +2,7 @@ object @aoi => ''
 attributes :id, :name
 
 child :polygons do
-  attributes :id, :geometry
+  attributes :id, :geometry => partial('polygons/geometry', :object => @geometry)
 end
 
 child :results do
