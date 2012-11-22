@@ -2,7 +2,10 @@ object @aoi => ''
 attributes :id, :name
 
 child :polygons do
-  attributes :id, :geometry => partial('polygons/geometry', :object => @geometry)
+  attributes :id
+  node :geometry do |p|
+    JSON.parse(p.geometry)
+  end
 end
 
 child :results do
