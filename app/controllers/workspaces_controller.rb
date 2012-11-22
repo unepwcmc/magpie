@@ -8,6 +8,7 @@ class WorkspacesController < ApplicationController
   def show
     #TODO Apartment custom elevator causes path params not to appear in params
     @workspace = Workspace.find(request.path_parameters[:id])
+    @workspace.get_results if @workspace.areas_of_interest.any?
     render
   end
 
