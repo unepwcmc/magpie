@@ -11,6 +11,7 @@ resource "AreaOfInterest" do
     let!(:result) { create(:result, :area_of_interest_id => area_of_interest.id, :value => 20) }
 
     example_request "Getting a specific area" do
+      Result.any_instance.stub(:get).and_return(true)
       explanation "curl localhost:3000/areas_of_interest/2"
       do_request(:id => area_of_interest.id)
       status.should == 200
@@ -19,7 +20,7 @@ resource "AreaOfInterest" do
         :name => area_of_interest.name,
         :polygons => [{
           :id => polygon.id,
-          :geometry => polygon.geometry
+          :geometry => JSON.parse(polygon.geometry)
         }],
         :results => [{
           :value => result.value,

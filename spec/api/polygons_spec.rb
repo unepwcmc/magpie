@@ -14,7 +14,7 @@ resource "Polygon" do
       status.should == 200
       expected = {
         :id => polygon.id,
-        :geometry => polygon.geometry,
+        :geometry => JSON.parse(polygon.geometry),
         :area_of_interest_id => polygon.area_of_interest_id
       }
       response_body.should be_json_eql expected.to_json
@@ -26,15 +26,16 @@ resource "Polygon" do
     parameter :geometry, "Polygon geometry geojson"
     let(:area_of_interest) { create(:area_of_interest) }
     let(:area_of_interest_id) { area_of_interest.id }
-    let(:geometry) { create(:polygon).geometry }
+    let(:geometry) { "[[[-55.1991338309051,14.166474645080788],[-139.868730478081,21.093987098031544],[-166.29590761341169,80.61927928634917],[-19.022124354384474,82.67187556870495],[-55.1991338309051,14.166474645080788]]]" }
     let(:polygon) { create(:polygon, :geometry => geometry, :area_of_interest_id => area_of_interest.id)}
 
     example_request "Creating a new polygon" do
+      Polygon.any_instance.stub(:geometry).and_return(geometry)
       do_request
       status.should == 201
       expected = {
         :id => polygon.id,
-        :geometry => geometry,
+        :geometry => JSON.parse(geometry),
         :area_of_interest_id => area_of_interest_id
       }
       response_body.should be_json_eql(expected.to_json)
@@ -54,7 +55,7 @@ resource "Polygon" do
       status.should == 200
       expected = {
         :id => polygon.id,
-        :geometry => geometry,
+        :geometry => JSON.parse(geometry),
         :area_of_interest_id => polygon.area_of_interest_id
       }
       response_body.should be_json_eql(expected.to_json)

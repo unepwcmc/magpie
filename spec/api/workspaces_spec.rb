@@ -6,14 +6,20 @@ resource "Workspace" do
     parameter :id, "Workspace ID"
 
     let(:workspace) { create(:workspace) }
+    let!(:app_layer) { create(:app_layer) }
+    let!(:calculation){create(:calculation, :app_layer_id => app_layer.id ) }
     let(:area_of_interest) { create(:area_of_interest, :workspace_id => workspace.id, :name => "AOI#1") }
     let!(:polygon) { create(:polygon, :area_of_interest_id => area_of_interest.id) }
-    let!(:result) { create(:result, :area_of_interest_id => area_of_interest.id, :value => 20) }
+    let!(:result) { create(:result, :area_of_interest_id => area_of_interest.id, :value => 20, :calculation_id => calculation.id) }
     let!(:area_of_interest2) { create(:area_of_interest, :workspace_id => workspace.id, :name => "AOI#2") }
     let!(:polygon2) { create(:polygon, :area_of_interest_id => area_of_interest2.id) }
-    let!(:result2) { create(:result, :area_of_interest_id => area_of_interest2.id, :value => 300) }
+    let!(:result2) { create(:result, :area_of_interest_id => area_of_interest2.id, :value => 300, :calculation_id => calculation.id) }
 
     example_request "Getting a specific workspace" do
+
+      Result.any_instance.stub(:get).and_return(true)
+
+
       explanation "curl localhost:3000/workspaces/2"
       @id = workspace.id 
       do_request(:id => workspace.id)
@@ -25,7 +31,7 @@ resource "Workspace" do
           :name => area_of_interest.name,
           :polygons => [{
             :id => polygon.id,
-            :geometry => polygon.geometry
+            :geometry => JSON.parse(polygon.geometry)
           }],
           :results => [{
             :value => result.value,
@@ -38,7 +44,7 @@ resource "Workspace" do
           :name => area_of_interest2.name,
           :polygons => [{
             :id => polygon2.id,
-            :geometry => polygon2.geometry
+            :geometry => JSON.parse(polygon2.geometry)
           }],
           :results => [{
             :value => result2.value,
