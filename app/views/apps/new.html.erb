@@ -2,18 +2,26 @@
 <div>
   <%= form_for @app, do |f| %>
     <p><%= f.label :name %> <%= f.text_field :name %></p>
-    <table class="table table-bordered">
-      <thead>
-        <tr><th colspan=4>Select Rasters</th></tr>
-        <tr><th>Raster</th><th>Include?</th><th>Display?</th><th>Calculations</th></tr>
-      </thead>
+    <h4>Layers</h4>
+    <table class="table table-bordered table-striped new_app">
       <tbody>
         <% @rasters.each do |r| %>
           <tr>
-            <td><%= r["display_name"] %></td>
-            <td><%= check_box_tag :raster %></td>
-            <td><%= check_box_tag :display %></td>
-            <td><%= label_tag :operations %> <%= select_tag :operations, options_for_select(@operations.collect{|o| [o["display_name"], o["id"]]}), :multiple => true %></td>
+            <td>
+              <u>R</u> <%= text_field_tag "layers[#{r["id"]}]display_name", r["display_name"], :class => 'input-medium' %><br />
+              <label><%= check_box_tag "layers[#{r["id"]}]include"%> Include Layer</label>
+              <label><%= check_box_tag "layers[#{r["id"]}]display"%> Display Layer</label>
+            </td>
+            <td>
+              <h5>Calculations</h5>
+              <% @operations.each do |o| %>
+                <label>
+                  <%= check_box_tag "layers[#{r["id"]}]operations[#{o["name"]}]include" %>
+                  <%= text_field_tag "layers[#{r["id"]}]operations[#{o["name"]}]display_name", o["display_name"], :class => 'input-medium' %>
+                  <%= text_field_tag "layers[#{r["id"]}]operations[#{o["name"]}]unit", "Kg", :class => 'input-medium' %>
+                </label>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
