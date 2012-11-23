@@ -9,6 +9,10 @@ gem 'rest-client'
 gem 'rabl'
 gem 'yajl-ruby', :require => "yajl"
 
+gem 'bootstrap-generators', '~> 2.1', git: 'git://github.com/decioferreira/bootstrap-generators.git'
+gem 'simple_form'
+gem 'jquery-rails'
+
 # storage
 gem 'pg'
 

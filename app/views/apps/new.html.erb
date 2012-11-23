@@ -1,9 +1,23 @@
 <h1>Add a new App</h1>
 <div>
   <%= form_for @app, do |f| %>
-    <p><%= f.label :name %>: <%= f.text_field :name %></p>
-    <p><%= label_tag :rasters %>: <%= select_tag :rasters, options_for_select(@rasters.collect{|r| [r["display_name"], "#{r["id"]},#{r["display_name"]}"]}), :multiple => true %>
-    <p><%= label_tag :operations %>: <%= select_tag :operations, options_for_select(@operations.collect{|o| [o["display_name"], o["id"]]}), :multiple => true %>
-    <p><%= submit_tag "Create" %></p>
+    <p><%= f.label :name %> <%= f.text_field :name %></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr><th colspan=4>Select Rasters</th></tr>
+        <tr><th>Raster</th><th>Include?</th><th>Display?</th><th>Calculations</th></tr>
+      </thead>
+      <tbody>
+        <% @rasters.each do |r| %>
+          <tr>
+            <td><%= r["display_name"] %></td>
+            <td><%= check_box_tag :raster %></td>
+            <td><%= check_box_tag :display %></td>
+            <td><%= label_tag :operations %> <%= select_tag :operations, options_for_select(@operations.collect{|o| [o["display_name"], o["id"]]}), :multiple => true %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p><%= submit_tag "Create", :class => "btn" %></p>
   <% end %>
 </div>
