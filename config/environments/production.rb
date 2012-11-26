@@ -65,8 +65,8 @@ Magpie::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  #Exception Notification
-  config.middleware.use ExceptionNotifier, :email_prefix => "[SAPI Exception] ",
-    :sender_address => %{"SAPI Exception Notifier" <no-reply@unep-wcmc.org>},
-    :exception_recipients => %w{simao.belchior@unep-wcmc.org agnieszka.figiel@unep-wcmc.org}
+  # Exception notification
+  config.middleware.use ExceptionNotifier, :email_prefix => "[Magpie Exception] ",
+    :sender_address => '"Magpie Exception Notifier" <no-reply@unep-wcmc.org>',
+    :exception_recipients => %w{ simao.belchior@unep-wcmc.org agnieszka.figiel@unep-wcmc.org }
 end
