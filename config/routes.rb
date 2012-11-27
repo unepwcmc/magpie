@@ -1,12 +1,11 @@
 Magpie::Application.routes.draw do
   resources :projects
 
-  resources :workspaces, :only => [:create, :show, :destroy], :shallow => true do
-    resources :areas_of_interest, :only => [:create, :update, :show, :destroy], :shallow => true do
-      resources :polygons, :only => [:create, :update, :show, :destroy]
-      member do
-        get :calculated_stats
-      end
+  resources :workspaces, only: [:show, :create, :destroy], shallow: true do
+    resources :areas_of_interest, only: [:show, :create, :update, :destroy], shallow: true do
+      resources :polygons, only: [:create, :update, :show, :destroy]
+
+      get 'calculated_stats', on: :member
     end
   end
 
