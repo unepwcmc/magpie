@@ -8,12 +8,12 @@
 
 Apartment::Database.switch()
 
-Project.create(name: 'Blue Carbon')
+Project.create(name: 'carbon')
 
 Operation.create(name: 'sum')
 Operation.create(name: 'avg')
 
-Apartment::Database.switch('blue carbon')
+Apartment::Database.switch('carbon')
 
 ProjectLayer.create(
   display_name: 'Mangroves', 

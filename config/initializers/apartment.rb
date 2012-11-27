@@ -3,5 +3,5 @@ Apartment.configure do |config|
   config.excluded_models = ['Project', 'Operation']
 
   # Dynamically get database names to migrate
-  config.database_names = lambda { App.select(:name).map(&:name) }
+  config.database_names = lambda { Project.select(:name).map(&:name) }
 end
