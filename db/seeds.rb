@@ -6,39 +6,36 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#ActiveRecord::Base.transaction do
+Apartment::Database.switch()
 
-  Apartment::Database.switch()
-  if App.find_by_name('carbon').nil?
-    App.create(:name => 'carbon')
+Project.create(name: 'Blue Carbon')
+
+Operation.create(name: 'sum')
+Operation.create(name: 'avg')
+
+Apartment::Database.switch('blue carbon')
+
+ProjectLayer.create(
+  display_name: 'Mangroves', 
+  type: 'RasterLayer',
+  tile_url: 'http://',
+  is_displayed: true,
+  provider_id: 1
+)
+
+ProjectLayer.create(
+  display_name: 'Seagrass', 
+  type: 'RasterLayer',
+  tile_url: 'http://',
+  is_displayed: true,
+  provider_id: 2
+)
+
+Operation.all.each do |operation|
+  ProjectLayer.all.each do |layer|
+    calculation = Calculation.new(display_name: "#{layer.display_name} #{operation.name}")
+    calculation.project_layer = layer
+    calculation.operation = operation
+    calculation.save
   end
-  sum = Operation.create(
-    :name => 'sum'
-  )
-  avg = Operation.create(
-    :name => 'avg'
-  )
-  Apartment::Database.switch('carbon')
-  mangroves = AppLayer.create(
-    :display_name => 'Mangroves', 
-    :type => 'RasterLayer',
-    :provider_id => 1,
-    :tile_url => 'TODO',
-    :is_displayed => true
-  )
-  seagrass = AppLayer.create(
-    :display_name => 'Seagrass',
-    :type => 'RasterLayer',
-    :provider_id => 2,
-    :tile_url => 'TODO',
-    :is_displayed => true
-  )
-  [sum, avg].each do |op|
-    [mangroves, seagrass].each do |l|
-      c = Calculation.new(:display_name => "#{l.display_name} #{op.name}")
-      c.app_layer = l
-      c.operation = op
-      c.save
-    end
-  end
-#end
+end

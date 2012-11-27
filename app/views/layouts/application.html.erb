@@ -25,12 +25,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <%= link_to "Project name", "#", :class => "brand" %>
+        <%= link_to "Magpie", root_path, :class => "brand" %>
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><%= link_to 'Projects', projects_path %></li>
           </ul>
         </div>
       </div>

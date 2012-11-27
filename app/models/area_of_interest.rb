@@ -19,7 +19,7 @@ class AreaOfInterest < ActiveRecord::Base
 
   def get_results
     just_finished_a_request = false
-    AppLayer.all.each do |layer|
+    ProjectLayer.all.each do |layer|
       layer.calculations.each do |calc|
         result = self.results.find_or_create_by_calculation_id(calc.id)
         if result.updated_at > self.latest_polygon.updated_at || !result.value || result.value == 0.0
