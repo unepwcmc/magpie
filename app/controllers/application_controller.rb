@@ -1,12 +1,9 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+  protect_from_forgery
+
   before_filter :ensure_project
 
   private
-
-  def not_found
-    render json: { error: 'Resource not found' }
-  end
 
   def ensure_project
     if Apartment::Database.current_database.blank?

@@ -11,13 +11,3 @@
  *= require_self
  *= require_tree .
  */
-table.new_app label{
-  display: inline-block;
-  margin-right: 15px;
-  font-size: 12px;
-}
-
-table.new_app label input[type="checkbox"] {
-  margin-top: -1px;
-  margin-right: 5px;
-}
