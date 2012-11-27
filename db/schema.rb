@@ -11,23 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115180841) do
-
-  create_table "app_layers", :force => true do |t|
-    t.string   "display_name",                   :null => false
-    t.string   "type",                           :null => false
-    t.integer  "provider_id",                    :null => false
-    t.string   "tile_url",                       :null => false
-    t.boolean  "is_displayed", :default => true, :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-  end
-
-  create_table "apps", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121127094233) do
 
   create_table "areas_of_interest", :force => true do |t|
     t.string   "name",                            :null => false
@@ -38,11 +22,11 @@ ActiveRecord::Schema.define(:version => 20121115180841) do
   end
 
   create_table "calculations", :force => true do |t|
-    t.string   "display_name", :null => false
+    t.string   "display_name",     :null => false
     t.string   "unit"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "app_layer_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "project_layer_id"
     t.integer  "operation_id"
   end
 
@@ -57,6 +41,22 @@ ActiveRecord::Schema.define(:version => 20121115180841) do
     t.integer  "area_of_interest_id", :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "project_layers", :force => true do |t|
+    t.string   "display_name"
+    t.string   "type"
+    t.string   "tile_url"
+    t.boolean  "is_displayed"
+    t.integer  "provider_id",  :default => 1
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "results", :force => true do |t|

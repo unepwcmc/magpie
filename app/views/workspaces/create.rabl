@@ -1,2 +1,2 @@
-object @workspace => ""
+object @workspace => ''
 attributes :id

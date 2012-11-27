@@ -1,2 +1,2 @@
-object @aoi => ""
+object @aoi => ''
 attributes :id, :name

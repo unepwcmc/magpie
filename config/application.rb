@@ -60,9 +60,13 @@ module Magpie
     config.assets.version = '1.0'
 
     # Multi application database switch
-    config.middleware.use 'Apartment::Elevators::Generic', Proc.new do |request|
-      App.find(request.headers['HTTP_X_MAGPIE_APPID']).try(:name).try(:downcase)
-    end
+    config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request|
+      begin
+        Project.find(request.headers['HTTP_X_MAGPIE_PROJECTID']).name.downcase
+      rescue
+        nil
+      end
+    }
 
     config.middleware.use Rack::Cors do
       allow do
