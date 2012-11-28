@@ -3,6 +3,10 @@ class Polygon < ActiveRecord::Base
 
   belongs_to :area_of_interest
 
+  before_validation do
+    self.geometry = self.geometry.to_s
+  end
+
   def to_geo_json
     {
       type: "Feature",
