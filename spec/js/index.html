@@ -49,6 +49,8 @@
     }
 
     $(function() {
+      $("body").append("<p style=\"color: #3A87AD; background-color: #D9EDF7\">Testing: '" + environment.toUpperCase() + "'</p>")
+      
       // Setup CORS
       $.support.cors = true;
       $.ajaxSetup({headers: {'X-Magpie-ProjectId': project_id}});
@@ -65,9 +67,9 @@
           var area_of_interest_id = data.id;
 
           // Polygons
-          ajaxCall('Create polygon', 'areas_of_interest/' + area_of_interest_id + '/polygons', JSON.stringify({polygon: {geometry: "[[10,10],[20,20],[10,20]]"}}), 'post', function(data) {
+          ajaxCall('Create polygon', 'areas_of_interest/' + area_of_interest_id + '/polygons', JSON.stringify({polygon: {geometry: [[10,10],[20,20],[10,20]]}}), 'post', function(data) {
             ajaxCall('Show polygon', 'polygons/' + data.id, null, 'get', function(data) {
-              ajaxCall('Update polygon', 'polygons/' + data.id, JSON.stringify({polygon: {geometry: "[[50,50],[70,70],[30,30]]"}}), 'put', function(data) {
+              ajaxCall('Update polygon', 'polygons/' + data.id, JSON.stringify({polygon: {geometry: [[50,50],[70,70],[30,30]]}}), 'put', function(data) {
                 ajaxCall('Delete polygon', 'polygons/' + data.id, null, 'delete', function() {
                   // More: Areas of Interest
                   ajaxCall('Show area of interest', 'areas_of_interest/' + area_of_interest_id, null, 'get', function(data) {
