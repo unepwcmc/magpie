@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+  <script>
+    ajaxCall = function(message, path, data, type, callback) {
+      $.ajax({
+        type: type,
+        url: 'http://localhost:3000/' + path,
+        contentType: 'application/json',
+        data: data,
+        success: function(data) {
+          $('body').append("<p style=\"color: #468847; background-color: #DFF0D8\">" + message + ": success! Response: " + JSON.stringify(data) + "</p>");
+          if(typeof callback != 'undefined') {
+            callback(data);
+          }
+        },
+        failure: function() {
+          $('body').append("<p style=\"color: #B94A48; background-color: #F2DEDE\">" + message + ": failure!</p>");
+        }
+      });
+    }
+
+    $(function() {
+      // Setup CORS
+      $.support.cors = true;
+      $.ajaxSetup({headers: {'X-Magpie-ProjectId': 1}})
+
+      // Projects
+      ajaxCall('Show project', 'projects/1.json', null, 'get');
+
+      // Workspaces
+      ajaxCall('Create workspace', 'workspaces', null, 'post', function(data) {
+        ajaxCall('Show workspace', 'workspaces/' + data.id, null, 'get');
+      });
+    });
+  </script>
+</body>
+</html>
