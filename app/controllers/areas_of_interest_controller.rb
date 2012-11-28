@@ -1,36 +1,28 @@
 class AreasOfInterestController < ApplicationController
+  respond_to :json
+
+  def show
+    @area_of_interest = AreaOfInterest.find(params[:id])
+    respond_with(@area_of_interest)
+  end
+
   def create
-    #TODO Apartment custom elevator causes path params not to appear in params
-    @aoi = AreaOfInterest.create({
-      :workspace_id => request.path_parameters[:workspace_id],
-      :name => params[:name]
-    })
-    render 'areas_of_interest/save', :status => 201
+    workspace = Workspace.find(params[:workspace_id])
+    @area_of_interest = workspace.areas_of_interest.new(params[:area_of_interest])
+    flash[:notice] = 'Area of Interest was successfully created.' if @area_of_interest.save
+    respond_with(@area_of_interest)
   end
 
   def update
-    #TODO Apartment custom elevator causes path params not to appear in params
-    @aoi = AreaOfInterest.find(request.path_parameters[:id])
-    @aoi.update_attributes({
-      :workspace_id => params[:workspace_id],
-      :name => params[:name]
-    })
-    render 'areas_of_interest/save'
-  end
-
-  def show
-    #TODO Apartment custom elevator causes path params not to appear in params
-    @aoi = AreaOfInterest.find(request.path_parameters[:id])
-    @aoi.get_results if @aoi.polygons.any?
-    render
+    @area_of_interest = AreaOfInterest.find(params[:id])
+    flash[:notice] = 'Area of Interest was successfully updated.' if @area_of_interest.update_attributes(params[:area_of_interest])
+    respond_with(@area_of_interest)
   end
 
   def destroy
-    @aoi = AreaOfInterest.find(request.path_parameters[:id])
-    if @aoi.destroy
-      head :ok
-    else
-      head :unauthorized
-    end
+    @area_of_interest = AreaOfInterest.find(params[:id])
+    @area_of_interest.destroy
+    flash[:notice] = 'Area of Interest was successfully destroyed.'
+    respond_with(@area_of_interest)
   end
 end

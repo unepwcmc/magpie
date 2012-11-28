@@ -17,10 +17,23 @@
 </head>
 <body>
   <script>
+    var environment, base_url, project_id;
+
+    // Set the environment as 'development' or 'production'
+    environment = 'development';
+
+    if(environment == 'production') {
+      base_url = 'http://magpie.unepwcmc-005.vm.brightbox.net/';
+      project_id = 4;
+    } else {
+      base_url = 'http://localhost:3000/';
+      project_id = 1;
+    }
+    
     ajaxCall = function(message, path, data, type, callback) {
       $.ajax({
         type: type,
-        url: 'http://localhost:3000/' + path,
+        url: base_url + path,
         contentType: 'application/json',
         data: data,
         success: function(data) {
@@ -29,8 +42,8 @@
             callback(data);
           }
         },
-        failure: function() {
-          $('body').append("<p style=\"color: #B94A48; background-color: #F2DEDE\">" + message + ": failure!</p>");
+        error: function(data, response, xhr) {
+          $('body').append("<p style=\"color: #B94A48; background-color: #F2DEDE\">" + message + ": failure! Response: " + JSON.stringify(arguments) + "</p>");
         }
       });
     }
@@ -38,14 +51,36 @@
     $(function() {
       // Setup CORS
       $.support.cors = true;
-      $.ajaxSetup({headers: {'X-Magpie-ProjectId': 1}})
+      $.ajaxSetup({headers: {'X-Magpie-ProjectId': project_id}});
 
       // Projects
-      ajaxCall('Show project', 'projects/1.json', null, 'get');
+      ajaxCall('Show project', 'projects/' + project_id + '.json', null, 'get');
 
       // Workspaces
       ajaxCall('Create workspace', 'workspaces', null, 'post', function(data) {
         ajaxCall('Show workspace', 'workspaces/' + data.id, null, 'get');
+
+        // Areas of Interest
+        ajaxCall('Create area of interest', 'workspaces/' + data.id + '/areas_of_interest', JSON.stringify({area_of_interest: {name: 'Area of Interest'}}), 'post', function(data) {
+          var area_of_interest_id = data.id;
+
+          // Polygons
+          ajaxCall('Create polygon', 'areas_of_interest/' + area_of_interest_id + '/polygons', JSON.stringify({polygon: {geometry: "[[10,10],[20,20],[10,20]]"}}), 'post', function(data) {
+            ajaxCall('Show polygon', 'polygons/' + data.id, null, 'get', function(data) {
+              ajaxCall('Update polygon', 'polygons/' + data.id, JSON.stringify({polygon: {geometry: "[[50,50],[70,70],[30,30]]"}}), 'put', function(data) {
+                ajaxCall('Delete polygon', 'polygons/' + data.id, null, 'delete', function() {
+                  // More: Areas of Interest
+                  ajaxCall('Show area of interest', 'areas_of_interest/' + area_of_interest_id, null, 'get', function(data) {
+                    ajaxCall('Update area of interest', 'areas_of_interest/' + data.id, JSON.stringify({area_of_interest: {name: 'Area of Interest 2'}}), 'put', function(data) {
+                      ajaxCall('Delete area of interest', 'areas_of_interest/' + data.id, null, 'delete');
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+
       });
     });
   </script>
