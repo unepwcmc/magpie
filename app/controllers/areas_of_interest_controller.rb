@@ -3,6 +3,7 @@ class AreasOfInterestController < ApplicationController
 
   def show
     @area_of_interest = AreaOfInterest.find(params[:id])
+    @area_of_interest.fetch
     respond_with(@area_of_interest)
   end
 
