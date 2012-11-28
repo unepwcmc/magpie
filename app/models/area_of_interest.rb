@@ -15,8 +15,11 @@ class AreaOfInterest < ActiveRecord::Base
       end
     end
   end
-  
+
   def polygons_as_geo_json
-   {type: "FeatureCollection", features: polygons.map(&:to_geo_json)}.to_json
+    {
+      type: "FeatureCollection",
+      features: polygons.map(&:to_geo_json)
+    }.to_json
   end
 end
