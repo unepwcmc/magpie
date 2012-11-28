@@ -1,2 +1,5 @@
 object @polygon
-attributes :id, :geometry, :area_of_interest_id
+attributes :id, :area_of_interest_id
+node :geometry do |polygon|
+  JSON.parse(polygon.geometry)
+end
