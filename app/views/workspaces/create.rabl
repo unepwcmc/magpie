@@ -1,2 +1,2 @@
-object @workspace => ''
-attributes :id
+object @workspace
+extends 'workspaces/show'

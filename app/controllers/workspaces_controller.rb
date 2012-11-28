@@ -1,22 +1,13 @@
 class WorkspacesController < ApplicationController
+  respond_to :json
+
   def show
-    #TODO Apartment custom elevator causes path params not to appear in params
-    @workspace = Workspace.find(request.path_parameters[:id])
-    @workspace.get_results if @workspace.areas_of_interest.any?
-    render
+    @workspace = Workspace.find(params[:id])
+    respond_with(@workspace)
   end
 
   def create
-    @workspace = Workspace.create
-    render :status => 201
-  end
-
-  def destroy
-    @workspace = Workspace.find(request.path_parameters[:id])
-    if @workspace.destroy
-      head :ok
-    else
-      head :unauthorized
-    end
+    @workspace = Workspace.create(params[:workspace])
+    respond_with(@workspace)
   end
 end
