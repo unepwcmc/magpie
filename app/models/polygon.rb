@@ -1,19 +1,17 @@
 class Polygon < ActiveRecord::Base
   attr_accessible :area_of_interest_id, :geometry
+
   belongs_to :area_of_interest
 
-  def geom_as_GeoJSON
+  def to_geo_json
     {
-      type: "FeatureCollection",
-      features: [{
-        type: "Feature",
-        id: self.id,
-        properties: {},
-        geometry: {
-          type: "MultiPolygon",
-          coordinates: JSON.parse(self.geometry)
-        }
-      }]
+      type: "Feature",
+      id: id,
+      properties: {},
+      geometry: {
+        type: "Polygon",
+        coordinates: JSON.parse(geometry)
+      }
     }.to_json
   end
 end
