@@ -4,5 +4,9 @@ child polygons: :polygons do
   attributes :id, :geometry
 end
 child results: :results do
-  attributes :id, :display_name, :value, :unit, :layer_id
+  attributes :id, :value
+
+  glue :calculation do
+    attributes :display_name, :unit, :project_layer_id
+  end
 end

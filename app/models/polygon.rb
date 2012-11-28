@@ -14,8 +14,8 @@ class Polygon < ActiveRecord::Base
       properties: {},
       geometry: {
         type: "Polygon",
-        coordinates: JSON.parse(geometry)
+        coordinates: [JSON.parse(geometry)]
       }
-    }.to_json
+    }
   end
 end
