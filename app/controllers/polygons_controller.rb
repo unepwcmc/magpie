@@ -1,35 +1,28 @@
 class PolygonsController < ApplicationController
+  respond_to :json
+
+  def show
+    @polygon = Polygon.find(params[:id])
+    respond_with(@polygon)
+  end
 
   def create
-    aoi = AreaOfInterest.find(request.path_parameters[:area_of_interest_id])
-    @polygon = aoi.polygons.create(
-      :geometry => params[:geometry].to_json
-    )
-    render 'polygons/show', :status => 201
+    area_of_interest = AreaOfInterest.find(params[:area_of_interest_id])
+    @polygon = area_of_interest.polygons.new(params[:polygon])
+    flash[:notice] = 'Polygon was successfully created.' if @polygon.save
+    respond_with(@polygon)
   end
 
   def update
-    #TODO Apartment custom elevator causes path params not to appear in params
-    @polygon = Polygon.find(request.path_parameters[:id])
-    @polygon.update_attributes(
-      :geometry => params[:geometry],
-      :area_of_interest_id => params[:area_of_interest_id]
-    )
-    render 'polygons/show'
-  end
-
-  def show
-    #TODO Apartment custom elevator causes path params not to appear in params
-    @polygon = Polygon.find(request.path_parameters[:id])
-    render
+    @polygon = Polygon.find(params[:id])
+    flash[:notice] = 'Polygon was successfully updated.' if @polygon.update_attributes(params[:polygon])
+    respond_with(@polygon)
   end
 
   def destroy
-    @polygon = Polygon.find(request.path_parameters[:id])
-    if @polygon.destroy
-      head :ok
-    else
-      head :unauthorized
-    end
+    @polygon = Polygon.find(params[:id])
+    @polygon.destroy
+    flash[:notice] = 'Polygon was successfully destroyed.'
+    respond_with(@polygon)
   end
 end
