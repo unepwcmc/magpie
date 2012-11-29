@@ -1,4 +1,6 @@
 Magpie::Application.routes.draw do
+  devise_for :admins, controllers: { sessions: "admins/sessions" }
+
   resources :projects
 
   resources :workspaces, only: [:show, :create], shallow: true do

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_admin!, unless: :is_it_show_json?
+
   respond_to :html, :json
   skip_before_filter :ensure_project
 
@@ -71,5 +73,9 @@ class ProjectsController < ApplicationController
 
   def get_operations
     JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/operations.json'))
+  end
+
+  def is_it_show_json?
+    request['action'] == 'show' && request.format.json?
   end
 end
