@@ -67,14 +67,6 @@ class ProjectsController < ApplicationController
 
   private
 
-  def get_rasters
-    JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/rasters.json'))
-  end
-
-  def get_operations
-    JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/operations.json'))
-  end
-
   def is_it_show_json?
     request['action'] == 'show' && request.format.json?
   end

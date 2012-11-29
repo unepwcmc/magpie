@@ -23,12 +23,16 @@ class ProjectLayersController < ApplicationController
   # GET /project_layers/new.json
   def new
     @project_layer = ProjectLayer.new
+    @rasters_select = rasters_select
+    @operations_select = operations_select
     respond_with(@project_layer)
   end
 
   # GET /project_layers/1/edit
   def edit
     @project_layer = ProjectLayer.find(params[:id])
+    @rasters_select = rasters_select
+    @operations_select = operations_select
     respond_with(@project_layer)
   end
 
@@ -36,6 +40,12 @@ class ProjectLayersController < ApplicationController
   # POST /project_layers.json
   def create
     @project_layer = ProjectLayer.new(params[:project_layer])
+    @rasters_select = rasters_select
+    @operations_select = operations_select
+
+    rasters = get_rasters
+    @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
+
     flash[:notice] = 'Project layer was successfully created.' if @project_layer.save
     respond_with(@project, @project_layer)
   end
@@ -44,7 +54,13 @@ class ProjectLayersController < ApplicationController
   # PUT /project_layers/1.json
   def update
     @project_layer = ProjectLayer.find(params[:id])
-    flash[:notice] = 'Project layer was successfully updated.' if @project_layer.update_attributes(params[:project])
+    @rasters_select = rasters_select
+    @operations_select = operations_select
+
+    rasters = get_rasters
+    @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
+
+    flash[:notice] = 'Project layer was successfully updated.' if @project_layer.update_attributes(params[:project_layer])
     respond_with(@project, @project_layer, :location => project_project_layer_url(@project, @project_layer))
   end
 
@@ -58,6 +74,18 @@ class ProjectLayersController < ApplicationController
   end
 
   private
+
+  def rasters_select
+    get_rasters.map { |r| [r['display_name'], r['id']] }
+  end
+
+  def get_rasters
+    JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/rasters.json'))
+  end
+
+  def operations_select
+    JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/operations.json')).map { |r| [r['display_name'], r['name']] }
+  end
 
   def find_project
     @project = Project.find(params[:project_id])
