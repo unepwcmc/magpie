@@ -8,6 +8,8 @@
 
 Apartment::Database.switch()
 
+Admin.create(email: 'decio.ferreira@unep-wcmc.org', password: 'decioferreira', password_confirmation: 'decioferreira')
+
 Project.create(name: 'carbon')
 
 Operation.create(name: 'sum')

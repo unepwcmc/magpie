@@ -12,6 +12,8 @@ gem 'yajl-ruby', :require => "yajl"
 gem 'bootstrap-generators', '~> 2.1', git: 'git://github.com/decioferreira/bootstrap-generators.git'
 gem 'simple_form'
 
+gem 'devise'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
