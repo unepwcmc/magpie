@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to project_project_layers_path(@project), :class => 'btn' do %>
+    <i class="icon-list-alt"></i>
+    Back
+  <% end %>
+  <%= link_to edit_project_project_layer_path(@project, @project_layer), :class => 'btn btn-primary' do %>
+    <i class="icon-pencil icon-white"></i>
+    Edit
+  <% end %>
+  <h1>Listing project_layers</h1>
+</div>
+
+<dl>
+  <dt>Display name:</dt>
+  <dd><%= @project_layer.display_name %></dd>
+
+  <dt>Type:</dt>
+  <dd><%= @project_layer.type %></dd>
+
+  <dt>Tile url:</dt>
+  <dd><%= @project_layer.tile_url %></dd>
+
+  <dt>Is displayed:</dt>
+  <dd><%= @project_layer.is_displayed %></dd>
+
+  <dt>Provider:</dt>
+  <dd><%= @project_layer.provider_id %></dd>
+
+</dl>
