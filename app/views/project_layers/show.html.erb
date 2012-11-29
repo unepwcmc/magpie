@@ -7,7 +7,7 @@
     <i class="icon-pencil icon-white"></i>
     Edit
   <% end %>
-  <h1>Listing project_layers</h1>
+  <h1>Listing project layers</h1>
 </div>
 
 <dl>
@@ -25,5 +25,26 @@
 
   <dt>Provider:</dt>
   <dd><%= @project_layer.provider_id %></dd>
-
 </dl>
+
+<h2>Project layers</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Display name</th>
+      <th>Unit</th>
+      <th>Operation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @project_layer.calculations.each do |calculation| %>
+    <tr>
+      <td><%= calculation.display_name %></td>
+      <td><%= calculation.unit %></td>
+      <td><%= calculation.operation %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

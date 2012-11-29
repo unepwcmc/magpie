@@ -1,0 +1,7 @@
+<fieldset>
+  <%= f.input :display_name %>
+  <%= f.input :unit %>
+  <%= f.input :operation, collection: @operations_select, include_blank: false %>
+  <%= f.input :_destroy, as: :hidden %>
+  <%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>

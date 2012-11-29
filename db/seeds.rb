@@ -12,9 +12,6 @@ Admin.create(email: 'decio.ferreira@unep-wcmc.org', password: 'decioferreira', p
 
 Project.create(name: 'carbon')
 
-Operation.create(name: 'sum')
-Operation.create(name: 'avg')
-
 Apartment::Database.switch('carbon')
 
 ProjectLayer.create(
@@ -33,11 +30,9 @@ ProjectLayer.create(
   provider_id: 2
 )
 
-Operation.all.each do |operation|
-  ProjectLayer.all.each do |layer|
-    calculation = Calculation.new(display_name: "#{layer.display_name} #{operation.name}")
-    calculation.project_layer = layer
-    calculation.operation = operation
-    calculation.save
-  end
+ProjectLayer.all.each do |layer|
+  calculation = Calculation.new(display_name: "#{layer.display_name} sum")
+  calculation.project_layer = layer
+  calculation.operation = 'sum'
+  calculation.save
 end
