@@ -1,7 +1,9 @@
-<fieldset>
-  <%= f.input :display_name %>
-  <%= f.input :unit %>
-  <%= f.input :operation, collection: @operations_select, include_blank: false %>
-  <%= f.input :_destroy, as: :hidden %>
-  <%= link_to "remove", '#', class: "remove_fields" %>
-</fieldset>
+<tr>
+  <td><%= f.input :display_name, label: false, wrapper: :default %></td>
+  <td><%= f.input :unit, label: false, wrapper: :default %></td>
+  <td><%= f.input :operation, collection: @operations_select, include_blank: false, label: false, wrapper: :default %></td>
+  <td>
+    <%= f.input :_destroy, as: :hidden %>
+    <%= link_to "#{content_tag :i, '', class: 'icon-remove'} Remove".html_safe, '#', class: "btn remove_fields" %>
+  </td>
+</tr>

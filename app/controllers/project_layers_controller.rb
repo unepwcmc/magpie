@@ -60,7 +60,7 @@ class ProjectLayersController < ApplicationController
     rasters = get_rasters
     @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
 
-    flash[:notice] = 'Project layer was successfully updated.' if @project_layer.update_attributes(params[:project_layer])
+    flash[:notice] = 'Project layer was successfully updated.' if @project_layer.update_attributes(params[:raster_layer])
     respond_with(@project, @project_layer, :location => project_project_layer_url(@project, @project_layer))
   end
 
