@@ -27,10 +27,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
-
-    @rasters = get_rasters
-    @operations = get_operations
-
     respond_with(@project)
   end
 

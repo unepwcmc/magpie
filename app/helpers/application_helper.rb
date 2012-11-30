@@ -5,6 +5,8 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_fields", f: builder)
     end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to '#', class: "btn add_fields", data: {id: id, fields: fields.gsub("\n", ""), target: association} do
+      "#{content_tag(:i, '', class: "icon-plus")} #{name}".html_safe
+    end
   end
 end

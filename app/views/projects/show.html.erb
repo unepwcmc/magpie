@@ -13,5 +13,36 @@
 <dl>
   <dt>Name:</dt>
   <dd><%= @project.name %></dd>
-
 </dl>
+
+<div class="page-header">
+  <%= link_to project_project_layers_path(@project), :class => 'btn' do %>
+    <i class="icon-list-alt"></i>
+    Project layers
+  <% end %>
+  <h2>Project layers</h2>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Display name</th>
+      <th>Type</th>
+      <th>Tile url</th>
+      <th>Is displayed</th>
+      <th>Provider</th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% ProjectLayer.all.each do |project_layer| %>
+    <tr>
+      <td><%= project_layer.display_name %></td>
+      <td><%= project_layer.type %></td>
+      <td><%= project_layer.tile_url %></td>
+      <td><%= project_layer.is_displayed %></td>
+      <td><%= project_layer.provider_id %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
