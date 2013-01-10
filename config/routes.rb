@@ -11,6 +11,8 @@ Magpie::Application.routes.draw do
     end
   end
 
+  post "workspaces/from_file"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
