@@ -10,4 +10,8 @@ class ProtectedPlanetLayer < ProjectLayer
   def operations_select
     [['Protected area KM2', 'area_protected_km2']]
   end
+
+  def fetch_result(result)
+    1.0
+  end
 end
