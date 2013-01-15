@@ -18,4 +18,13 @@ class Polygon < ActiveRecord::Base
       }
     }
   end
+
+  def to_wkt
+    polygon, points = JSON.parse(geometry)[0][0], []
+    polygon.each do |point|
+      p point
+      points << "#{point[0]} #{point[1]}"
+    end
+    "((#{points.join(',')}))"
+  end
 end
