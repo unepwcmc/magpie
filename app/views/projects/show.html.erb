@@ -16,10 +16,17 @@
 </dl>
 
 <div class="page-header">
-  <%= link_to project_project_layers_path(@project), :class => 'btn' do %>
-    <i class="icon-list-alt"></i>
-    Project layers
-  <% end %>
+  <div class="btn-group">
+    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      <i class="icon-plus icon-white"></i>
+      New Project layer
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu pull-right">
+      <%= content_tag :li, link_to('Raster Layer', subclass_new_project_project_layer_path(@project, type: 'RasterLayer')) %>
+      <%= content_tag :li, link_to('Protected Planet Layer', subclass_new_project_project_layer_path(@project, type: 'ProtectedPlanetLayer')) %>
+    </ul>
+  </div>
   <h2>Project layers</h2>
 </div>
 
@@ -31,6 +38,9 @@
       <th>Tile url</th>
       <th>Is displayed</th>
       <th>Provider</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -42,6 +52,9 @@
       <td><%= project_layer.tile_url %></td>
       <td><%= project_layer.is_displayed %></td>
       <td><%= project_layer.provider_id %></td>
+      <td><%= link_to 'Show', project_project_layer_path(@project, project_layer) %></td>
+      <td><%= link_to 'Edit', edit_project_project_layer_path(@project, project_layer) %></td>
+      <td><%= link_to 'Destroy', project_project_layer_path(@project, project_layer), confirm: 'Are you sure?', method: :delete %></td>
     </tr>
 <% end %>
   </tbody>
