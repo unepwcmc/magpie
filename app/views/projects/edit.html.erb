@@ -1,11 +1,7 @@
 <div class="page-header">
-  <%= link_to projects_path, :class => 'btn' do %>
+  <%= link_to @project, :class => 'btn' do %>
     <i class="icon-list-alt"></i>
     Back
-  <% end %>
-  <%= link_to @project, :class => 'btn btn-primary' do %>
-    <i class="icon-info-sign icon-white"></i>
-    Show
   <% end %>
   <h1>Editing project</h1>
 </div>

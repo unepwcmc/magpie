@@ -14,17 +14,15 @@ Project.create(name: 'carbon')
 
 Apartment::Database.switch('carbon')
 
-ProjectLayer.create(
-  display_name: 'Mangroves', 
-  type: 'RasterLayer',
+RasterLayer.create(
+  display_name: 'Mangroves',
   tile_url: 'http://',
   is_displayed: true,
   provider_id: 1
 )
 
-ProjectLayer.create(
-  display_name: 'Seagrass', 
-  type: 'RasterLayer',
+RasterLayer.create(
+  display_name: 'Seagrass',
   tile_url: 'http://',
   is_displayed: true,
   provider_id: 2

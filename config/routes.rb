@@ -2,7 +2,9 @@ Magpie::Application.routes.draw do
   devise_for :admins, controllers: { sessions: "admins/sessions" }
 
   resources :projects do
-    resources :project_layers
+    resources :project_layers, except: [:new] do
+      match ':type' => 'project_layers#new', on: :new, as: :subclass
+    end
   end
 
   resources :workspaces, only: [:show, :create], shallow: true do

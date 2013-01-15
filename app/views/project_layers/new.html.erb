@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to project_project_layers_path(@project), :class => 'btn' do %>
+  <%= link_to project_path(@project), :class => 'btn' do %>
     <i class="icon-list-alt"></i>
     Back
   <% end %>
-  <h1>New project layer</h1>
+  <h1>New <%= @project_layer.class %></h1>
 </div>
 
 <%= render 'form' %>
