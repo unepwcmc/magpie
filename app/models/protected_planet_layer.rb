@@ -15,7 +15,7 @@ class ProtectedPlanetLayer < ProjectLayer
     if result.area_of_interest.polygons.count > 0
       aoi = result.area_of_interest
 
-      response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=[{\"id\":\"1\", \"the_geom\":\"#{aoi.to_wkt}\"}]")
+      response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{aoi.to_wkt.to_json}")
       response_json = JSON.parse(response)
       return response_json["sum_pa_cover_km2"].to_f
     end

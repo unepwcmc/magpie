@@ -22,8 +22,8 @@ class AreaOfInterest < ActiveRecord::Base
       features: polygons.map(&:to_geo_json)
     }.to_json
   end
-  
+
   def to_wkt
-    "MULTIPOLYGON(#{polygons.map(&:to_wkt).join(',')})"
+    polygons.map(&:to_wkt)
   end
 end

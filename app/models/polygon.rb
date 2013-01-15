@@ -22,6 +22,7 @@ class Polygon < ActiveRecord::Base
   def to_wkt
     polygon, points = JSON.parse(geometry)[0][0], []
     polygon.each { |point| points << "#{point[0]} #{point[1]}" }
-    "((#{points.join(',')}))"
+
+    {id: id, the_geom: "POLYGON((#{points.join(',')}))"}
   end
 end
