@@ -47,7 +47,6 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
@@ -55,6 +54,10 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
+    #Project.all.each do |project|
+    #  ActiveRecord::Base.connection.execute("DROP SCHEMA #{project.name} CASCADE;")
+    #end
+    Apartment::Database.switch()
     DatabaseCleaner.clean
   end
 end
