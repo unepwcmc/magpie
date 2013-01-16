@@ -20,13 +20,13 @@ class ProtectedPlanetLayer < ProjectLayer
       response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{aoi.to_wkt.to_json}")
       response_json = JSON.parse(response)
 
-      operation = self.class.result_class(result.calculation.operation)
+      operation = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.calculation.operation.to_sym]
       operation.fetch(response_json)
     end
   end
 
   def self.result_class(id)
-    AVAILABLE_OPERATIONS[id.to_sym].result_class
+    AVAILABLE_OPERATIONS[id.to_sym][:result_class]
   end
 
   private
@@ -35,7 +35,15 @@ class ProtectedPlanetLayer < ProjectLayer
     number_protected_areas: {
       name: 'Number of Protected Areas',
       result_class: FloatResult,
-      fetch: lambda { |response| return 7 }
+      fetch: lambda { |response|
+        polygons = response['results']
+        polygons.map! do |polygon|
+          protected_areas = polygon['protected_areas']
+          protected_areas.map { |pa| pa['WDPAID'] }
+        end
+
+        return polygons.flatten.uniq.length
+      }
     },
     sum_pa_cover_km2: {
       name: 'AOI within Protected Area (km)',

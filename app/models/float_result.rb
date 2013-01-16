@@ -1,6 +1,6 @@
 class FloatResult < Result
   def fetch
     self.value = calculation.project_layer.fetch_result(self)
-    save
+    save!
   end
 end

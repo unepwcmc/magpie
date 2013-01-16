@@ -9,9 +9,13 @@ class Result < ActiveRecord::Base
   validates :type, inclusion: { in: RESULT_CLASSES, message: "is not a valid type" }
 
   def self.generate(area_of_interest, calculation)
-    unless area_of_interest.results.count(:all, conditions: { calculation_id: calculation.id })
+    if area_of_interest.results.count(:all, conditions: { calculation_id: calculation.id }) == 0
       result_class = calculation.project_layer.class.result_class(calculation.operation)
-      result = result_class.create({calculation_id: calculation.id})
+      result = result_class.new
+      result.area_of_interest_id = area_of_interest.id
+      result.calculation_id = calculation.id
+      result.save
+
       result.fetch
     end
   end
