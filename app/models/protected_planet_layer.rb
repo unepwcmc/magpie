@@ -20,8 +20,8 @@ class ProtectedPlanetLayer < ProjectLayer
       response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{aoi.to_wkt.to_json}")
       response_json = JSON.parse(response)
 
-      operation = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.calculation.operation.to_sym]
-      operation.fetch(response_json)
+      operation_fetch = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.calculation.operation.to_sym][:fetch]
+      operation_fetch(response_json)
     end
   end
 
