@@ -20,4 +20,8 @@ class RasterLayer < ProjectLayer
       return response_json["value"].to_f
     end
   end
+
+  def self.result_class(id)
+    FloatResult
+  end
 end

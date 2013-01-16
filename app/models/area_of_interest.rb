@@ -10,8 +10,7 @@ class AreaOfInterest < ActiveRecord::Base
   def fetch
     ProjectLayer.all.each do |layer|
       layer.calculations.each do |calculation|
-        result = results.find_or_create_by_calculation_id(calculation.id)
-        result.fetch
+        Result.generate(self, calculation)
       end
     end
   end

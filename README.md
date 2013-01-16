@@ -24,7 +24,6 @@ We're using the apartment gem for PostgreSQL schema based multi tenancy. Most im
 The database user needs to be able to create schemas, therefore:
     GRANT CREATE ON DATABASE magpie_staging TO wcmc;
 
-
 ### CORS
 
 To enable cross domain requests in development, you can use rack-cors middleware.
@@ -75,4 +74,3 @@ To generate the api documentation from specs:
 
 To generate the coverage report: coverage report is generated automatically when you run:
   rspec spec
-  
