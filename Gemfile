@@ -61,15 +61,15 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+end
+
+group :test do
+  gem 'rack-test'
+  gem 'simplecov', require: false
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'headless'
   gem 'database_cleaner'
-end
-
-group :test do
-  gem 'rspec_api_documentation'
-  gem 'simplecov', require: false
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'json_spec'
+  gem 'launchy'
 end
