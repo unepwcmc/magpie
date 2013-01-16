@@ -37,9 +37,17 @@ Staging and production environments should have the appropriate headers defined 
       Header set Access-Control-Max-Age 1728000
       ...
 
+### STDERR is being flooded when using Postgres
+
+If you are using Postgres and have foreign key constraints, the truncation strategy will cause a lot of extra noise to appear on STDERR (in the form of "NOTICE truncate cascades" messages). To silence these warnings set the following log level in your `postgresql.conf` file:
+
+```ruby
+client_min_messages = warning
+```
+
 ## API calls
 
-###Resource: polygon
+### Resource: polygon
 
 * POST
         curl localhost:3000/polygons --data "polygon[data]=[50,50]"
@@ -56,7 +64,7 @@ Staging and production environments should have the appropriate headers defined 
 
         {"analysis_id":7,"created_at":"2012-11-07T14:11:57Z","data":"[50,500]","id":2,"updated_at":"2012-11-07T14:13:13Z"}
 
-###Resource: analysis
+### Resource: analysis
 
 * PUT
         curl localhost:3000/analyses/7 --data "analysis[name]=Good stuff" -X PUT

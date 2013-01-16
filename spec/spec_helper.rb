@@ -6,8 +6,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'rspec_api_documentation'
-require 'rspec_api_documentation/dsl'
 
 # Add this to load Capybara integration:
 require 'capybara/rspec'

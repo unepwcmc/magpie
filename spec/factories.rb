@@ -8,6 +8,6 @@ FactoryGirl.define do
   end
 
   factory :project do
-    name 'carbon'
+    sequence(:name) { |n| "carbon_#{('a'..'z').to_a[n]}" }
   end
 end
