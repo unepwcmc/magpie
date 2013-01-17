@@ -39,7 +39,7 @@ class ProtectedPlanetLayer < ProjectLayer
         polygons = response['results']
         polygons.map! do |polygon|
           protected_areas = polygon['protected_areas']
-          protected_areas.map { |pa| pa['WDPAID'] }
+          protected_areas.map { |pa| pa['data_standard']['WDPAID'] }
         end
 
         return polygons.flatten.uniq.length
