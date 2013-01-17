@@ -12,6 +12,10 @@ FactoryGirl.define do
     workspace
   end
 
+  factory :calculation do
+    display_name 'My Calculation'
+  end
+
   factory :polygon do
     area_of_interest
   end
