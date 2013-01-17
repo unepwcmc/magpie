@@ -53,7 +53,7 @@ class ProtectedPlanetLayer < ProjectLayer
     protected_areas_details: {
       name: 'Protected Areas Details',
       result_class: JsonResult,
-      fetch: lambda { |response| return {} }
+      fetch: lambda { |response| return response }
     }
   }
 end
