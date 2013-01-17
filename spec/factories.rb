@@ -7,7 +7,18 @@ FactoryGirl.define do
     # confirmed_at Time.now
   end
 
+  factory :area_of_interest do
+    name 'Area of Interest'
+    workspace
+  end
+
+  factory :polygon do
+    area_of_interest
+  end
+
   factory :project do
     sequence(:name) { |n| "carbon_#{('a'..'z').to_a[n]}" }
   end
+
+  factory :workspace
 end

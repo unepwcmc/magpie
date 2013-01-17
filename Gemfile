@@ -52,7 +52,7 @@ group :development do
 end
 
 # To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug', group: [:development, :test]
+gem 'ruby-debug19', :require => 'ruby-debug', group: :development
 
 group :staging, :production do
   gem 'exception_notification', :require => 'exception_notifier'

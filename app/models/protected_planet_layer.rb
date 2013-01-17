@@ -21,7 +21,7 @@ class ProtectedPlanetLayer < ProjectLayer
       response_json = JSON.parse(response)
 
       operation_fetch = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.calculation.operation.to_sym][:fetch]
-      operation_fetch(response_json)
+      operation_fetch.call(response_json)
     end
   end
 
