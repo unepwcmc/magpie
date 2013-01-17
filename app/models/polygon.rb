@@ -4,7 +4,7 @@ class Polygon < ActiveRecord::Base
   belongs_to :area_of_interest
 
   before_validation do
-    self.geometry = self.geometry.to_s
+    self.geometry = self.geometry.to_json
   end
 
   def to_geo_json
@@ -17,9 +17,6 @@ class Polygon < ActiveRecord::Base
   end
 
   def to_wkt
-    # '{"type":"Polygon", "coordinates":[[[54.13238525390625, 24.77426615577134], [53.86871337890625, 24.392130270038873], [54.4207763671875, 24.399634316776858], [54.13238525390625, 24.77426615577134]]]}'
-    # '{"type": "Circle", "coordinates": [24.953689859170165, 54.525146484375], "radius":17612.640973738577}'
-
     parsed_geometry, points = JSON.parse(geometry), []
 
     if parsed_geometry['type'] == 'Polygon'
