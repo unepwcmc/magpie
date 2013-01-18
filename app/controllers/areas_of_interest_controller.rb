@@ -1,10 +1,16 @@
 class AreasOfInterestController < ApplicationController
-  respond_to :json
+  respond_to :json, except: :show
 
   def show
     @area_of_interest = AreaOfInterest.find(params[:id])
     @area_of_interest.fetch
-    respond_with(@area_of_interest)
+
+    respond_to do |format|
+      format.json
+      format.csv {
+        send_data @area_of_interest.to_csv, filename: "#{@area_of_interest.name.parameterize}.csv"
+      }
+    end 
   end
 
   def create
