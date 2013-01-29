@@ -21,7 +21,9 @@ class PolygonsController < ApplicationController
     uploaded_io = params[:file]
     content = uploaded_io.read
 
-    render json: "{\"filename\":\"#{uploaded_io.original_filename}\", content: \"#{content}\"}"
+    # TODO actually do create
+
+    render :layout => false
   end
 
   def update
