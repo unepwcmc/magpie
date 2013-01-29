@@ -9,11 +9,14 @@ Magpie::Application.routes.draw do
 
   resources :workspaces, only: [:show, :create], shallow: true do
     resources :areas_of_interest, only: [:show, :create, :update, :destroy], shallow: true do
-      resources :polygons, only: [:show, :create, :update, :destroy]
+      resources :polygons, only: [:show, :create, :update, :destroy] do
+        collection do
+          get "new_upload_form"
+          post "create_from_file"
+        end
+      end
     end
   end
-
-  post "workspaces/from_file"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
