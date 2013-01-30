@@ -59,7 +59,7 @@ class PolygonUpload < ActiveRecord::Base
       elsif feature['type'] != 'Polygon'
         self.state += "feature type #{feature['type']} not supported"
       end
-      polygon = Polygon.create(geometry: geo_json.to_json, area_of_interest_id: self.area_of_interest_id)
+      polygon = Polygon.create(geometry: geo_json, area_of_interest_id: self.area_of_interest_id)
       puts "created polygon #{polygon.id}"
     end
   end
