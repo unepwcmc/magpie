@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116095605) do
+ActiveRecord::Schema.define(:version => 20130130112158) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(:version => 20130116095605) do
     t.datetime "updated_at",       :null => false
     t.integer  "project_layer_id"
     t.string   "operation"
+  end
+
+  create_table "polygon_uploads", :force => true do |t|
+    t.text     "filename"
+    t.string   "state"
+    t.text     "message"
+    t.integer  "area_of_interest_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "polygons", :force => true do |t|
