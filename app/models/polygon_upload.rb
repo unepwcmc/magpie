@@ -26,7 +26,7 @@ class PolygonUpload < ActiveRecord::Base
     require 'httmultiparty'
     file = File.open(self.filename)
     # TODO make cartodb stuff into app variables
-    response = HTTMultiParty.post("#{CARTODB_CONFIG[:host]}/api/v1/imports", :query => {:file => file, :api_key => CARTODB_CONFIG['api_key']})
+    response = HTTMultiParty.post("#{CARTODB_CONFIG['host']}/api/v1/imports", :query => {:file => file, :api_key => CARTODB_CONFIG['api_key']})
     upload_result = JSON.parse(response.body)
     if upload_result["success"]
       self.state = "uploaded"
@@ -38,7 +38,7 @@ class PolygonUpload < ActiveRecord::Base
   end
 
   def check_cartodb_import_state item_queue_id
-    response = HTTParty.get("#{CARTODB_CONFIG[:host]}/api/v1/imports/#{item_queue_id}", :query => {:api_key => CARTODB_CONFIG['api_key']})
+    response = HTTParty.get("#{CARTODB_CONFIG['host']}/api/v1/imports/#{item_queue_id}", :query => {:api_key => CARTODB_CONFIG['api_key']})
     import_status = JSON.parse(response.body)
     if import_status['success']
       self.table_name = import_status['table_name']
@@ -48,5 +48,8 @@ class PolygonUpload < ActiveRecord::Base
   end
 
   def create_polygons_from_cartodb
+    polygon_sql = "SELECT ST_AsGeoJson(the_geom) FROM #{self.table_name};"
+    response = HTTParty.get("#{CARTODB_CONFIG['host']}/api/v2/sql", {query: {q: polygon_sql, api_key: CARTODB_CONFIG['api_key']}})
+    puts JSON.parse(response.body)
   end
 end
