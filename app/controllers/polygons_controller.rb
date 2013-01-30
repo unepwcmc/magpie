@@ -18,7 +18,9 @@ class PolygonsController < ApplicationController
   end
 
   def create_from_file
-    PolygonUpload.create_with_file(area_of_interest_id: params[:area_of_interest_id], file: params[:file])
+    @polygon_upload = PolygonUpload.create_with_file(area_of_interest_id: params[:area_of_interest_id], file: params[:file])
+    
+    CartodbPolygonUploadWorker.perform_async(@polygon_upload.id)
 
     render :layout => false
   end
