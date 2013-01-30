@@ -15,6 +15,9 @@ gem 'bootstrap-generators', '~> 2.1', git: 'git://github.com/decioferreira/boots
 gem 'simple_form'
 
 gem 'devise'
+gem 'sidekiq'
+gem 'httmultiparty'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

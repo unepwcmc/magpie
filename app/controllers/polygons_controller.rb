@@ -18,10 +18,7 @@ class PolygonsController < ApplicationController
   end
 
   def create_from_file
-    uploaded_io = params[:file]
-    content = uploaded_io.read
-
-    # TODO actually do create
+    PolygonUpload.create_with_file(area_of_interest_id: params[:area_of_interest_id], file: params[:file])
 
     render :layout => false
   end

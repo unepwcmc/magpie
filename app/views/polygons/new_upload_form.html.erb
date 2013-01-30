@@ -1,4 +1,5 @@
 <%= form_tag(create_from_file_area_of_interest_polygons_path(area_of_interest_id: params[:area_of_interest_id]), :multipart => true) do %>
   <label for="file">File to Upload</label> <%= file_field_tag "file" %><br/>
+  <%= hidden_field_tag area_of_interest_id: params[:area_of_interest_id] %>
   <%= submit_tag 'Save' %>
 <% end %>
