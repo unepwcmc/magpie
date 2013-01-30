@@ -4,6 +4,15 @@
 
 ## Development
 
+### Cartodb config
+
+You will need a cartodb config file in config/cartodb_config.yml, with the following keys:
+
+    host: '<cartodb host>'
+    api_key: '<sql api key>'
+    username: 'username'
+    password: 'password'
+
 ### Database
 
 We're using the apartment gem for PostgreSQL schema based multi tenancy. Most important consequences of that are:
