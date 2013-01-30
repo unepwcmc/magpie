@@ -50,6 +50,7 @@ class PolygonUpload < ActiveRecord::Base
   def create_polygons_from_cartodb
     polygon_sql = "SELECT ST_AsGeoJson(the_geom) as geo_json FROM #{self.table_name};"
     response = HTTParty.get("#{CARTODB_CONFIG['host']}/api/v2/sql", {query: {q: polygon_sql, api_key: CARTODB_CONFIG['api_key']}})
+    puts response.body
     JSON.parse(response.body)['rows'].each do |feature|
       feature = JSON.parse(feature["geo_json"])
       geo_json = feature["coordinates"]
