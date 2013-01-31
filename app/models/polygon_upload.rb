@@ -18,8 +18,9 @@ class PolygonUpload < ActiveRecord::Base
     polygon_upload = PolygonUpload.new(area_of_interest_id: options[:area_of_interest_id])
     polygon_upload.state = NOT_YET_UPLOADED_STATE
 
-    polygon_upload.filename = "tmp/#{polygon_upload.generate_file_stamp}_#{options[:file].original_filename}"
-    File.open(polygon_upload.filename, 'w') { |f| f.write(options[:file].read) }
+    # Copy file to tmp directory
+    polygon_upload.filename = "#{Rails.root}/tmp/#{polygon_upload.generate_file_stamp}_#{options[:file].original_filename}"
+    FileUtils.cp options[:file].tempfile.path, polygon_upload.filename
 
     polygon_upload.save
     return polygon_upload

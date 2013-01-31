@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Magpie::Application.routes.draw do
   devise_for :admins, controllers: { sessions: "admins/sessions" }
 
@@ -19,6 +20,11 @@ Magpie::Application.routes.draw do
   end
 
   resources :polygon_uploads, only: [:show]
+
+  constraint = lambda { |request| request.env["warden"].authenticate? }
+  constraints constraint do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
