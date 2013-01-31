@@ -76,16 +76,22 @@ class PolygonUpload < ActiveRecord::Base
     successes = []
     errors = []
     JSON.parse(response.body)['rows'].each do |feature|
-      feature = JSON.parse(feature["geo_json"])
-      geo_json = feature["coordinates"]
-      if feature['type'] == 'MultiPolygon'
-        geo_json = geo_json[0]
-      elsif feature['type'] != 'Polygon'
-        errors.push("feature type #{feature['type']} not supported")
+      begin
+        feature = JSON.parse(feature["geo_json"])
+        geo_json = feature["coordinates"]
+        if feature['type'] == 'MultiPolygon'
+          geo_json = geo_json[0]
+        elsif feature['type'] != 'Polygon'
+          errors.push("feature type #{feature['type']} not supported")
+        end
+        geo_json = {type: 'Polygon', coordinates:geo_json}
+        polygon = Polygon.create(geometry: geo_json, area_of_interest_id: self.area_of_interest_id)
+        successes.push polygon
+      rescue TypeError => e
+        errors.push(e.message)
+      rescue JSON::ParserError => e
+        errors.push(e.message)
       end
-      geo_json = {type: 'Polygon', coordinates:geo_json}
-      polygon = Polygon.create(geometry: geo_json, area_of_interest_id: self.area_of_interest_id)
-      successes.push polygon
     end
     if errors.length > 0
       if successes.length > 0
