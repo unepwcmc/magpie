@@ -17,9 +17,14 @@ class PolygonUpload < ActiveRecord::Base
     "#{self.area_of_interest_id}_#{Time.now.to_i}"
   end
 
-  def destroy_and_remove_file
+  def destroy_and_cleanup
     File.delete(self.filename)
+    delete_table_from_cartodb if table_name
     self.destroy
+  end
+
+  def delete_table_from_cartodb
+    response = HTTParty.delete("#{CARTODB_CONFIG['host']}/api/v1/tables/#{table_name}", {query: {api_key: CARTODB_CONFIG['api_key']}})
   end
 
   def upload_to_cartodb
@@ -59,7 +64,7 @@ class PolygonUpload < ActiveRecord::Base
       elsif feature['type'] != 'Polygon'
         self.state += "feature type #{feature['type']} not supported"
       end
-      geo_json = {type: 'Polygon', coordinates:_geo_json}.to_json
+      geo_json = {type: 'Polygon', coordinates:geo_json}
       polygon = Polygon.create(geometry: geo_json, area_of_interest_id: self.area_of_interest_id)
       puts "created polygon #{polygon.id}"
     end
