@@ -32,17 +32,13 @@ describe PolygonUpload do
         File.open(@polygon_upload.filename, 'r').read.should eq(@file_txt)
       end
 
-      describe " then #destroy_and_cleanup" do
+      describe " then #cleanup" do
         before(:all) do
           @file_to_delete = @polygon_upload.filename
-          @polygon_upload_id = @polygon_upload.id
-          @polygon_upload.destroy_and_cleanup
+          @polygon_upload.cleanup
         end
         it "should delete the file" do
           expect { File.open(@file_to_delete, 'r') }.to raise_error
-        end
-        it "should destroy the polygon_upload" do
-          PolygonUpload.where(id: @polygon_upload_id).count.should eq(0)
         end
       end
     end

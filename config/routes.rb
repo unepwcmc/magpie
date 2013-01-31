@@ -18,6 +18,8 @@ Magpie::Application.routes.draw do
     end
   end
 
+  resources :polygon_uploads, only: [:show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

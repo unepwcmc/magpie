@@ -20,6 +20,11 @@ FactoryGirl.define do
     area_of_interest
   end
 
+  factory :polygon_upload do
+    state 'Not yet uploaded'
+    area_of_interest
+  end
+
   factory :project do
     sequence(:name) { |n| "carbon_#{('a'..'z').to_a[n]}" }
   end
