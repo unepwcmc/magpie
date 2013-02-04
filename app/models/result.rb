@@ -22,7 +22,7 @@ class Result < ActiveRecord::Base
     begin
       result.fetch
     rescue TimeoutError => e
-      result.errors.add_to_base(e.message)
+      result.errors[:base] <<e.message
     end
   end
 end
