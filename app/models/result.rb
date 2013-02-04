@@ -19,6 +19,10 @@ class Result < ActiveRecord::Base
       result.save
     end
 
-    result.fetch
+    begin
+      result.fetch
+    rescue TimeoutError => e
+      result.errors.add_to_base(e.message)
+    end
   end
 end

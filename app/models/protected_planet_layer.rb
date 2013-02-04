@@ -20,6 +20,10 @@ class ProtectedPlanetLayer < ProjectLayer
       response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{aoi.to_wkt.to_json}")
       response_json = JSON.parse(response)
 
+      if response_json['error']
+        raise TimeoutError, 'Area was too large to calculate.'
+      end
+      
       operation_fetch = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.calculation.operation.to_sym][:fetch]
       operation_fetch.call(response_json)
     end
