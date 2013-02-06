@@ -38,7 +38,7 @@ class AreaOfInterest < ActiveRecord::Base
       csv << headers
       csv << values
 
-      protected_planet_headers, protected_planet_values = ['WDPA Site Code', 'Area', 'Designation', 'Area (km2)'], []
+      protected_planet_headers, protected_planet_values = ['WDPA Site Code', 'Area', 'Designation', 'Area (km2)', 'Overlap with AOI (km2)', 'Overlap with AOI %'], []
 
       JsonResult.find_all_by_area_of_interest_id(id).each do |result|
         if result.calculation.project_layer.class == ProtectedPlanetLayer
@@ -48,7 +48,9 @@ class AreaOfInterest < ActiveRecord::Base
                 protected_area['wdpaid'],
                 protected_area['name'],
                 protected_area['data_standard']['DESIG'],
-                protected_area['query_area_protected_km2']
+                protected_area['protected_area_km2'],
+                protected_area['query_area_protected_km2'],
+                ( protected_area['query_area_protected_km2'] / protected_area['protected_area_km2'] ) * 100
               ]
             end
           end
