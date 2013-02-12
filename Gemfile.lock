@@ -111,9 +111,6 @@ GEM
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     json (1.7.7)
-    json_spec (1.0.3)
-      multi_json (~> 1.0)
-      rspec (~> 2.0)
     launchy (2.1.2)
       addressable (~> 2.3)
     libv8 (3.3.10.4)
@@ -128,7 +125,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.5.1)
-    mustache (0.99.4)
     multi_xml (0.5.2)
     multipart-post (1.1.5)
     net-scp (1.0.4)
@@ -283,8 +279,8 @@ DEPENDENCIES
   pg
   rabl
   rack-cors
-  rails (= 3.2.12)
   rack-test
+  rails (= 3.2.12)
   rest-client
   rspec-rails
   ruby-debug19
