@@ -28,7 +28,7 @@
         <%= link_to "Magpie", root_path, :class => "brand" %>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to 'Projects', projects_path %></li>
+            <%= content_tag :li, link_to('Projects', projects_path), class: (params[:controller] == 'projects' ? 'active' : nil) %>
           </ul>
           <ul class="nav pull-right">
             <% if admin_signed_in? %>

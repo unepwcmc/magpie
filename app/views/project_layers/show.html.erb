@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to project_project_layers_path(@project), :class => 'btn' do %>
+  <%= link_to project_path(@project), :class => 'btn' do %>
     <i class="icon-list-alt"></i>
     Back
   <% end %>
@@ -27,7 +27,9 @@
   <dd><%= @project_layer.provider_id %></dd>
 </dl>
 
-<h2>Project layers</h2>
+<div class="page-header">
+  <h2>Calculations</h2>
+</div>
 
 <table class="table table-bordered table-striped">
   <thead>

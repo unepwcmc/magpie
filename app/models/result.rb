@@ -4,12 +4,25 @@ class Result < ActiveRecord::Base
   belongs_to :calculation
   belongs_to :area_of_interest
 
-  def fetch
-    if area_of_interest.polygons.count > 0
-      response = RestClient.get("http://raster-stats.unep-wcmc.org/rasters/#{calculation.project_layer.provider_id}/operations/#{calculation.operation}", params: {polygon: area_of_interest.polygons_as_geo_json})
-      response_json = JSON.parse(response)
-      self.value = response_json["value"].to_f
-      save
+  RESULT_CLASSES = %w( FloatResult JsonResult )
+
+  validates :type, inclusion: { in: RESULT_CLASSES, message: "is not a valid type" }
+
+  def self.generate(area_of_interest, calculation)
+    result = area_of_interest.results.find(:first, conditions: { calculation_id: calculation.id })
+
+    unless result
+      result_class = calculation.project_layer.class.result_class(calculation.operation)
+      result = result_class.new
+      result.area_of_interest_id = area_of_interest.id
+      result.calculation_id = calculation.id
+      result.save
+    end
+
+    begin
+      result.fetch
+    rescue TimeoutError => e
+      result.errors[:base] <<e.message
     end
   end
 end

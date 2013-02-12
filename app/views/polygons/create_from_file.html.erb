@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      var isFinishedState = function(state) {
+        return <%= PolygonUpload::FINISHED_STATES.map {|state| "state === '#{state}'" }.join("||") %>
+      };
+
+      var checkImportStatus = function () {
+        console.log("checking import state:");
+        $.ajax({
+          type: 'GET',
+          url: '<%= polygon_upload_path(@polygon_upload) %>',
+          success: function(data) {
+            $('#import-status').text(data.state);
+            if (isFinishedState(data.state)) {
+              parent.postMessage({polygonImportStatus: data.state, importMessages: data.message}, '*');
+            } else {
+              setTimeout(checkImportStatus, 2000);
+            }
+          }
+        })
+      };
+
+      checkImportStatus();
+    </script>
+  </head>
+  <body>
+    Importing
+    <%= image_tag 'ajax-loader.gif' %>
+    <div>
+      Status: <span id="import-status"></span></br>
+    </div>
+  </body>
+</html>

@@ -5,6 +5,8 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'pg'
+
 gem 'rest-client'
 gem 'rabl'
 gem 'yajl-ruby', :require => "yajl"
@@ -14,6 +16,15 @@ gem 'simple_form'
 
 gem 'devise'
 
+# Sidekiq plus monitoring
+gem 'sidekiq'
+gem 'slim'
+# if you require 'sinatra' you get the DSL extended to Object
+gem 'sinatra', '>= 1.3.0', :require => nil
+
+gem 'httmultiparty'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -21,20 +32,17 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', platforms: :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
 
-# storage
-gem 'pg'
-
-# multi tenancy
+# Multi tenancy
 gem 'apartment'
 
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -46,33 +54,31 @@ gem 'rack-cors', :require => 'rack/cors'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano', :group => :development
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'brightbox', '>= 2.3.9'
+end
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
+gem 'ruby-debug19', :require => 'ruby-debug', group: :development
 
 group :staging, :production do
   gem 'exception_notification', :require => 'exception_notifier'
   gem 'newrelic_rpm'
 end
 
-group :development do
-  # Deploy with Capistrano
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'brightbox', '>=2.3.9'
-end
-
-group :test, :development do
-  gem "rspec-rails"
-  gem "database_cleaner"
-  gem 'ruby-debug19'
+group :development, :test do
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'rspec_api_documentation'
-  gem "factory_girl_rails", "~> 4.0"
-  gem "json_spec"
-  gem 'simplecov', :require => false
+  gem 'rack-test'
+  gem 'simplecov', require: false
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'launchy'
 end

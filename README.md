@@ -4,17 +4,31 @@
 
 ## Development
 
+### Cartodb config
+
+You will need a cartodb config file in config/cartodb_config.yml, with the following keys:
+
+    host: '<cartodb host>'
+    api_key: '<sql api key>'
+    username: 'username'
+    password: 'password'
+
 ### Database
 
 We're using the apartment gem for PostgreSQL schema based multi tenancy. Most important consequences of that are:
+
 * a new schema is created for each application (with the same name). This is hooked as an after_create block, but can also be done manually if needed:
 
         Apartment::Database.create('database_name')
+
   this also runs the migrations on the new schema.
+
 * schemas are switched per request based on subdomain. If you need to switch the schema in console use:
 
         Apartment::Database.switch('database_name')
+
 * migrations should run on all schemas, therefore make sure you use:
+
         rake apartment:migrate
 
 ## Deployment
@@ -22,8 +36,8 @@ We're using the apartment gem for PostgreSQL schema based multi tenancy. Most im
 ### Database
 
 The database user needs to be able to create schemas, therefore:
-    GRANT CREATE ON DATABASE magpie_staging TO wcmc;
 
+    GRANT CREATE ON DATABASE magpie_staging TO wcmc;
 
 ### CORS
 
@@ -38,9 +52,17 @@ Staging and production environments should have the appropriate headers defined 
       Header set Access-Control-Max-Age 1728000
       ...
 
+### STDERR is being flooded when using Postgres
+
+If you are using Postgres and have foreign key constraints, the truncation strategy will cause a lot of extra noise to appear on STDERR (in the form of "NOTICE truncate cascades" messages). To silence these warnings set the following log level in your `postgresql.conf` file:
+
+```ruby
+client_min_messages = warning
+```
+
 ## API calls
 
-###Resource: polygon
+### Resource: polygon
 
 * POST
         curl localhost:3000/polygons --data "polygon[data]=[50,50]"
@@ -57,7 +79,7 @@ Staging and production environments should have the appropriate headers defined 
 
         {"analysis_id":7,"created_at":"2012-11-07T14:11:57Z","data":"[50,500]","id":2,"updated_at":"2012-11-07T14:13:13Z"}
 
-###Resource: analysis
+### Resource: analysis
 
 * PUT
         curl localhost:3000/analyses/7 --data "analysis[name]=Good stuff" -X PUT
@@ -75,4 +97,3 @@ To generate the api documentation from specs:
 
 To generate the coverage report: coverage report is generated automatically when you run:
   rspec spec
-  

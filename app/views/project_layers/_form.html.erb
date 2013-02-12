@@ -1,8 +1,8 @@
-<%= simple_form_for(@project_layer, url: (@project_layer.new_record? ? project_project_layers_path(@project) : project_project_layer_path(@project, @project_layer)), :defaults => { :input_html => { :class => 'span8' } }) do |f| %>
+<%= simple_form_for(@project_layer, as: :project_layer, url: (@project_layer.new_record? ? project_project_layers_path(@project) : project_project_layer_path(@project, @project_layer)), :defaults => { :input_html => { :class => 'span8' } }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :type, collection: ['RasterLayer'], include_blank: false %>
+    <%= f.input :type, as: :hidden %>
     <%= f.input :display_name %>
     <%= f.input :provider_id, collection: @rasters_select, include_blank: false %>
     <%= f.input :is_displayed, input_html: { class: '' } %>

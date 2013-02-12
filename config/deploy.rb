@@ -4,6 +4,8 @@ require 'capistrano/ext/multistage'
 gem 'brightbox', '>=2.3.9'
 require 'brightbox/recipes'
 require 'brightbox/passenger'
+require 'sidekiq/capistrano'
+set :sidekiq_processes, 1
 
 # The name of your application.  Used for deployment directory and filenames
 # and Apache configs. Should be unique on the Brightbox
@@ -59,7 +61,7 @@ set :deploy_via, :remote_cache
 # The shared area is prepared with 'deploy:setup' and all the shared
 # items are symlinked in when the code is updated.
 # set :local_shared_dirs, %w(public/upload)
-set :local_shared_files, %w(config/database.yml)
+set :local_shared_files, %w(config/database.yml config/cartodb_config.yml)
 
 ## Global Shared Area
 # These are the list of files and directories that you want

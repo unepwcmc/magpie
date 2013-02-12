@@ -9,11 +9,11 @@ body {
 @import "responsive";
 
 .page-header {
-  a.btn {
+  .btn, .btn-group {
     float: right;
   }
 
-  a.btn + a.btn {
+  .btn + .btn, .btn + .btn-group {
     margin-right: 8px;
   }
 }

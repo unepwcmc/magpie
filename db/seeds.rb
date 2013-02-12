@@ -14,21 +14,21 @@ Project.create(name: 'carbon')
 
 Apartment::Database.switch('carbon')
 
-ProjectLayer.create(
-  display_name: 'Mangroves', 
-  type: 'RasterLayer',
-  tile_url: 'http://',
+raster_layer = RasterLayer.new(
+  display_name: 'Mangroves',
   is_displayed: true,
   provider_id: 1
 )
+raster_layer.tile_url = 'http://'
+raster_layer.save
 
-ProjectLayer.create(
-  display_name: 'Seagrass', 
-  type: 'RasterLayer',
-  tile_url: 'http://',
+raster_layer = RasterLayer.new(
+  display_name: 'Seagrass',
   is_displayed: true,
   provider_id: 2
 )
+raster_layer.tile_url = 'http://'
+raster_layer.save
 
 ProjectLayer.all.each do |layer|
   calculation = Calculation.new(display_name: "#{layer.display_name} sum")

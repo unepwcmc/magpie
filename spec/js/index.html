@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Tests</title>
+  <title>Magpie Tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -15,9 +15,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
+  <strong>Because of the limitations of cross domain behavior when opening files with file:// in a browser, you'll probably want to run these tests over a web server. A super simple solution is to run a python web server: <code>python -m SimpleHTTPServer</code>. Then hit up <a href="http://localhost:8000">http://localhost:8000</a></strong>
+
   <script>
     var environment, base_url, project_id;
-    var geometry_test = [[[[52.723388671875, 24.78174733781577], [52.5860595703125, 24.617057340809524], [53.25073242187499, 24.734358906253785], [52.723388671875, 24.78174733781577]]]];
+    var geometry_test = { type: "Polygon", coordinates: [[[52.723388671875, 24.78174733781577], [52.5860595703125, 24.617057340809524], [53.25073242187499, 24.734358906253785], [52.723388671875, 24.78174733781577]]] };
 
     // Set the environment as 'development' or 'production'
     environment = 'development';
