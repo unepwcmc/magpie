@@ -8,7 +8,7 @@ class Result < ActiveRecord::Base
 
   validates :type, inclusion: { in: RESULT_CLASSES, message: "is not a valid type" }
 
-  def self.generate(area_of_interest, calculation)
+  def self.fetch(area_of_interest, calculation)
     result = area_of_interest.results.find(:first, conditions: { calculation_id: calculation.id })
 
     unless result

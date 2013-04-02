@@ -10,7 +10,7 @@ class AreaOfInterest < ActiveRecord::Base
   def fetch
     ProjectLayer.all.each do |layer|
       layer.calculations.each do |calculation|
-        Result.generate(self, calculation)
+        Result.fetch(self, calculation)
       end
     end
   end
