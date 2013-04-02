@@ -12,11 +12,7 @@ class Result < ActiveRecord::Base
     result = area_of_interest.results.find(:first, conditions: { calculation_id: calculation.id })
 
     unless result
-      result_class = calculation.project_layer.class.result_class(calculation.operation)
-      result = result_class.new
-      result.area_of_interest_id = area_of_interest.id
-      result.calculation_id = calculation.id
-      result.save
+      self.create_for_area_of_interest_and_calculation(area_of_interest, calculation)
     end
 
     begin
@@ -24,5 +20,13 @@ class Result < ActiveRecord::Base
     rescue TimeoutError => e
       result.errors[:base] <<e.message
     end
+  end
+
+  def self.create_for_area_of_interest_and_calculation(area_of_interest, calculation)
+    result = calculation.new_result
+
+    result.area_of_interest_id = area_of_interest.id
+    result.save
+    return result
   end
 end
