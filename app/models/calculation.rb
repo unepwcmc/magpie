@@ -9,6 +9,8 @@ class Calculation < ActiveRecord::Base
 
   def new_result
     result_class = self.project_layer.class.result_class(self.operation)
-    return result_class.new(calculation_id: self.id)
+    result = result_class.new
+    result.calculation_id =  self.id
+    return result
   end
 end

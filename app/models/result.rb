@@ -12,7 +12,7 @@ class Result < ActiveRecord::Base
     result = area_of_interest.results.find(:first, conditions: { calculation_id: calculation.id })
 
     unless result
-      self.create_for_area_of_interest_and_calculation(area_of_interest, calculation)
+      result = self.create_for_area_of_interest_and_calculation(area_of_interest, calculation)
     end
 
     begin
