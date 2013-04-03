@@ -4,7 +4,7 @@ class ProjectLayer < ActiveRecord::Base
   has_many :calculations, dependent: :destroy
   accepts_nested_attributes_for :calculations, reject_if: lambda { |c| c[:display_name].blank? }, allow_destroy: true
 
-  PROJECT_LAYER_CLASSES = %w( RasterLayer ProtectedPlanetLayer )
+  PROJECT_LAYER_CLASSES = %w( RasterLayer ProtectedPlanetLayer BlueCarbonLayer )
 
   def self.subclass(subclass_type)
     project_layer_class = PROJECT_LAYER_CLASSES[PROJECT_LAYER_CLASSES.index(subclass_type).to_i]
