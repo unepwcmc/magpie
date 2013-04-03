@@ -68,7 +68,7 @@ class BlueCarbonLayer < ProjectLayer
         INNER JOIN 
           (SELECT 
             ST_SetSRID(
-              ST_GeomFromGeoJSON('#{aoi.polygons_as_geo_json}')
+              ST_GeomFromGeoJSON('#{aoi.polygons_as_geo_json_multipolygon}')
             , 4326)
            as the_geom
           ) b 

@@ -22,6 +22,17 @@ class AreaOfInterest < ActiveRecord::Base
     }.to_json
   end
 
+  def polygons_as_geo_json_multipolygon
+    the_polygons = polygons.map do |polygon|
+      geo_json = JSON.parse(polygon.geometry)
+      geo_json["coordinates"]
+    end
+    {
+      type: "MultiPolygon",
+      coordinates: the_polygons.to_s
+    }.to_json
+  end
+
   def to_wkt
     polygons.map(&:to_wkt)
   end
