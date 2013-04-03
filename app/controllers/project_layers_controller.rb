@@ -23,7 +23,7 @@ class ProjectLayersController < ApplicationController
   # GET /project_layers/new.json
   def new
     @project_layer = ProjectLayer.subclass(params[:type]).new
-    @rasters_select = @project_layer.rasters_select
+    @raster_list = @project_layer.get_rasters
     @operations_select = @project_layer.operations_select
     respond_with(@project_layer)
   end
@@ -31,7 +31,7 @@ class ProjectLayersController < ApplicationController
   # GET /project_layers/1/edit
   def edit
     @project_layer = ProjectLayer.find(params[:id])
-    @rasters_select = @project_layer.rasters_select
+    @raster_list = @project_layer.get_rasters
     @operations_select = @project_layer.operations_select
     respond_with(@project_layer)
   end
@@ -40,7 +40,7 @@ class ProjectLayersController < ApplicationController
   # POST /project_layers.json
   def create
     @project_layer = ProjectLayer.subclass(params[:project_layer][:type]).new(params[:project_layer])
-    @rasters_select = @project_layer.rasters_select
+    @raster_list = @project_layer.get_rasters
     @operations_select = @project_layer.operations_select
 
     rasters = @project_layer.get_rasters
@@ -54,7 +54,7 @@ class ProjectLayersController < ApplicationController
   # PUT /project_layers/1.json
   def update
     @project_layer = ProjectLayer.find(params[:id])
-    @rasters_select = @project_layer.rasters_select
+    @raster_list = @project_layer.get_rasters
     @operations_select = @project_layer.operations_select
 
     rasters = @project_layer.get_rasters

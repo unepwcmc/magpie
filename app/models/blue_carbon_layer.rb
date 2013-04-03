@@ -1,0 +1,2 @@
+class ProtectedPlanetLayer < ProjectLayer
+end

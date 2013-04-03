@@ -4,7 +4,7 @@
   <div class="form-inputs">
     <%= f.input :type, as: :hidden %>
     <%= f.input :display_name %>
-    <%= f.input :provider_id, collection: @rasters_select, include_blank: false %>
+    <%= f.input :provider_id, collection: format_raster_list_for_select(@raster_list), include_blank: false %>
     <%= f.input :is_displayed, input_html: { class: '' } %>
   </div>
 
