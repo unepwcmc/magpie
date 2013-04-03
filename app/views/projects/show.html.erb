@@ -23,8 +23,9 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu pull-right">
-      <%= content_tag :li, link_to('Raster Layer', subclass_new_project_project_layer_path(@project, type: 'RasterLayer')) %>
-      <%= content_tag :li, link_to('Protected Planet Layer', subclass_new_project_project_layer_path(@project, type: 'ProtectedPlanetLayer')) %>
+      <% ProjectLayer::PROJECT_LAYER_CLASSES.each do |subclass| %>
+        <%= content_tag :li, link_to(subclass.to_s, subclass_new_project_project_layer_path(@project, type: subclass.to_s)) %>
+      <% end %>
     </ul>
   </div>
   <h2>Project layers</h2>

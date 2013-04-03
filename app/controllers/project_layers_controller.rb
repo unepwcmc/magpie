@@ -23,16 +23,16 @@ class ProjectLayersController < ApplicationController
   # GET /project_layers/new.json
   def new
     @project_layer = ProjectLayer.subclass(params[:type]).new
-    @raster_list = @project_layer.get_rasters
-    @operations_select = @project_layer.operations_select
+    @providers_list = @project_layer.class.get_providers
+    @operations = @project_layer.class.get_operations
     respond_with(@project_layer)
   end
 
   # GET /project_layers/1/edit
   def edit
     @project_layer = ProjectLayer.find(params[:id])
-    @raster_list = @project_layer.get_rasters
-    @operations_select = @project_layer.operations_select
+    @providers_list = @project_layer.class.get_providers
+    @operations = @project_layer.class.get_operations
     respond_with(@project_layer)
   end
 
@@ -40,10 +40,10 @@ class ProjectLayersController < ApplicationController
   # POST /project_layers.json
   def create
     @project_layer = ProjectLayer.subclass(params[:project_layer][:type]).new(params[:project_layer])
-    @raster_list = @project_layer.get_rasters
-    @operations_select = @project_layer.operations_select
+    @providers_list = @project_layer.class.get_providers
+    @operations = @project_layer.class.get_operations
 
-    rasters = @project_layer.get_rasters
+    rasters = @project_layer.class.get_providers
     @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
 
     flash[:notice] = 'Project layer was successfully created.' if @project_layer.save
@@ -54,10 +54,10 @@ class ProjectLayersController < ApplicationController
   # PUT /project_layers/1.json
   def update
     @project_layer = ProjectLayer.find(params[:id])
-    @raster_list = @project_layer.get_rasters
-    @operations_select = @project_layer.operations_select
+    @providers_list = @project_layer.class.get_providers
+    @operations = @project_layer.class.get_operations
 
-    rasters = @project_layer.get_rasters
+    rasters = @project_layer.class.get_providers
     @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
 
     flash[:notice] = 'Project layer was successfully updated.' if @project_layer.update_attributes(params[:project_layer])

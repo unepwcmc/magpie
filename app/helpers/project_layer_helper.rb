@@ -1,5 +1,9 @@
 module ProjectLayerHelper
-  def format_raster_list_for_select raster_list
-    get_rasters.map { |r| [r['display_name'], r['id']] }
+  def format_providers_list_for_select provider_list
+    provider_list.map { |r| [r['display_name'], r['id']] }
+  end
+
+  def format_operations_list_for_select operations_list
+    operations_list.map { |r| [r['display_name'], r['name']] }
   end
 end

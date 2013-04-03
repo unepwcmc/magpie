@@ -1,11 +1,14 @@
 class ProtectedPlanetLayer < ProjectLayer
-  def get_rasters
+  def self.get_providers
     [{"id" => 1, "display_name" => "Protected Areas", "tiles_url_format" => "http://184.73.201.235/blue/{z}/{x}/{y}"}]
   end
 
-  def operations_select
+  def self.get_operations
     operations = []
-    AVAILABLE_OPERATIONS.each { |k,v| operations << [v[:name], k] }
+    AVAILABLE_OPERATIONS.each do |k,v|
+      operations << {"display_name" => v[:name], "name" => k.to_s}
+    end
+
     return operations
   end
 

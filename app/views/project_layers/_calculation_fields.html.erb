@@ -1,7 +1,7 @@
 <tr>
   <td><%= f.input :display_name, label: false, wrapper: :default %></td>
   <td><%= f.input :unit, label: false, wrapper: :default %></td>
-  <td><%= f.input :operation, collection: @operations_select, include_blank: false, label: false, wrapper: :default %></td>
+  <td><%= f.input :operation, collection: format_operations_list_for_select(@operations), include_blank: false, label: false, wrapper: :default %></td>
   <td>
     <%= f.input :_destroy, as: :hidden %>
     <%= link_to "#{content_tag :i, '', class: 'icon-remove'} Remove".html_safe, '#', class: "btn remove_fields" %>

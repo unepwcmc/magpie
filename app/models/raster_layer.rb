@@ -1,10 +1,10 @@
 class RasterLayer < ProjectLayer
-  def get_rasters
+  def self.get_providers
     JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/rasters.json'))
   end
 
-  def operations_select
-    JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/operations.json')).map { |r| [r['display_name'], r['name']] }
+  def self.get_operations
+    JSON.parse(RestClient.get('http://raster-stats.unep-wcmc.org/operations.json'))
   end
 
   def fetch_result(result)
