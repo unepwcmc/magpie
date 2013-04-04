@@ -30,7 +30,7 @@ class BlueCarbonLayer < ProjectLayer
   AVAILABLE_OPERATIONS = {
     sum: {
       name: 'Sum',
-      result_class: FloatResult
+      result_class: JsonResult
     }
   }
 
@@ -75,12 +75,11 @@ class BlueCarbonLayer < ProjectLayer
         ON ST_Intersects(a.the_geom, b.the_geom)) c
         GROUP BY habitat;
       "
-      puts sql
-      response = RestClient.post "https://carbon-tool.cartodb.com/api/v2/sql" , params: {
-        q: sql
-      }
-      response_json = JSON.parse(response)
-      return response_json
+      response = RestClient.post("#{CARTODB_CONFIG["host"]}/api/v2/sql" , {
+        q: sql,
+        api_key: CARTODB_CONFIG["api_key"]
+      })
+      return response
     end
   end
 
