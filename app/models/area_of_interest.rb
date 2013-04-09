@@ -29,7 +29,7 @@ class AreaOfInterest < ActiveRecord::Base
     end
     {
       type: "MultiPolygon",
-      coordinates: the_polygons.to_s
+      coordinates: the_polygons
     }.to_json
   end
 
