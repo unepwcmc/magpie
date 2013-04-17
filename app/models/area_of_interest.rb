@@ -7,11 +7,32 @@ class AreaOfInterest < ActiveRecord::Base
   has_many :polygons, dependent: :destroy
   has_many :results, dependent: :destroy
 
-  def fetch
+  def generate_results
     ProjectLayer.all.each do |layer|
-      layer.calculations.each do |calculation|
-        Result.fetch(self, calculation)
+      layer.statistics.each do |statistic|
+        self.generate_result(statistic)
       end
+    end
+  end
+
+  def generate_result(statistic)
+    result = self.find_or_create_result_for_statistic(statistic)
+
+    begin
+      result.fetch
+    rescue TimeoutError => e
+      result.errors[:base] <<e.message
+    end
+  end
+
+  def find_or_create_result_for_statistic(statistic)
+    result = self.results.find(:first, conditions: { statistic_id: statistic.id })
+
+    unless result
+      result = Result.create(
+        area_of_interest: self,
+        statistic: statistic
+      )
     end
   end
 
@@ -53,8 +74,8 @@ class AreaOfInterest < ActiveRecord::Base
       headers, values = [], []
 
       FloatResult.find_all_by_area_of_interest_id(id).each do |result|
-        headers << result.calculation.display_name
-        values << "#{result.value}#{result.calculation.unit}"
+        headers << result.statistic.display_name
+        values << "#{result.value}#{result.statistic.unit}"
       end
 
       csv << headers
@@ -63,7 +84,7 @@ class AreaOfInterest < ActiveRecord::Base
       protected_planet_headers, protected_planet_values = ['WDPA Site Code', 'Area', 'Designation', 'Area (km2)', 'Overlap with AOI (km2)', 'Overlap with AOI %'], []
 
       JsonResult.find_all_by_area_of_interest_id(id).each do |result|
-        if result.calculation.project_layer.class == ProtectedPlanetLayer
+        if result.statistic.project_layer.class == ProtectedPlanetLayer
           JSON.parse(result.value_json).each do |protected_planet_result|
             protected_planet_result['protected_areas'].each do |protected_area|
               protected_planet_values << [
