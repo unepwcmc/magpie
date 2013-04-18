@@ -85,7 +85,7 @@ class AreaOfInterest < ActiveRecord::Base
 
       JsonResult.find_all_by_area_of_interest_id(id).each do |result|
         if result.statistic.project_layer.class == ProtectedPlanetLayer
-          JSON.parse(result.value_json).each do |protected_planet_result|
+          JSON.parse(result.value).each do |protected_planet_result|
             protected_planet_result['protected_areas'].each do |protected_area|
               protected_planet_values << [
                 protected_area['wdpaid'],

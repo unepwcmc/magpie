@@ -5,7 +5,7 @@ class Result < ActiveRecord::Base
   belongs_to :area_of_interest
 
   def fetch
-    self.value_json = statistic.project_layer.class.fetch_result(statistic.operation, self.area_of_interest)
+    self.value = statistic.project_layer.class.fetch_result(statistic.operation, self.area_of_interest)
     save!
   end
 end
