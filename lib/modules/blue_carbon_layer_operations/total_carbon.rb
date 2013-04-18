@@ -10,8 +10,8 @@ module BlueCarbonLayerOperations::TotalCarbon
 
     response = BlueCarbonLayerOperations.cartodb_query(:total_carbon, geoms)
 
-    if response["total_rows"].to_i > 0
-      return response["rows"][0]["carbon"]
+    if response.length > 0
+      return response[0]["carbon"]
     end
 
     return 0

@@ -10,8 +10,8 @@ module BlueCarbonLayerOperations::HumanEmission
 
     response = BlueCarbonLayerOperations.cartodb_query(:habitat, geoms)
 
-    if response["total_rows"].to_i > 0
-      carbon = response["rows"][0]["carbon"]
+    if response.length > 0
+      carbon = response[0]["carbon"]
 
       years = 0
       unless carbon.nil?

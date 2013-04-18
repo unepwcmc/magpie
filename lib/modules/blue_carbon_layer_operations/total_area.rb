@@ -10,8 +10,8 @@ module BlueCarbonLayerOperations::TotalArea
 
     response = BlueCarbonLayerOperations.cartodb_query(:total_area, geoms)
 
-    if response["total_rows"].to_i > 0
-      return response["rows"][0]["area"]
+    if response.length > 0
+      return response[0]["area"]
     end
 
     return 0

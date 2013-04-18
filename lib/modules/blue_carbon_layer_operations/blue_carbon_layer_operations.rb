@@ -7,7 +7,13 @@ module BlueCarbonLayerOperations
       api_key: CARTODB_CONFIG["api_key"]
     })
 
-    return JSON.parse(response)
+    response = JSON.parse(response)
+
+    if response["total_rows"] > 0
+      return response["rows"]
+    else
+      return []
+    end
   end
 end
 
