@@ -9,6 +9,6 @@ module BlueCarbonLayerOperations::Area
     end
 
     response = BlueCarbonLayerOperations.cartodb_query(:polygon_area_km2, geoms)
-    return response
+    return response.to_json
   end
 end

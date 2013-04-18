@@ -6,6 +6,8 @@ module BlueCarbonLayerOperations
       q: sql,
       api_key: CARTODB_CONFIG["api_key"]
     })
+
+    return JSON.parse(response)
   end
 end
 

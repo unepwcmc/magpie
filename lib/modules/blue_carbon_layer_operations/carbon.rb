@@ -9,6 +9,6 @@ module BlueCarbonLayerOperations::Carbon
     end
 
     response = BlueCarbonLayerOperations.cartodb_query(:habitat, geoms)
-    return response
+    return response.to_json
   end
 end

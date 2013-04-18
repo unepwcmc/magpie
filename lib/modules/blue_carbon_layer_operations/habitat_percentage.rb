@@ -9,6 +9,6 @@ module BlueCarbonLayerOperations::HabitatPercentage
     end
 
     response = BlueCarbonLayerOperations.cartodb_query(:global_percent_area, geoms)
-    return response
+    return response.to_json
   end
 end
