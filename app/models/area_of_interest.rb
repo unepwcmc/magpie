@@ -34,6 +34,8 @@ class AreaOfInterest < ActiveRecord::Base
         statistic: statistic
       )
     end
+
+    return result
   end
 
   def polygons_as_geo_json
