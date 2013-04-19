@@ -73,9 +73,14 @@ class AreaOfInterest < ActiveRecord::Base
     CSV.generate(options) do |csv|
       headers, values = [], []
 
-      FloatResult.find_all_by_area_of_interest_id(id).each do |result|
-        headers << result.statistic.display_name
-        values << "#{result.value}#{result.statistic.unit}"
+      Result.find_all_by_area_of_interest_id(id).each do |result|
+        # Ignore JSON values
+        begin
+          JSON.parse(result.value)
+        rescue
+          headers << result.statistic.display_name
+          values << "#{result.value} #{result.statistic.unit}"
+        end
       end
 
       csv << headers
@@ -83,8 +88,12 @@ class AreaOfInterest < ActiveRecord::Base
 
       protected_planet_headers, protected_planet_values = ['WDPA Site Code', 'Area', 'Designation', 'Area (km2)', 'Overlap with AOI (km2)', 'Overlap with AOI %'], []
 
-      JsonResult.find_all_by_area_of_interest_id(id).each do |result|
-        if result.statistic.project_layer.class == ProtectedPlanetLayer
+      bluecarbon_headers, bluecarbon_values = ["Habitat"], []
+      bluecarbon_habitats = {}
+
+      Result.find_all_by_area_of_interest_id(id).each do |result|
+        case result.statistic.project_layer
+        when ProtectedPlanetLayer
           JSON.parse(result.value).each do |protected_planet_result|
             protected_planet_result['protected_areas'].each do |protected_area|
               protected_planet_values << [
@@ -97,6 +106,33 @@ class AreaOfInterest < ActiveRecord::Base
               ]
             end
           end
+        when BlueCarbonLayer
+          begin
+            JSON.parse(result.value).each do |row|
+              habitat   = row["habitat"]
+
+              operation = result.statistic.operation
+              unit      = result.statistic.unit
+
+              bluecarbon_headers << operation
+
+              bluecarbon_habitats[habitat] ||= []
+              bluecarbon_habitats[habitat] << "#{row[operation]} #{unit}"
+            end
+          rescue
+          end
+        end
+      end
+
+      bluecarbon_habitats.each do |habitat, results|
+        bluecarbon_values << [habitat, *results]
+      end
+
+      unless bluecarbon_values.empty?
+        csv << []
+        csv << bluecarbon_headers.uniq
+        bluecarbon_values.each do |bluecarbon_value|
+          csv << bluecarbon_value
         end
       end
 

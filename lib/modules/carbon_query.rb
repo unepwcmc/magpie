@@ -74,7 +74,7 @@ class CarbonQuery
     <<-SQL
 
     SELECT a.habitat, a.area/SUM(ST_Area(
-      ST_Transform(ST_SetSRID(b.the_geom, 4326), 27040)))*100 as percentage 
+      ST_Transform(ST_SetSRID(b.the_geom, 4326), 27040)))*100 as habitat_percentage 
       FROM 
         (SELECT SUM (area) as area, habitat FROM 
         (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),27040)) as area, habitat 
