@@ -8,7 +8,7 @@ class CarbonQuery
         INNER JOIN 
           (SELECT
             ST_SetSRID(
-              ST_Union(#{the_geom})
+              #{the_geom}
             , 4326)
             as the_geom
           ) b
@@ -25,7 +25,7 @@ class CarbonQuery
         INNER JOIN 
           (SELECT
             ST_SetSRID(
-              ST_Union(#{the_geom})
+              #{the_geom}
             , 4326)
             as the_geom
           ) b
@@ -42,7 +42,7 @@ class CarbonQuery
         INNER JOIN 
           (SELECT
             ST_SetSRID(
-              ST_Union(#{the_geom})
+              #{the_geom}
             , 4326)
             as the_geom
           ) b
@@ -60,7 +60,7 @@ class CarbonQuery
         INNER JOIN 
           (SELECT
             ST_SetSRID(
-              ST_Union(#{the_geom})
+              #{the_geom}
             , 4326)
             as the_geom
           ) b
@@ -93,7 +93,7 @@ class CarbonQuery
           INNER JOIN
             (SELECT
               ST_SetSRID(
-                ST_Union(#{the_geom})
+                #{the_geom}
               , 4326)
               as the_geom
             ) b
