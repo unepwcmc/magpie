@@ -81,7 +81,7 @@ class AreaOfInterest < ActiveRecord::Base
           JSON.parse(result.value)
         rescue
           headers << result.statistic.display_name
-          values << "#{result.value} #{result.statistic.unit}"
+          values << "#{result.value.to_f.round(2)} #{result.statistic.unit}"
         end
       end
 
@@ -119,7 +119,7 @@ class AreaOfInterest < ActiveRecord::Base
               bluecarbon_headers << operation
 
               bluecarbon_habitats[habitat] ||= []
-              bluecarbon_habitats[habitat] << "#{row[operation]} #{unit}"
+              bluecarbon_habitats[habitat] << "#{row[operation].to_f.round(2)} #{unit}"
             end
           rescue
           end

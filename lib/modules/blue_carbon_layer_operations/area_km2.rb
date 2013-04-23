@@ -1,5 +1,5 @@
-module BlueCarbonLayerOperations::Area
-  Name = 'area'
+module BlueCarbonLayerOperations::AreaKm2
+  Name = 'area_km2'
   DisplayName = 'Area'
 
   def self.perform(area_of_interest)
