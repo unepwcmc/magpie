@@ -1,6 +1,7 @@
 module BlueCarbonLayerOperations
   def self.cartodb_query query_name, geoms
     geometry = st_union(geoms)
+    geometry = st_makevalid(geometry)
     sql = CarbonQuery.send(query_name.to_sym, geometry, 'bc_carbon_view')
 
     response = RestClient.post("#{CARTODB_CONFIG["host"]}/api/v2/sql" , {
@@ -15,6 +16,10 @@ module BlueCarbonLayerOperations
     else
       return []
     end
+  end
+
+  def self.st_makevalid(geometry)
+    "ST_MakeValid(#{geometry})"
   end
 
   def self.st_union(geoms)
