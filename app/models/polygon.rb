@@ -7,6 +7,11 @@ class Polygon < ActiveRecord::Base
     self.geometry = self.geometry.to_json
   end
 
+  after_destroy do
+    results = self.area_of_interest.results
+    results.destroy_all
+  end
+
   def to_geo_json
     {
       type: "Feature",

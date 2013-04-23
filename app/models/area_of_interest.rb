@@ -8,6 +8,8 @@ class AreaOfInterest < ActiveRecord::Base
   has_many :results, dependent: :destroy
 
   def generate_results
+    return unless self.polygons.length > 0
+
     ProjectLayer.all.each do |layer|
       layer.statistics.each do |statistic|
         self.generate_result(statistic)
