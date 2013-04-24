@@ -52,6 +52,11 @@ Staging and production environments should have the appropriate headers defined 
       Header set Access-Control-Max-Age 1728000
       ...
 
+### Sidekiq background jobs
+We're using sidekiq for our background job processing (at the time of writing, just for cartodb uploads). Manage the deployment using the available cap commands, use this for a list:
+
+    cap -vT | grep sidekiq
+
 ### STDERR is being flooded when using Postgres
 
 If you are using Postgres and have foreign key constraints, the truncation strategy will cause a lot of extra noise to appear on STDERR (in the form of "NOTICE truncate cascades" messages). To silence these warnings set the following log level in your `postgresql.conf` file:
