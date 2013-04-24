@@ -8,7 +8,7 @@ module BlueCarbonLayerOperations::HumanEmission
       geoms << "ST_GeomFromGeoJSON('#{polygon.to_json}')"
     end
 
-    response = BlueCarbonLayerOperations.cartodb_query(:habitat, geoms)
+    response = BlueCarbonLayerOperations.cartodb_query(:total_carbon, geoms)
 
     if response.length > 0
       carbon = response[0]["carbon"]
