@@ -7,12 +7,37 @@ class AreaOfInterest < ActiveRecord::Base
   has_many :polygons, dependent: :destroy
   has_many :results, dependent: :destroy
 
-  def fetch
+  def generate_results
+    return unless self.polygons.length > 0
+
     ProjectLayer.all.each do |layer|
-      layer.calculations.each do |calculation|
-        Result.fetch(self, calculation)
+      layer.statistics.each do |statistic|
+        self.generate_result(statistic)
       end
     end
+  end
+
+  def generate_result(statistic)
+    result = self.find_or_create_result_for_statistic(statistic)
+
+    begin
+      result.fetch
+    rescue TimeoutError => e
+      result.errors[:base] <<e.message
+    end
+  end
+
+  def find_or_create_result_for_statistic(statistic)
+    result = self.results.find(:first, conditions: { statistic_id: statistic.id })
+
+    unless result
+      result = Result.create(
+        area_of_interest: self,
+        statistic: statistic
+      )
+    end
+
+    return result
   end
 
   def polygons_as_geo_json
@@ -33,6 +58,17 @@ class AreaOfInterest < ActiveRecord::Base
     }.to_json
   end
 
+  def polygons_as_geo_json_polygons
+    the_polygons = polygons.map do |polygon|
+      geo_json = JSON.parse(polygon.geometry)
+      {
+        type: "Polygon",
+        coordinates: geo_json["coordinates"]
+      }
+    end
+    the_polygons
+  end
+
   def to_wkt
     polygons.map(&:to_wkt)
   end
@@ -41,9 +77,14 @@ class AreaOfInterest < ActiveRecord::Base
     CSV.generate(options) do |csv|
       headers, values = [], []
 
-      FloatResult.find_all_by_area_of_interest_id(id).each do |result|
-        headers << result.calculation.display_name
-        values << "#{result.value}#{result.calculation.unit}"
+      Result.find_all_by_area_of_interest_id(id).each do |result|
+        # Ignore JSON values
+        begin
+          JSON.parse(result.value)
+        rescue
+          headers << result.statistic.display_name
+          values << "#{result.value.to_f.round(2)} #{result.statistic.unit}"
+        end
       end
 
       csv << headers
@@ -51,9 +92,13 @@ class AreaOfInterest < ActiveRecord::Base
 
       protected_planet_headers, protected_planet_values = ['WDPA Site Code', 'Area', 'Designation', 'Area (km2)', 'Overlap with AOI (km2)', 'Overlap with AOI %'], []
 
-      JsonResult.find_all_by_area_of_interest_id(id).each do |result|
-        if result.calculation.project_layer.class == ProtectedPlanetLayer
-          JSON.parse(result.value_json).each do |protected_planet_result|
+      bluecarbon_headers, bluecarbon_values = ["Habitat"], []
+      bluecarbon_habitats = {}
+
+      Result.find_all_by_area_of_interest_id(id).each do |result|
+        case result.statistic.project_layer
+        when ProtectedPlanetLayer
+          JSON.parse(result.value).each do |protected_planet_result|
             protected_planet_result['protected_areas'].each do |protected_area|
               protected_planet_values << [
                 protected_area['wdpaid'],
@@ -65,6 +110,33 @@ class AreaOfInterest < ActiveRecord::Base
               ]
             end
           end
+        when BlueCarbonLayer
+          begin
+            JSON.parse(result.value).each do |row|
+              habitat   = row["habitat"]
+
+              operation = result.statistic.operation
+              unit      = result.statistic.unit
+
+              bluecarbon_headers << operation
+
+              bluecarbon_habitats[habitat] ||= []
+              bluecarbon_habitats[habitat] << "#{row[operation].to_f.round(2)} #{unit}"
+            end
+          rescue
+          end
+        end
+      end
+
+      bluecarbon_habitats.each do |habitat, results|
+        bluecarbon_values << [habitat, *results]
+      end
+
+      unless bluecarbon_values.empty?
+        csv << []
+        csv << bluecarbon_headers.uniq
+        bluecarbon_values.each do |bluecarbon_value|
+          csv << bluecarbon_value
         end
       end
 

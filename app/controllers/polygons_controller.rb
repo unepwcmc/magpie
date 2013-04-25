@@ -19,7 +19,7 @@ class PolygonsController < ApplicationController
 
   def create_from_file
     @polygon_upload = PolygonUpload.create_with_file(area_of_interest_id: params[:area_of_interest_id], file: params[:file])
-    
+
     CartodbPolygonUploadWorker.perform_async(Apartment::Database.current_database, @polygon_upload.id)
 
     render :layout => false
@@ -35,6 +35,6 @@ class PolygonsController < ApplicationController
     @polygon = Polygon.find(params[:id])
     @polygon.destroy
     flash[:notice] = 'Polygon was successfully destroyed.'
-    respond_with(@polygon)
+    render json: @polygon
   end
 end

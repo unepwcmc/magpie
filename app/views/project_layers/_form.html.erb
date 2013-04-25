@@ -9,11 +9,11 @@
   </div>
 
   <div class="page-header">
-    <%= link_to_add_fields "Add Calculation", f, :calculations %>
-    <h2>Calculations</h2>
+    <%= link_to_add_fields "Add Statistic", f, :statistics %>
+    <h2>Statistics</h2>
   </div>
 
-  <table class="calculations table table-bordered table-striped">
+  <table class="statistics table table-bordered table-striped">
     <thead>
       <tr>
         <th>Display name</th>
@@ -24,8 +24,8 @@
     </thead>
 
     <tbody>
-      <%= f.simple_fields_for :calculations, :defaults => { :input_html => { :class => '' } } do |g| %>
-        <%= render 'calculation_fields', :f => g %>
+      <%= f.simple_fields_for :statistics, :defaults => { :input_html => { :class => '' } } do |g| %>
+        <%= render 'statistic_fields', :f => g %>
       <% end %>
     </tbody>
   </table>

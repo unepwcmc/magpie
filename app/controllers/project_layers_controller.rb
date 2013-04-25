@@ -57,8 +57,9 @@ class ProjectLayersController < ApplicationController
     @providers_list = @project_layer.class.get_providers
     @operations = @project_layer.class.get_operations
 
-    rasters = @project_layer.class.get_providers
-    @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
+    if @providers_list.length > 0
+      @project_layer.tile_url = @providers_list.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
+    end
 
     flash[:notice] = 'Project layer was successfully updated.' if @project_layer.update_attributes(params[:project_layer])
     respond_with(@project, @project_layer, location: project_project_layer_url(@project, @project_layer))

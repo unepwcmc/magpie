@@ -3,7 +3,7 @@ class AreasOfInterestController < ApplicationController
 
   def show
     @area_of_interest = AreaOfInterest.find(params[:id])
-    @area_of_interest.fetch
+    @area_of_interest.generate_results
 
     respond_to do |format|
       format.json

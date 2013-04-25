@@ -23,7 +23,7 @@ class ProtectedPlanetLayer < ProjectLayer
         raise TimeoutError, 'Area was too large to calculate.'
       end
       
-      operation_fetch = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.calculation.operation.to_sym][:fetch]
+      operation_fetch = ProtectedPlanetLayer::AVAILABLE_OPERATIONS[result.statistic.operation.to_sym][:fetch]
       operation_fetch.call(response_json)
     end
   end
@@ -37,7 +37,7 @@ class ProtectedPlanetLayer < ProjectLayer
   AVAILABLE_OPERATIONS = {
     number_protected_areas: {
       name: 'Number of Protected Areas',
-      result_class: FloatResult,
+      result_class: Result,
       fetch: lambda { |response|
         polygons = response['results']
         polygons.map! do |polygon|
@@ -50,12 +50,12 @@ class ProtectedPlanetLayer < ProjectLayer
     },
     sum_pa_cover_km2: {
       name: 'AOI within Protected Area (km)',
-      result_class: FloatResult,
+      result_class: Result,
       fetch: lambda { |response| return response["sum_pa_cover_km2"].to_f }
     },
     protected_areas_details: {
       name: 'Protected Areas Details',
-      result_class: JsonResult,
+      result_class: Result,
       fetch: lambda { |response| return response['results'].to_json }
     }
   }
