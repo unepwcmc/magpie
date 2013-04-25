@@ -1,4 +1,4 @@
-module ProtectedPlanetLayerOperations::ProtectedAreasDetails
+module ProtectedPlanetLayerOperations::ProtectedAreasDetail
   Name = 'protected_areas_details'
   DisplayName = 'Protected Areas Details'
 
