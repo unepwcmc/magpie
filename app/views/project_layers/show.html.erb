@@ -28,7 +28,7 @@
 </dl>
 
 <div class="page-header">
-  <h2>Calculations</h2>
+  <h4>Statistics</h2>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -41,11 +41,11 @@
   </thead>
 
   <tbody>
-<% @project_layer.calculations.each do |calculation| %>
+<% @project_layer.statistics.each do |statistic| %>
     <tr>
-      <td><%= calculation.display_name %></td>
-      <td><%= calculation.unit %></td>
-      <td><%= calculation.operation %></td>
+      <td><%= statistic.display_name %></td>
+      <td><%= statistic.unit %></td>
+      <td><%= statistic.operation %></td>
     </tr>
 <% end %>
   </tbody>

@@ -7,6 +7,9 @@ require 'brightbox/passenger'
 require 'sidekiq/capistrano'
 set :sidekiq_processes, 1
 
+set :rake, 'bundle exec rake'
+set :branch, fetch(:branch, "experimental-blue-carbon-support")
+
 # The name of your application.  Used for deployment directory and filenames
 # and Apache configs. Should be unique on the Brightbox
 set :application, "magpie"

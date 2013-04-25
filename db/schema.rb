@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130143830) do
+ActiveRecord::Schema.define(:version => 20130425103904) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -37,15 +37,6 @@ ActiveRecord::Schema.define(:version => 20130130143830) do
     t.boolean  "is_summary",   :default => false, :null => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-  end
-
-  create_table "calculations", :force => true do |t|
-    t.string   "display_name",     :null => false
-    t.string   "unit"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "project_layer_id"
-    t.string   "operation"
   end
 
   create_table "polygon_uploads", :force => true do |t|
@@ -82,13 +73,23 @@ ActiveRecord::Schema.define(:version => 20130130143830) do
   end
 
   create_table "results", :force => true do |t|
-    t.float    "value"
+    t.text     "value"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "area_of_interest_id"
-    t.integer  "calculation_id"
-    t.text     "value_json"
+    t.integer  "statistic_id"
     t.string   "type"
+    t.string   "error_message"
+    t.text     "error_stack"
+  end
+
+  create_table "statistics", :force => true do |t|
+    t.string   "display_name",     :null => false
+    t.string   "unit"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "project_layer_id"
+    t.string   "operation"
   end
 
   create_table "workspaces", :force => true do |t|

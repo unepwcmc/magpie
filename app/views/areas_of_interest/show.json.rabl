@@ -8,9 +8,20 @@ child polygons: :polygons do
 end
 child results: :results do
   attributes :id, :value
-  node(:value_json) { |result| result.value_json && Yajl::Parser.parse(result.value_json) }
+  node(:value) do |result|
+    if result.value
+      begin
+        Yajl::Parser.parse(result.value)
+      rescue
+        result.value
+      end
+    end
+  end
 
-  glue :calculation do
+  node(:error_message, if: lambda {|result| result.error_message.present?}) {|result| result.error_message}
+
+
+  glue :statistic do
     attributes :display_name, :unit, :project_layer_id
   end
 end

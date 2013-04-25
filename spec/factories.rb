@@ -12,8 +12,14 @@ FactoryGirl.define do
     workspace
   end
 
-  factory :calculation do
-    display_name 'My Calculation'
+  factory :result do
+    area_of_interest
+    statistic
+  end
+
+  factory :statistic do
+    display_name 'My Statistic'
+    association :project_layer, factory: :protected_planet_layer
   end
 
   factory :polygon do
@@ -27,6 +33,10 @@ FactoryGirl.define do
 
   factory :project do
     sequence(:name) { |n| "carbon_#{('a'..'z').to_a[n]}" }
+  end
+
+  factory :protected_planet_layer do
+    display_name "Das Protected Planet Layer"
   end
 
   factory :workspace
