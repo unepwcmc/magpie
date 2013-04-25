@@ -7,6 +7,7 @@ class Result < ActiveRecord::Base
   def fetch
     begin
       self.value = statistic.project_layer.class.fetch_result(statistic.operation, self.area_of_interest)
+      self.error_message = self.error_stack = nil
     rescue Exception => e
       self.error_message = e.message
       self.error_stack = e.backtrace.to_s

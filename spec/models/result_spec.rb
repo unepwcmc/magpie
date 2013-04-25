@@ -24,5 +24,28 @@ describe Result do
         end
       end
     end
+    
+    context "result exists with an error message and stack" do
+      before(:all) do
+        @result = FactoryGirl.create(:result, error_message: 'Boots stuck', error_stack: 'app/models/cowboy.rb:15')
+      end
+
+      context "results are successfully fetched" do
+        before(:all) do
+          @result.statistic.project_layer.class.stub(:fetch_result) do
+            '5'
+          end
+          @result.fetch
+        end
+        
+        it 'unsets the error messages' do
+          @result.error_message.should be_nil()
+        end
+
+        it 'unsets the error messages' do
+          @result.error_stack.should be_nil()
+        end
+      end
+    end
   end
 end
