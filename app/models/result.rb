@@ -5,7 +5,12 @@ class Result < ActiveRecord::Base
   belongs_to :area_of_interest
 
   def fetch
-    self.value = statistic.project_layer.class.fetch_result(statistic.operation, self.area_of_interest)
+    begin
+      self.value = statistic.project_layer.class.fetch_result(statistic.operation, self.area_of_interest)
+    rescue Exception => e
+      self.error_message = e.message
+      self.error_stack = e.backtrace.to_s
+    end
     save!
   end
 end

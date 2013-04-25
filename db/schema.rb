@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418094204) do
+ActiveRecord::Schema.define(:version => 20130425103904) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20130418094204) do
     t.integer  "area_of_interest_id"
     t.integer  "statistic_id"
     t.string   "type"
+    t.string   "error_message"
+    t.text     "error_stack"
   end
 
   create_table "statistics", :force => true do |t|
