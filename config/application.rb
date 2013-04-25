@@ -17,7 +17,7 @@ module Magpie
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib/modules #{config.root}/lib/modules/blue_carbon_layer_operations)
+    config.autoload_paths += %W(#{config.root}/lib/modules #{config.root}/lib/modules/blue_carbon_layer_operations #{config.root}/lib/modules/protected_planet_layer_operations)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

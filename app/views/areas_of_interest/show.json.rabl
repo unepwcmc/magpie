@@ -18,6 +18,9 @@ child results: :results do
     end
   end
 
+  node(:error_message, if: lambda {|result| result.error_message.present?}) {|result| result.error_message}
+
+
   glue :statistic do
     attributes :display_name, :unit, :project_layer_id
   end
