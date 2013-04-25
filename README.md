@@ -25,11 +25,19 @@ We're using the apartment gem for PostgreSQL schema based multi tenancy. Most im
 
 * schemas are switched per request based on subdomain. If you need to switch the schema in console use:
 
-        Apartment::Database.switch('database_name')
+        Apartment::Database.switch('project_name')
 
 * migrations should run on all schemas, therefore make sure you use:
 
         rake apartment:migrate
+
+### Sidekiq background jobs
+Sidekiq is used for background workers, currently just for cartodb uploading. To run them in development, do
+
+    # Fire up a redis server
+    redis-server /usr/local/etc/redis.conf
+    # Start sidekiq
+    bundle exec sidekiq
 
 ## Deployment
 
