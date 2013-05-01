@@ -12,7 +12,6 @@ class PolygonsController < ApplicationController
 
   def create
     area_of_interest = AreaOfInterest.find(params[:area_of_interest_id])
-    params[:polygon].delete(:area_id)
     @polygon = area_of_interest.polygons.new(params[:polygon])
     flash[:notice] = 'Polygon was successfully created.' if @polygon.save
     respond_with(@polygon)
