@@ -1,5 +1,6 @@
 class CartodbPolygonUploadWorker
   include Sidekiq::Worker
+  sidekiq_options :queue => :magpie
 
   def perform(database, polygon_upload_id)
     Apartment::Database.switch(database)
