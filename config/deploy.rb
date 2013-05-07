@@ -8,7 +8,7 @@ require 'sidekiq/capistrano'
 set :sidekiq_processes, 1
 
 set :rake, 'bundle exec rake'
-set :branch, fetch(:branch, "experimental-blue-carbon-support")
+set :branch, fetch(:branch, "master")
 
 # The name of your application.  Used for deployment directory and filenames
 # and Apache configs. Should be unique on the Brightbox

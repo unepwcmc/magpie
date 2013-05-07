@@ -31,8 +31,8 @@ raster_layer.tile_url = 'http://'
 raster_layer.save
 
 ProjectLayer.all.each do |layer|
-  calculation = Calculation.new(display_name: "#{layer.display_name} sum")
-  calculation.project_layer = layer
-  calculation.operation = 'sum'
-  calculation.save
+  statistic = Statistic.new(display_name: "#{layer.display_name} sum")
+  statistic.project_layer = layer
+  statistic.operation = 'sum'
+  statistic.save
 end
