@@ -2,7 +2,9 @@ module BlueCarbonLayerOperations
   def self.cartodb_query query_name, geoms
     geometry = st_union(geoms)
     geometry = st_makevalid(geometry)
-    sql = CarbonQuery.send(query_name.to_sym, geometry, 'bc_carbon_view')
+    # See: http://spatialreference.org/ref/epsg/27040/
+    sql = CarbonQuery.send(
+      query_name.to_sym, geometry, 'bc_carbon_view', 27040)
 
     response = RestClient.post("#{CARTODB_CONFIG["host"]}/api/v2/sql" , {
       q: sql,

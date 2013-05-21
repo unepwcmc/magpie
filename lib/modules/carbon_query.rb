@@ -1,9 +1,9 @@
 class CarbonQuery
-  def self.total_carbon(the_geom, table_name)
+  def self.total_carbon(the_geom, table_name, srid)
 
       <<-SQL
       SELECT SUM(carbon) as carbon FROM
-        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),27040))/10000*c_mg_ha as carbon 
+        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid}))/10000*c_mg_ha as carbon 
         FROM #{table_name} a 
         INNER JOIN 
           (SELECT
@@ -16,10 +16,10 @@ class CarbonQuery
       SQL
   end
 
-  def self.total_intersection_area(the_geom, table_name)
+  def self.total_intersection_area(the_geom, table_name, srid)
       <<-SQL
       SELECT SUM(area) as area FROM
-        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),27040))/100000 as area
+        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid}))/100000 as area
         FROM #{table_name} a 
         INNER JOIN 
           (SELECT
@@ -32,17 +32,17 @@ class CarbonQuery
       SQL
   end
 
-  def self.total_area(the_geom, table_name)
+  def self.total_area(the_geom, table_name, srid)
      <<-SQL
-       SELECT ST_AREA(ST_Transform(ST_SetSRID(#{the_geom}, 4326),27040))/100000 as area
+       SELECT ST_AREA(ST_Transform(ST_SetSRID(#{the_geom}, 4326),#{srid}))/100000 as area
        SQL
     end
 
-  def self.habitat(the_geom, table_name)
+  def self.habitat(the_geom, table_name, srid)
 
       <<-SQL
       SELECT habitat, SUM(carbon) as carbon FROM
-        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),27040))/10000*c_mg_ha as carbon, habitat 
+        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid}))/10000*c_mg_ha as carbon, habitat 
         FROM #{table_name} a 
         INNER JOIN 
           (SELECT
@@ -56,13 +56,13 @@ class CarbonQuery
       SQL
   end
 
-  def self.polygon_area_km2(the_geom, table_name)
+  def self.polygon_area_km2(the_geom, table_name, srid)
 
       <<-SQL
       SELECT a.habitat, a.area/100000 as area_km2
         FROM 
           (SELECT SUM (area) as area, habitat FROM 
-          (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),27040)) as area, habitat 
+          (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid})) as area, habitat 
           FROM (
             SELECT the_geom, habitat FROM bc_mangrove
             UNION ALL
@@ -97,15 +97,15 @@ class CarbonQuery
       SQL
   end
 
-  def self.global_percent_area(the_geom, table_name)
+  def self.global_percent_area(the_geom, table_name, srid)
 
     <<-SQL
 
     SELECT a.habitat, a.area/SUM(ST_Area(
-      ST_Transform(ST_SetSRID(b.the_geom, 4326), 27040)))*100 as habitat_percentage 
+      ST_Transform(ST_SetSRID(b.the_geom, 4326), #{srid})))*100 as habitat_percentage 
       FROM 
         (SELECT SUM (area) as area, habitat FROM 
-        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),27040)) as area, habitat 
+        (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid})) as area, habitat 
         FROM (
           SELECT the_geom, habitat FROM bc_mangrove
           UNION ALL
