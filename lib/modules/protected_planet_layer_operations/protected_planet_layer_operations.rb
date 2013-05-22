@@ -1,7 +1,7 @@
 module ProtectedPlanetLayerOperations
   def self.query_protected_planet(area_of_interest)
     if area_of_interest.polygons.count > 0
-      response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{area_of_interest.to_wkt.to_json}")
+      response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{area_of_interest.to_wkt.to_json}&filters=#{{skip_carbon_stats: true}.to_json}")
       response_json = JSON.parse(response)
 
       if response_json['error']
