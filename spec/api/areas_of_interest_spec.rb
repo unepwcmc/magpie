@@ -207,14 +207,9 @@ describe "/areas_of_interest/:id", type: :api do
 
       it 'does not calculate the results again' do
         # Flatten dates
-        # Sorry
         result_attributes = @area_of_interest.results.first.attributes
-        result_attributes['updated_at'] = result_attributes['updated_at'].to_s
-        result_attributes['created_at'] = result_attributes['created_at'].to_s
-        result_attributes['value_updated_at'] = result_attributes['value_updated_at'].to_s
-        @existing_result_attributes['updated_at'] = @existing_result_attributes['updated_at'].to_s
-        @existing_result_attributes['created_at'] = @existing_result_attributes['created_at'].to_s
-        @existing_result_attributes['value_updated_at'] = @existing_result_attributes['value_updated_at'].to_s
+        result_attributes = result_attributes.map(&:to_s)
+        @existing_result_attributes = @existing_result_attributes.map(&:to_s)
 
         result_attributes.should eql(@existing_result_attributes)
       end
