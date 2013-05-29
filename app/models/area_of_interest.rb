@@ -23,7 +23,7 @@ class AreaOfInterest < ActiveRecord::Base
   def generate_result(statistic)
     result = self.find_or_create_result_for_statistic(statistic)
 
-    if result.has_more_recent_value_than? self.most_recent_polygon_updated_at
+    unless result.has_more_recent_value_than? self.most_recent_polygon_updated_at
       begin
         result.fetch
       rescue TimeoutError => e

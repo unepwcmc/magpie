@@ -188,7 +188,8 @@ describe "/areas_of_interest/:id", type: :api do
       geometry = { type: "Polygon", coordinates: [[[52, 24], [53, 24], [52, 25], [52, 24]]] }
       polygon = FactoryGirl.create(:polygon,
         geometry: geometry,
-        area_of_interest: @area_of_interest
+        area_of_interest: @area_of_interest,
+        updated_at: 1.day.ago # Must be in the past, or the stat gets recalculated
       )
 
       @correct_value = "pre-calculated-value"
