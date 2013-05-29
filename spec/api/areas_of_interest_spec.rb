@@ -149,17 +149,100 @@ describe "/areas_of_interest/:id", type: :api do
   end
 
   context 'the area_of_interest has statistics without calculated results' do
-    it 'calculates those results'
-  end
+    before(:each) do
+      test_layer = FactoryGirl.create(:test_layer)
+      FactoryGirl.create(:statistic,
+        display_name: "Operation 1",
+        project_layer: test_layer,
+        operation: 'operation_1'
+      )
 
-  context 'the area_of_interest has calculated results' do
-    it 'does not calculate the results again'
-    it 'returns the correct results'
+      @area_of_interest = FactoryGirl.create(:area_of_interest, name: 'My Area')
 
-    context 'when the polygons change' do
-      it 'calculates the results again'
-      it 'returns the correct results'
+      geometry = { type: "Polygon", coordinates: [[[52, 24], [53, 24], [52, 25], [52, 24]]] }
+      polygon = FactoryGirl.create(:polygon,
+        geometry: geometry,
+        area_of_interest: @area_of_interest
+      )
+
+      get "/areas_of_interest/#{@area_of_interest.id}"
+      json_response = JSON.parse(last_response.body)
+    end
+
+    it 'calculates those results' do
+      @area_of_interest.results.count.should eql(1)
     end
   end
 
+  context 'the area_of_interest with calculated results' do
+    before(:each) do
+      test_layer = FactoryGirl.create(:test_layer)
+      statistic = FactoryGirl.create(:statistic,
+        display_name: "Operation 1",
+        project_layer: test_layer,
+        operation: 'operation_1'
+      )
+
+      @area_of_interest = FactoryGirl.create(:area_of_interest, name: 'My Area')
+
+      geometry = { type: "Polygon", coordinates: [[[52, 24], [53, 24], [52, 25], [52, 24]]] }
+      polygon = FactoryGirl.create(:polygon,
+        geometry: geometry,
+        area_of_interest: @area_of_interest
+      )
+
+      @correct_value = "pre-calculated-value"
+      @existing_result_attributes = FactoryGirl.create(:result,
+        value: @correct_value,
+        statistic: statistic, 
+        area_of_interest: @area_of_interest
+      ).attributes
+    end
+
+    context "when requested" do
+      before(:each) do
+        get "/areas_of_interest/#{@area_of_interest.id}"
+        @json_response = JSON.parse(last_response.body)
+      end
+
+      it 'does not calculate the results again' do
+        # Flatten dates
+        # Sorry
+        result_attributes = @area_of_interest.results.first.attributes
+        result_attributes['updated_at'] = result_attributes['updated_at'].to_s
+        result_attributes['created_at'] = result_attributes['created_at'].to_s
+        result_attributes['value_updated_at'] = result_attributes['value_updated_at'].to_s
+        @existing_result_attributes['updated_at'] = @existing_result_attributes['updated_at'].to_s
+        @existing_result_attributes['created_at'] = @existing_result_attributes['created_at'].to_s
+        @existing_result_attributes['value_updated_at'] = @existing_result_attributes['value_updated_at'].to_s
+
+        result_attributes.should eql(@existing_result_attributes)
+      end
+
+      it 'returns the correct results' do
+        @json_response['results'].first['value'].should eql(@correct_value)
+      end
+
+      context 'when the polygons change' do
+        before (:each) do
+          geometry = { type: "Polygon", coordinates: [[[52, 24], [54, 24], [52, 25], [52, 24]]] }
+          polygon = FactoryGirl.create(:polygon,
+            geometry: geometry,
+            area_of_interest: @area_of_interest
+          )
+
+          get "/areas_of_interest/#{@area_of_interest.id}"
+          @json_response = JSON.parse(last_response.body)
+        end
+
+        it 'calculates the results again' do
+          @area_of_interest.results.first.attributes.should_not eql(@existing_result_attributes)
+        end
+
+        it 'returns the correct results' do
+          @json_response['results'].first['value'].should eql(1)
+        end
+      end
+    end
+  end
 end

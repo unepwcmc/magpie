@@ -3,6 +3,7 @@ class Result < ActiveRecord::Base
 
   belongs_to :statistic
   belongs_to :area_of_interest
+  before_save :update_value_timestamp
 
   def fetch
     begin
@@ -13,5 +14,20 @@ class Result < ActiveRecord::Base
       self.error_stack = e.backtrace.to_s
     end
     save!
+  end
+
+  def update_value_timestamp
+    if self.value.present? && self.changes.keys.include?('value') && 
+      !self.changes.keys.include?('value_updated_at')
+      self.value_updated_at = DateTime.now
+    end
+  end
+
+  def has_more_recent_value_than? time
+    if value.present? && time < self.value_updated_at
+      return true
+    else
+      return false
+    end
   end
 end

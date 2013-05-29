@@ -23,10 +23,12 @@ class AreaOfInterest < ActiveRecord::Base
   def generate_result(statistic)
     result = self.find_or_create_result_for_statistic(statistic)
 
-    begin
-      result.fetch
-    rescue TimeoutError => e
-      result.errors[:base] <<e.message
+    if result.has_more_recent_value_than? self.most_recent_polygon_updated_at
+      begin
+        result.fetch
+      rescue TimeoutError => e
+        result.errors[:base] <<e.message
+      end
     end
   end
 
@@ -74,6 +76,11 @@ class AreaOfInterest < ActiveRecord::Base
 
   def to_wkt
     polygons.map(&:to_wkt)
+  end
+
+  def most_recent_polygon_updated_at
+    polys = polygons.select(:updated_at).order("updated_at DESC").limit(1)
+    polys.first.updated_at
   end
 
   def to_csv(options = {})

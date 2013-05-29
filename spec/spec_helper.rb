@@ -47,7 +47,7 @@ module TestLayerOperations
     Name = 'operation_1'
     DisplayName = 'Operation I'
 
-    def self.perform
+    def self.perform area_of_interest
       return 1
     end
   end
@@ -56,7 +56,7 @@ module TestLayerOperations
     Name = 'operation_2'
     DisplayName = 'Operation II'
 
-    def self.perform
+    def self.perform area_of_interest
       return 2
     end
   end

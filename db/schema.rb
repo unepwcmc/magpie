@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425103904) do
+ActiveRecord::Schema.define(:version => 20130529130446) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20130425103904) do
     t.string   "type"
     t.string   "error_message"
     t.text     "error_stack"
+    t.datetime "value_updated_at"
   end
 
   create_table "statistics", :force => true do |t|
