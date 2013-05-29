@@ -7,12 +7,15 @@ class AreaOfInterest < ActiveRecord::Base
   has_many :polygons, dependent: :destroy
   has_many :results, dependent: :destroy
 
-  def generate_results
+  def generate_results only_statistics = []
     return unless self.polygons.length > 0
+    filter_statistics = only_statistics.length > 0
 
     ProjectLayer.all.each do |layer|
       layer.statistics.each do |statistic|
-        self.generate_result(statistic)
+        if !filter_statistics || only_statistics.include?(statistic.display_name)
+          self.generate_result(statistic)
+        end
       end
     end
   end

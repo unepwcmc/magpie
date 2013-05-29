@@ -104,6 +104,19 @@ describe "/areas_of_interest/:id", type: :api do
       )
     end
 
+    context 'requesting all (no filter)' do
+      before(:each) do
+        get "/areas_of_interest/#{@area_of_interest.id}"
+        @json_response = JSON.parse(last_response.body)
+      end
+      it 'calculates all statistics' do
+        @area_of_interest.results.count.should eql(3)
+      end
+      it 'returns all statistics' do
+        @json_response['results'].length.should eql(3)
+      end
+    end
+
     context 'requesting one statistic' do
       before(:each) do
         get "/areas_of_interest/#{@area_of_interest.id}", {statistics: ["Operation 2"]}
