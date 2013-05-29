@@ -39,5 +39,10 @@ FactoryGirl.define do
     display_name "Das Protected Planet Layer"
   end
 
+  factory :test_layer do
+    display_name "A Test Layer"
+    type 'TestLayer'
+  end
+
   factory :workspace
 end

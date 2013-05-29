@@ -23,6 +23,7 @@ test:
   pool: 5
   timeout: 5000
   host: localhost
+  min_messages: WARNING
 
 production:
   adapter: postgresql

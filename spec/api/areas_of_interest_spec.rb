@@ -75,4 +75,78 @@ describe "/areas_of_interest/:id", type: :api do
       first_result['error_message'].should eql('An Error Message')
     end
   end
+
+  context 'area_of_interest for a project with three statistics' do
+    before(:each) do
+      test_layer = FactoryGirl.create(:test_layer)
+      FactoryGirl.create(:statistic,
+        display_name: "Operation 1",
+        project_layer: test_layer,
+        operation: 'operation_1'
+      )
+      FactoryGirl.create(:statistic,
+        display_name: "Operation 2",
+        project_layer: test_layer,
+        operation: 'operation_2'
+      )
+      FactoryGirl.create(:statistic,
+        display_name: "Operation 3",
+        project_layer: test_layer,
+        operation: 'operation_2'
+      )
+
+      @area_of_interest = FactoryGirl.create(:area_of_interest, name: 'My Area')
+
+      geometry = { type: "Polygon", coordinates: [[[52, 24], [53, 24], [52, 25], [52, 24]]] }
+      polygon = FactoryGirl.create(:polygon,
+        geometry: geometry,
+        area_of_interest: @area_of_interest
+      )
+    end
+
+    context 'requesting one statistic' do
+      before(:each) do
+        get "/areas_of_interest/#{@area_of_interest.id}", {statistics: ["Operation 2"]}
+        @json_response = JSON.parse(last_response.body)
+      end
+      it 'only calculates that statistic' do
+        @area_of_interest.results.count.should eql(1)
+      end
+      it 'returns only that statistic' do
+        @json_response['results'].first['display_name'].should eql 'Operation 2'
+      end
+    end
+
+    context 'requesting two statistics' do
+      before(:each) do
+        get "/areas_of_interest/#{@area_of_interest.id}", {statistics: ["Operation 1", "Operation 2"]}
+        @json_response = JSON.parse(last_response.body)
+      end
+
+      it 'only calculates those statistics' do
+        @area_of_interest.results.count.should eql(2)
+      end
+
+      it 'returns only those statistics' do
+        @json_response['results'].each do |result|
+          ["Operation 1", "Operation 2"].should include(result['display_name'])
+        end
+      end
+    end
+  end
+
+  context 'the area_of_interest has statistics without calculated results' do
+    it 'calculates those results'
+  end
+
+  context 'the area_of_interest has calculated results' do
+    it 'does not calculate the results again'
+    it 'returns the correct results'
+
+    context 'when the polygons change' do
+      it 'calculates the results again'
+      it 'returns the correct results'
+    end
+  end
+
 end
