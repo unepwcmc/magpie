@@ -10,8 +10,8 @@ script:
   - bundle exec rspec spec
 notifications:
   email:
-    - agnieszka.figiel@unep-wcmc.org
-    - simao.belchior@unep-wcmc.org
+    - james.cox@unep-wcmc.org
+    - adam.mulligan@unep-wcmc.org
 branches:
   only:
     - master
