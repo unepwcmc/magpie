@@ -6,7 +6,9 @@ describe PolygonUpload do
       before(:all) do
         @area_of_interest = FactoryGirl.create(:area_of_interest)
         @file_txt = 'testing'
-        
+
+        Dir.mkdir('tmp/') unless File.exists?('tmp/')
+
         test_file = File.open("tmp/testingTest.txt", 'w')
         test_file.write(@file_txt)
         test_file.close()
