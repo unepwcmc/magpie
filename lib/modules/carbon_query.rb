@@ -34,7 +34,7 @@ class CarbonQuery
 
   def self.total_area(the_geom, table_name, srid)
      <<-SQL
-     SELECT ST_AREA(ST_Transform(ST_SetSRID(#{the_geom}, 4326),#{srid}))/10000 as area
+     SELECT ST_AREA(ST_Transform(ST_SetSRID(#{the_geom}, 4326),#{srid}))/1000000 as area
      SQL
   end
 
