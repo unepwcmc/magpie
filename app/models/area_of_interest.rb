@@ -108,17 +108,20 @@ class AreaOfInterest < ActiveRecord::Base
       Result.find_all_by_area_of_interest_id(id).each do |result|
         case result.statistic.project_layer
         when ProtectedPlanetLayer
-          JSON.parse(result.value).each do |protected_planet_result|
-            protected_planet_result['protected_areas'].each do |protected_area|
-              protected_planet_values << [
-                protected_area['wdpaid'],
-                protected_area['name'],
-                protected_area['data_standard']['DESIG'],
-                protected_area['protected_area_km2'],
-                protected_area['query_area_protected_km2'],
-                ( protected_area['query_area_protected_km2'] / protected_area['protected_area_km2'] ) * 100
-              ]
+          begin
+            JSON.parse(result.value).each do |protected_planet_result|
+              protected_planet_result['protected_areas'].each do |protected_area|
+                protected_planet_values << [
+                  protected_area['wdpaid'],
+                  protected_area['name'],
+                  protected_area['data_standard']['DESIG'],
+                  protected_area['protected_area_km2'],
+                  protected_area['query_area_protected_km2'],
+                  ( protected_area['query_area_protected_km2'] / protected_area['protected_area_km2'] ) * 100
+                ]
+              end
             end
+          rescue
           end
         when BlueCarbonLayer
           begin
