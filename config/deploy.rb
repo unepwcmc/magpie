@@ -7,6 +7,10 @@ require 'brightbox/passenger'
 require 'sidekiq/capistrano'
 set :sidekiq_processes, 1
 
+set :generate_webserver_config, false
+
+ssh_options[:forward_agent] = true
+
 set :rake, 'bundle exec rake'
 set :branch, fetch(:branch, "master")
 
