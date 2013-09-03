@@ -100,7 +100,6 @@ class AreaOfInterest < ActiveRecord::Base
       csv << headers
       csv << values
 
-      protected_planet_headers, protected_planet_values = ['WDPA Site Code', 'Area', 'Designation', 'Area (km2)', 'Overlap with AOI (km2)', 'Overlap with AOI %'], []
 
       bluecarbon_headers, bluecarbon_values = ["Habitat"], []
       bluecarbon_habitats = {}
@@ -108,21 +107,6 @@ class AreaOfInterest < ActiveRecord::Base
       Result.find_all_by_area_of_interest_id(id).each do |result|
         case result.statistic.project_layer
         when ProtectedPlanetLayer
-          begin
-            JSON.parse(result.value).each do |protected_planet_result|
-              protected_planet_result['protected_areas'].each do |protected_area|
-                protected_planet_values << [
-                  protected_area['wdpaid'],
-                  protected_area['name'],
-                  protected_area['data_standard']['DESIG'],
-                  protected_area['protected_area_km2'],
-                  protected_area['query_area_protected_km2'],
-                  ( protected_area['query_area_protected_km2'] / protected_area['protected_area_km2'] ) * 100
-                ]
-              end
-            end
-          rescue
-          end
         when BlueCarbonLayer
           begin
             JSON.parse(result.value).each do |row|
