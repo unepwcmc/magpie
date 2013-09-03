@@ -13,7 +13,6 @@ module ProtectedPlanetLayerOperations
         response_json = JSON.parse(response)
 
         if response_json['error']
-          Rails.cache.delete(key)
           raise TimeoutError, 'Area was too large to calculate.'
         end
 
