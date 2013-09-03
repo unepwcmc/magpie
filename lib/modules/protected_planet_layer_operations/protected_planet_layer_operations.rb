@@ -8,14 +8,14 @@ module ProtectedPlanetLayerOperations
     if area_of_interest.polygons.count > 0
       key = "aoi-#{area_of_interest.id}-#{area_of_interest.most_recent_polygon_updated_at}"
 
-      return Rails.cache.fetch(key) do
+      response_json = Rails.cache.fetch(key) do
         response = RestClient.post("http://protectedplanet.net/api2/geo_searches", "data=#{area_of_interest.to_wkt.to_json}&filters=#{QUERY_FILTERS}")
-        response_json = JSON.parse(response)
+        JSON.parse(response)
+      end
 
-        if response_json['error']
-          raise TimeoutError, 'Area was too large to calculate.'
-        end
-
+      if response_json['error']
+        raise TimeoutError, 'Area was too large to calculate.'
+      else
         response_json
       end
     end
