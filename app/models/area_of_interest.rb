@@ -105,11 +105,15 @@ class AreaOfInterest < ActiveRecord::Base
       bluecarbon_headers, bluecarbon_values = ["Habitat"], []
       bluecarbon_habitats = {}
 
+      index = 1
       Result.find_all_by_area_of_interest_id(id).each do |result|
         case result.statistic.project_layer
         when ProtectedPlanetLayer
           begin
-            JSON.parse(result.value).each do |protected_planet_result|
+            value = JSON.parse(result.value)
+            protected_planet_values << ["Area of Interest ##{index}"]
+            index += 1
+            value.each do |protected_planet_result|
               protected_planet_result['protected_areas'].each do |protected_area|
                 protected_area_km2 = protected_area['protected_area_km2'] || 0
                 query_area_protected_km2 = protected_area['query_area_protected_km2'] || 0
