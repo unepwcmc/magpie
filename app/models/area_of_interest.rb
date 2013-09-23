@@ -111,13 +111,21 @@ class AreaOfInterest < ActiveRecord::Base
           begin
             JSON.parse(result.value).each do |protected_planet_result|
               protected_planet_result['protected_areas'].each do |protected_area|
+                protected_area_km2 = protected_area['protected_area_km2'] || 0
+                query_area_protected_km2 = protected_area['query_area_protected_km2'] || 0
+
+                overlap_percentage = 0
+                if protected_area_km2 > 0
+                  overlap_percentage = ( query_area_protected_km2 / protected_area_km2 ) * 100
+                end
+
                 protected_planet_values << [
                   protected_area['wdpaid'],
                   protected_area['name'],
                   protected_area['data_standard']['DESIG'],
-                  protected_area['protected_area_km2'],
-                  protected_area['query_area_protected_km2'],
-                  ( protected_area['query_area_protected_km2'] / protected_area['protected_area_km2'] ) * 100
+                  protected_area_km2,
+                  query_area_protected_km2,
+                  overlap_percentage
                 ]
               end
             end
