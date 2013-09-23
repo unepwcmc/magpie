@@ -111,10 +111,11 @@ class AreaOfInterest < ActiveRecord::Base
         when ProtectedPlanetLayer
           begin
             value = JSON.parse(result.value)
+
+            value.each do |protected_planet_result|
             protected_planet_values << ["Area of Interest ##{index}"]
             index += 1
-            value.each do |protected_planet_result|
-              protected_planet_result['protected_areas'].each do |protected_area|
+            protected_planet_result['protected_areas'].each do |protected_area|
                 protected_area_km2 = protected_area['protected_area_km2'] || 0
                 query_area_protected_km2 = protected_area['query_area_protected_km2'] || 0
 
@@ -132,6 +133,7 @@ class AreaOfInterest < ActiveRecord::Base
                   overlap_percentage
                 ]
               end
+
             end
           rescue
           end
