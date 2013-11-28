@@ -1,11 +1,11 @@
 set :rails_env, "staging"
 # Primary domain name of your application. Used in the Apache configs
-set :domain, "unepwcmc-005.vm.brightbox.net"
+set :domain, "unepwcmc-011.vm.brightbox.net"
 ## List of servers
-server "unepwcmc-005.vm.brightbox.net", :app, :web, :db, :primary => true
+server "unepwcmc-011.vm.brightbox.net", :app, :web, :db, :primary => true
 
 set :application, "magpie"
-set :server_name, "magpie.unepwcmc-005.vm.brightbox.net"
+set :server_name, "magpie.unepwcmc-011.vm.brightbox.net"
 set :sudo_user, "rails"
 set :app_port, "80" 
 
