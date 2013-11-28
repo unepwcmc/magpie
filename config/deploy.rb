@@ -7,6 +7,9 @@ require 'brightbox/passenger'
 require 'sidekiq/capistrano'
 set :sidekiq_processes, 1
 
+require 'rvm/capistrano'
+set :rvm_ruby_string, '1.9.3'
+
 set :generate_webserver_config, false
 
 ssh_options[:forward_agent] = true
