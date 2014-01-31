@@ -145,10 +145,10 @@ class AreaOfInterest < ActiveRecord::Base
               operation = result.statistic.operation
               unit      = result.statistic.unit
 
-              bluecarbon_headers << operation
+              bluecarbon_headers << "#{operation} #{unit}"
 
               bluecarbon_habitats[habitat] ||= []
-              bluecarbon_habitats[habitat] << "#{row[operation].to_f.round(2)} #{unit}"
+              bluecarbon_habitats[habitat] << "#{row[operation].to_f.round(2)}"
             end
           rescue
           end
