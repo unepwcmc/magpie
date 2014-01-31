@@ -76,7 +76,7 @@ group :test do
   gem 'rack-test'
   gem 'simplecov', require: false
   gem 'capybara'
-  gem 'capybara-webkit'
+  #gem 'capybara-webkit'
   gem 'headless'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
