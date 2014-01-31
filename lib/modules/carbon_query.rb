@@ -84,7 +84,7 @@ class CarbonQuery
               ) b
             ON ST_Intersects(a.the_geom, b.the_geom)) a
             GROUP BY habitat) a INNER JOIN (
-            SELECT the_geom, habitat FROM bc_mangrove
+            SELECT the_geom, habitat FROM bc_mangrove WHERE action <> 'delete' AND toggle = true
             UNION ALL
             SELECT the_geom, habitat FROM bc_seagrass WHERE action <> 'delete' AND toggle = true
             UNION ALL
@@ -127,7 +127,7 @@ class CarbonQuery
             ) b
           ON ST_Intersects(a.the_geom, b.the_geom)) a
           GROUP BY habitat) a INNER JOIN (
-          SELECT the_geom, habitat FROM bc_mangrove
+          SELECT the_geom, habitat FROM bc_mangrove WHERE action <> 'delete' AND toggle = true
           UNION ALL
           SELECT the_geom, habitat FROM bc_seagrass WHERE action <> 'delete' AND toggle = true
           UNION ALL
