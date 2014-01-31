@@ -66,7 +66,6 @@ gem 'ruby-debug19', :require => 'ruby-debug', group: :development
 
 group :staging, :production do
   gem 'exception_notification', :require => 'exception_notifier'
-  gem 'newrelic_rpm'
 end
 
 group :development, :test do
