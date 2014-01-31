@@ -208,3 +208,6 @@ namespace :cartodb do
     run "ln -nsf #{shared_path}/config/cartodb_config.yml #{latest_release}/config/cartodb_config.yml"
   end
 end
+
+after "deploy:setup", "cartodb:build_configuration"
+after "deploy:finalize_update", "cartodb:link_configuration_file"
