@@ -178,3 +178,33 @@ task :setup_production_database_configuration do
   put(spec.to_yaml, "#{shared_path}/config/database.yml")
 end
 after "deploy:setup", :setup_production_database_configuration
+
+# CartoDB
+
+namespace :cartodb do
+  desc "Generate a cartodb configuration file"
+  task :build_configuration do
+    host = Capistrano::CLI.ui.ask("CartoDB host: ")
+    oauth_key = Capistrano::CLI.ui.ask("CartoDB key: ")
+    oauth_secret = Capistrano::CLI.ui.ask("CartoDB secret: ")
+    username = Capistrano::CLI.ui.ask("CartoDB username: ")
+    password = Capistrano::CLI.password_prompt("CartoDB password: ")
+
+    cartodb_options = {
+      "host" => host,
+      "oauth_key" => oauth_key,
+      "oauth_secret" => oauth_secret,
+      "username" => username,
+      "password" => password
+    }
+
+    config_options = {"production" => cartodb_options}.to_yaml
+    run "mkdir -p #{shared_path}/config"
+    put config_options, "#{shared_path}/config/cartodb_config.yml"
+  end
+
+  desc "Links the configuration file"
+  task :link_configuration_file do
+    run "ln -nsf #{shared_path}/config/cartodb_config.yml #{latest_release}/config/cartodb_config.yml"
+  end
+end
