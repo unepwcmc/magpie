@@ -64,7 +64,7 @@ class CarbonQuery
           (SELECT SUM (area) as area, habitat FROM 
           (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid})) as area, habitat 
           FROM (
-            SELECT the_geom, habitat FROM bc_mangrove
+            SELECT the_geom, habitat FROM bc_mangrove WHERE action <> 'delete' AND toggle = true
             UNION ALL
             SELECT the_geom, habitat FROM bc_seagrass WHERE action <> 'delete' AND toggle = true
             UNION ALL
@@ -107,7 +107,7 @@ class CarbonQuery
         (SELECT SUM (area) as area, habitat FROM 
         (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid})) as area, habitat 
         FROM (
-          SELECT the_geom, habitat FROM bc_mangrove
+          SELECT the_geom, habitat FROM bc_mangrove WHERE action <> 'delete' AND toggle = true
           UNION ALL
           SELECT the_geom, habitat FROM bc_seagrass WHERE action <> 'delete' AND toggle = true
           UNION ALL
