@@ -15,7 +15,7 @@ module BlueCarbonLayerOperations::HumanEmission
 
       years = 0
       unless carbon.nil?
-        co2      = (carbon/1000)*3.67
+        co2      = (carbon)*3.67
         years    = co2/20.87
       end
 
