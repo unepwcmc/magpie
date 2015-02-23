@@ -1,0 +1,4 @@
+host: '<cartodb host>'
+api_key: '<sql api key>'
+username: 'username'
+password: 'password'
