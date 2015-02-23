@@ -4,6 +4,8 @@
 
 ## Development
 
+### Installation
+
 * `bundle install`, after cloning the repo.
 * Copy the cartodb config file example, and fill it with the correct configuration:
 
