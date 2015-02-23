@@ -1,44 +1,46 @@
-# magpie 
+# magpie
 [![Build Status](https://secure.travis-ci.org/unepwcmc/magpie.png)](https://travis-ci.org/unepwcmc/magpie)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/unepwcmc/magpie)
+[![Code Climate](https://codeclimate.com/github/unepwcmc/magpie/badges/gpa.svg)](https://codeclimate.com/github/unepwcmc/magpie)
 
 ## Development
 
-### Cartodb config
+1. `bundle install`, after cloning the repo.
+2. Copy the cartodb config file example, and fill it with the correct configuration:
+```
+  cp config/cartodb_config.yml.example config/cartodb_config.yml
+  vim config/cartodb_config.yml
+```
+3. Create the development database, and run migrations: `bundle exec rake db:create && bundle exec rake db:migrate`
+4. Take a look at the file `db/seeds.rb`, apply changes if needed, and run `bundle exec rake db:seed`. This will
+create a new admin, project, and a new database for the project, thanks to the `apartment` gem.
+5. Run the server with `bundle exec rails s`
 
-You will need a cartodb config file in config/cartodb_config.yml, with the following keys:
+### Database Switching
 
-    host: '<cartodb host>'
-    api_key: '<sql api key>'
-    username: 'username'
-    password: 'password'
+We're using the `apartment` gem for PostgreSQL schema based multi tenancy. Most important consequences of that are:
 
-### Database
-
-We're using the apartment gem for PostgreSQL schema based multi tenancy. Most important consequences of that are:
-
-* a new schema is created for each application (with the same name). This is hooked as an after_create block, but can also be done manually if needed:
+* a new schema is created for each application (with the same name). This is hooked as an `after_create` block, but can also be done manually if needed:
 
         Apartment::Database.create('database_name')
 
   this also runs the migrations on the new schema.
 
-* schemas are switched per request based on subdomain. If you need to switch the schema in console use:
+* schemas are switched per request based on the request header `X-Magpie-ProjectId`. If you need to switch the schema in console use:
 
         Apartment::Database.switch('project_name')
 
 * migrations should run on all schemas, therefore make sure you use:
 
-        rake apartment:migrate
+        bundle exec rake apartment:migrate
 
 ### Sidekiq background jobs
 Sidekiq is used for background workers, currently just for cartodb uploading. To run them in development, do
-
+```
     # Fire up a redis server
     redis-server /usr/local/etc/redis.conf
     # Start sidekiq
     bundle exec sidekiq
-
+```
 ## Deployment
 
 ### Database
@@ -106,7 +108,10 @@ client_min_messages = warning
 
 ## Generated documentation
 To generate the api documentation from specs:
+```
   rspec spec --format RspecApiDocumentation::ApiFormatter
-
+```
 To generate the coverage report: coverage report is generated automatically when you run:
+```
   rspec spec
+```
