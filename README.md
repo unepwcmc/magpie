@@ -4,16 +4,16 @@
 
 ## Development
 
-1. `bundle install`, after cloning the repo.
-2. Copy the cartodb config file example, and fill it with the correct configuration:
-```
-  cp config/cartodb_config.yml.example config/cartodb_config.yml
-  vim config/cartodb_config.yml
-```
-3. Create the development database, and run migrations: `bundle exec rake db:create && bundle exec rake db:migrate`
-4. Take a look at the file `db/seeds.rb`, apply changes if needed, and run `bundle exec rake db:seed`. This will
+* `bundle install`, after cloning the repo.
+* Copy the cartodb config file example, and fill it with the correct configuration:
+
+        cp config/cartodb_config.yml.example config/cartodb_config.yml
+        vim config/cartodb_config.yml
+
+* Create the development database, and run migrations: `bundle exec rake db:create && bundle exec rake db:migrate`
+* Take a look at the file `db/seeds.rb`, apply changes if needed, and run `bundle exec rake db:seed`. This will
 create a new admin, project, and a new database for the project, thanks to the `apartment` gem.
-5. Run the server with `bundle exec rails s`
+* Run the server with `bundle exec rails s`
 
 ### Database Switching
 
@@ -35,12 +35,12 @@ We're using the `apartment` gem for PostgreSQL schema based multi tenancy. Most 
 
 ### Sidekiq background jobs
 Sidekiq is used for background workers, currently just for cartodb uploading. To run them in development, do
-```
+
     # Fire up a redis server
     redis-server /usr/local/etc/redis.conf
     # Start sidekiq
     bundle exec sidekiq
-```
+
 ## Deployment
 
 ### Database
