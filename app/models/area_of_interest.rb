@@ -1,5 +1,6 @@
 class AreaOfInterest < ActiveRecord::Base
-  attr_accessible :name, :workspace_id
+  serialize :properties, ActiveRecord::Coders::Hstore
+  attr_accessible :name, :workspace_id, :properties
 
   belongs_to :workspace
 
