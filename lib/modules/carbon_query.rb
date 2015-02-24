@@ -56,47 +56,6 @@ class CarbonQuery
       SQL
   end
 
-  def self.polygon_area_km2(the_geom, table_name, srid)
-
-      <<-SQL
-      SELECT a.habitat, a.area/10000 as area_km2
-        FROM 
-          (SELECT SUM (area) as area, habitat FROM 
-          (SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326),#{srid})) as area, habitat 
-          FROM (
-            SELECT the_geom, habitat FROM bc_mangrove WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_seagrass WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_saltmarsh WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_algal_mat WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_other WHERE action <> 'delete' AND toggle = true
-            )
-            a
-            INNER JOIN
-              (SELECT
-                ST_SetSRID(
-                  #{the_geom}
-                , 4326)
-                as the_geom
-              ) b
-            ON ST_Intersects(a.the_geom, b.the_geom)) a
-            GROUP BY habitat) a INNER JOIN (
-            SELECT the_geom, habitat FROM bc_mangrove WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_seagrass WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_saltmarsh WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_algal_mat WHERE action <> 'delete' AND toggle = true
-            UNION ALL
-            SELECT the_geom, habitat FROM bc_other WHERE action <> 'delete' AND toggle = true
-            ) b ON a.habitat = b. habitat group BY a.habitat, a.area;
-      SQL
-  end
-
   def self.global_percent_area(the_geom, table_name, srid)
 
     <<-SQL

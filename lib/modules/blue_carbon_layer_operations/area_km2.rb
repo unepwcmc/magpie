@@ -8,7 +8,12 @@ module BlueCarbonLayerOperations::AreaKm2
       geoms << "ST_GeomFromGeoJSON('#{polygon.to_json}')"
     end
 
-    response = BlueCarbonLayerOperations.cartodb_query(:polygon_area_km2, geoms)
+    the_geom = ::Utils.st_makevalid(::Utils.st_union(geoms))
+    country_name = area_of_interest.properties['country']
+
+    query = ::Utils.render_query(:area_km2, binding)
+    response = ::Utils.query_cartodb(query)
+
     return response.to_json
   end
 end
