@@ -23,13 +23,13 @@ FROM (
   GROUP BY habitat
 ) a
 INNER JOIN (
-  SELECT the_geom, habitat FROM bc_mangrove_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
+  SELECT the_geom, habitat FROM blueforest_mangrove_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
   UNION ALL
-  SELECT the_geom, habitat FROM bc_seagrass_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
+  SELECT the_geom, habitat FROM blueforest_seagrass_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
   UNION ALL
-  SELECT the_geom, habitat FROM bc_saltmarsh_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
+  SELECT the_geom, habitat FROM blueforest_saltmarsh_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
   UNION ALL
-  SELECT the_geom, habitat FROM bc_algal_mat_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
+  SELECT the_geom, habitat FROM blueforest_algal_mat_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
   UNION ALL
-  SELECT the_geom, habitat FROM bc_other_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
+  SELECT the_geom, habitat FROM blueforest_other_<%= Rails.env %>_<%= country_name %> WHERE action <> 'delete' AND toggle = true
 ) b ON a.habitat = b. habitat GROUP BY a.habitat, a.area;
