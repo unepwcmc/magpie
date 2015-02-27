@@ -1,0 +1,5 @@
+ SELECT ST_AREA(
+  ST_Transform(
+    ST_SetSRID(<%= the_geom %>, 4326), 27040
+  )
+)/1000000 as area
