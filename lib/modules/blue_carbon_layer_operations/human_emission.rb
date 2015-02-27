@@ -1,27 +1,21 @@
-module BlueCarbonLayerOperations::HumanEmission
+class BlueCarbonLayerOperations::HumanEmission < BlueCarbonLayerOperations::Base
+  CARBON_TO_CO2_RATIO = 3.67
+  CO2_PER_YEAR = 20.87
+
   Name = 'human_emission'
   DisplayName = 'Average Person CO2 Emissions Equivalent'
 
-  def self.perform(area_of_interest)
-    geoms = []
-    area_of_interest.polygons_as_geo_json_polygons.each do |polygon|
-      geoms << "ST_GeomFromGeoJSON('#{polygon.to_json}')"
-    end
+  def perform
+    carbon = results_for(:total_carbon).first.try(:[], 'carbon')
+    carbon_years(carbon)
+  end
 
-    response = BlueCarbonLayerOperations.cartodb_query(:total_carbon, geoms)
+  private
 
-    if response.length > 0
-      carbon = response[0]["carbon"]
+  def carbon_years carbon
+    return 0 if carbon.nil?
 
-      years = 0
-      unless carbon.nil?
-        co2      = (carbon)*3.67
-        years    = co2/20.87
-      end
-
-      return years
-    end
-
-    return 0
+    co2 = carbon * CARBON_TO_CO2_RATIO
+    co2 / CO2_PER_YEAR
   end
 end
