@@ -1,4 +1,4 @@
-module Utils
+module BlueCarbonLayerOperations::Utils
   TEMPLATES_BASE_PATH = Rails.root.join(
     'lib', 'modules', 'blue_carbon_layer_operations', 'templates'
   )
