@@ -1,4 +1,4 @@
-class BlueCarbonLayerOperations::AreaKm2 < BlueCarbonLayerOperations::Base
+class CarbonOperations::AreaKm2 < CarbonOperations::Base
   Name = 'area_km2'
   DisplayName = 'Area'
 

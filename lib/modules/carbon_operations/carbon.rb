@@ -1,4 +1,4 @@
-class BlueCarbonLayerOperations::Carbon < BlueCarbonLayerOperations::Base
+class CarbonOperations::Carbon < CarbonOperations::Base
   Name = 'carbon'
   DisplayName = 'Carbon'
 

@@ -1,6 +1,6 @@
-module BlueCarbonLayerOperations::Utils
+module CarbonOperations::Utils
   TEMPLATES_BASE_PATH = Rails.root.join(
-    'lib', 'modules', 'blue_carbon_layer_operations', 'templates'
+    'lib', 'modules', 'carbon_operations', 'templates'
   )
 
   def self.render_query query_name, with_binding

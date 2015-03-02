@@ -1,4 +1,4 @@
-class BlueCarbonLayerOperations::AreaPercentage < BlueCarbonLayerOperations::Base
+class CarbonOperations::AreaPercentage < CarbonOperations::Base
   Name = 'area_percentage'
   DisplayName = 'Percentage of Habitats'
 

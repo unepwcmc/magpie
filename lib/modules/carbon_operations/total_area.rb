@@ -1,4 +1,4 @@
-class BlueCarbonLayerOperations::TotalArea < BlueCarbonLayerOperations::Base
+class CarbonOperations::TotalArea < CarbonOperations::Base
   Name = 'total_area'
   DisplayName = 'Total Area'
 

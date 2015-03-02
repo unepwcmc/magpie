@@ -1,4 +1,4 @@
-class BlueCarbonLayerOperations::HumanEmission < BlueCarbonLayerOperations::Base
+class CarbonOperations::HumanEmission < CarbonOperations::Base
   CARBON_TO_CO2_RATIO = 3.67
   CO2_PER_YEAR = 20.87
 
