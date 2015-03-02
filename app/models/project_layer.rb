@@ -11,10 +11,13 @@ class ProjectLayer < ActiveRecord::Base
     project_layer_class.constantize
   end
 
-  def self.get_operations
-    class_name  = self.to_s.underscore
-    module_name = "#{class_name}_operations"
-    operations  = []
+  def self.get_operations module_name=nil
+    if module_name.nil?
+      class_name  = self.to_s.underscore
+      module_name = "#{class_name}_operations"
+    end
+
+    operations = []
 
     Dir.chdir("#{Rails.root}/lib/modules/") do |dir|
       id = 0
