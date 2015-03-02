@@ -12,6 +12,11 @@
         cp config/cartodb_config.yml.example config/cartodb_config.yml
         vim config/cartodb_config.yml
 
+* Create a Postgres schema called `shared_extensions` to hold the `hstore` extension:
+
+        psql -U postgres -d template1 -c "CREATE SCHEMA shared_extensions AUTHORIZATION postgres;"
+        psql -U postgres -d template1 -c "CREATE EXTENSION IF NOT EXISTS hstore SCHEMA shared_extensions;"
+
 * Create the development database, and run migrations: `bundle exec rake db:create && bundle exec rake db:migrate`
 * Take a look at the file `db/seeds.rb`, apply changes if needed, and run `bundle exec rake db:seed`. This will
 create a new admin, project, and a new database for the project, thanks to the `apartment` gem.
