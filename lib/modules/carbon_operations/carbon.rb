@@ -3,6 +3,6 @@ class CarbonOperations::Carbon < CarbonOperations::Base
   DisplayName = 'Carbon'
 
   def perform
-    results_for(:habitat)
+    results_for(:habitat).to_json
   end
 end
