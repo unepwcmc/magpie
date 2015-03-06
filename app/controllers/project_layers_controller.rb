@@ -44,7 +44,9 @@ class ProjectLayersController < ApplicationController
     @operations = @project_layer.class.get_operations
 
     rasters = @project_layer.class.get_providers
-    @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
+    if rasters.any?
+      @project_layer.tile_url = rasters.detect { |r| r['id'] == @project_layer.provider_id }['tiles_url_format']
+    end
 
     flash[:notice] = 'Project layer was successfully created.' if @project_layer.save
     respond_with(@project, @project_layer, location: (@project_layer.new_record? ? project_project_layers_path(@project) : project_project_layer_url(@project, @project_layer)))

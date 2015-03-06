@@ -22,7 +22,7 @@ class ProjectLayer < ActiveRecord::Base
     Dir.chdir("#{Rails.root}/lib/modules/") do |dir|
       id = 0
       Dir["#{module_name}/**"].each do |file|
-        next if File.basename(file, '.rb') == module_name
+        next if ['base', 'templates', 'utils', module_name].include? File.basename(file, '.rb')
 
         operation_module = file.chomp(File.extname(file)).camelize.constantize
         operations << {
