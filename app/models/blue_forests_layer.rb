@@ -1,4 +1,4 @@
-class BlueForestLayer < ProjectLayer
+class BlueForestsLayer < ProjectLayer
   def self.get_operations
     super('carbon_operations')
   end
@@ -7,11 +7,11 @@ class BlueForestLayer < ProjectLayer
     "CarbonOperations::#{operation.to_s.classify}".constantize.perform(self, area_of_interest)
   end
 
-  def self.carbon_view country_name
-    "blueforest_carbon_#{Rails.env}_#{country_name}"
+  def self.carbon_view
+    "blueforests_carbon_#{Rails.env}"
   end
 
-  def self.habitat_view habitat, country_name
-    "blueforest_#{habitat}_#{Rails.env}_#{country_name}"
+  def self.habitat_view habitat
+    "blueforests_#{habitat}_#{Rails.env}"
   end
 end
