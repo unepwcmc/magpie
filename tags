@@ -1,0 +1,309 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+API	./config/initializers/newrelic.rb	/^  class ActionController::API$/;"	c	class:ActionController
+AddAppLayerIdAndOperationIdToCalculations	./db/migrate/20121115180841_add_app_layer_id_and_operation_id_to_calculations.rb	/^class AddAppLayerIdAndOperationIdToCalculations < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddAreaOfInterestIdAndCalculationIdToResults	./db/migrate/20121115180223_add_area_of_interest_id_and_calculation_id_to_results.rb	/^class AddAreaOfInterestIdAndCalculationIdToResults < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddErrorStackAndErrorMessageToResults	./db/migrate/20130425103904_add_error_stack_and_error_message_to_results.rb	/^class AddErrorStackAndErrorMessageToResults < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddInheritanceToResult	./db/migrate/20130116095605_add_inheritance_to_result.rb	/^class AddInheritanceToResult < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddOperationToCalculations	./db/migrate/20121129155311_add_operation_to_calculations.rb	/^class AddOperationToCalculations < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddPropertiesToAreasOfInterest	./db/migrate/20150224110631_add_properties_to_areas_of_interest.rb	/^class AddPropertiesToAreasOfInterest < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddTableNameToPolygonUpload	./db/migrate/20130130143830_add_table_name_to_polygon_upload.rb	/^class AddTableNameToPolygonUpload < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+AddValueUpdatedAtToResult	./db/migrate/20130529130446_add_value_updated_at_to_result.rb	/^class AddValueUpdatedAtToResult < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+Admin	./app/models/admin.rb	/^class Admin < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+ApiHelper	./spec/support/api/helper.rb	/^module ApiHelper$/;"	m
+Application	./config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Magpie	inherits:Rails.Application
+ApplicationController	./app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c	inherits:ActionController.Base
+ApplicationHelper	./app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+AreaKm2	./lib/modules/carbon_operations/area_km2.rb	/^class CarbonOperations::AreaKm2 < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+AreaOfInterest	./app/models/area_of_interest.rb	/^class AreaOfInterest < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+AreaPercentage	./lib/modules/carbon_operations/area_percentage.rb	/^class CarbonOperations::AreaPercentage < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+AreasOfInterestController	./app/controllers/areas_of_interest_controller.rb	/^class AreasOfInterestController < ApplicationController$/;"	c	inherits:ApplicationController
+Base	./lib/modules/carbon_operations/base.rb	/^class CarbonOperations::Base$/;"	c	class:CarbonOperations
+BlueCarbonLayer	./app/models/blue_carbon_layer.rb	/^class BlueCarbonLayer < ProjectLayer$/;"	c	inherits:ProjectLayer
+BlueForestsLayer	./app/models/blue_forests_layer.rb	/^class BlueForestsLayer < ProjectLayer$/;"	c	inherits:ProjectLayer
+CARBON_TO_CO2_RATIO	./lib/modules/carbon_operations/human_emission.rb	/^  CARBON_TO_CO2_RATIO = 3.67$/;"	C	class:CarbonOperations.HumanEmission
+CO2_PER_YEAR	./lib/modules/carbon_operations/human_emission.rb	/^  CO2_PER_YEAR = 20.87$/;"	C	class:CarbonOperations.HumanEmission
+Carbon	./lib/modules/carbon_operations/carbon.rb	/^class CarbonOperations::Carbon < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+CarbonQuery	./lib/modules/carbon_query.rb	/^class CarbonQuery$/;"	c
+CartodbPolygonUploadWorker	./app/workers/cartodb_polygon_upload_worker.rb	/^class CartodbPolygonUploadWorker$/;"	c
+ChangeValueToString	./db/migrate/20130418093957_change_value_to_string.rb	/^class ChangeValueToString < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateAppLayers	./db/migrate/20121115131838_create_app_layers.rb	/^class CreateAppLayers < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateApps	./db/migrate/20121115131429_create_apps.rb	/^class CreateApps < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateAreasOfInterest	./db/migrate/20121115133145_create_areas_of_interest.rb	/^class CreateAreasOfInterest < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateCalculations	./db/migrate/20121115132543_create_calculations.rb	/^class CreateCalculations < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateOperations	./db/migrate/20121115132606_create_operations.rb	/^class CreateOperations < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreatePolygonUploads	./db/migrate/20130130112158_create_polygon_uploads.rb	/^class CreatePolygonUploads < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreatePolygons	./db/migrate/20121115132726_create_polygons.rb	/^class CreatePolygons < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateProjectLayers	./db/migrate/20121127093942_create_project_layers.rb	/^class CreateProjectLayers < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateProjects	./db/migrate/20121127091704_create_projects.rb	/^class CreateProjects < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateResults	./db/migrate/20121115133343_create_results.rb	/^class CreateResults < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+CreateWorkspaces	./db/migrate/20121115133632_create_workspaces.rb	/^class CreateWorkspaces < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+DeleteAppAndAppLayerTables	./db/migrate/20121127094233_delete_app_and_app_layer_tables.rb	/^class DeleteAppAndAppLayerTables < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+DeviseCreateAdmins	./db/migrate/20121129103640_devise_create_admins.rb	/^class DeviseCreateAdmins < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+DisplayName	./lib/modules/carbon_operations/area_km2.rb	/^  DisplayName = 'Area'$/;"	C	class:CarbonOperations.AreaKm2
+DisplayName	./lib/modules/carbon_operations/area_percentage.rb	/^  DisplayName = 'Percentage of Habitats'$/;"	C	class:CarbonOperations.AreaPercentage
+DisplayName	./lib/modules/carbon_operations/carbon.rb	/^  DisplayName = 'Carbon'$/;"	C	class:CarbonOperations.Carbon
+DisplayName	./lib/modules/carbon_operations/habitat_percentage.rb	/^  DisplayName = 'Percentage of Habitats Selected'$/;"	C	class:CarbonOperations.HabitatPercentage
+DisplayName	./lib/modules/carbon_operations/human_emission.rb	/^  DisplayName = 'Average Person CO2 Emissions Equivalent'$/;"	C	class:CarbonOperations.HumanEmission
+DisplayName	./lib/modules/carbon_operations/total_area.rb	/^  DisplayName = 'Total Area'$/;"	C	class:CarbonOperations.TotalArea
+DisplayName	./lib/modules/carbon_operations/total_carbon.rb	/^  DisplayName = 'Total Carbon'$/;"	C	class:CarbonOperations.TotalCarbon
+DisplayName	./lib/modules/protected_planet_layer_operations/pa_cover_km2.rb	/^  DisplayName = 'Area of AOIs within Protected Area'$/;"	C	class:ProtectedPlanetLayerOperations.PaCoverKm2
+DisplayName	./lib/modules/protected_planet_layer_operations/protected_area_count.rb	/^  DisplayName = 'Protected Area Count'$/;"	C	class:ProtectedPlanetLayerOperations.ProtectedAreaCount
+DisplayName	./lib/modules/protected_planet_layer_operations/protected_areas_detail.rb	/^  DisplayName = 'Protected Areas Details'$/;"	C	class:ProtectedPlanetLayerOperations.ProtectedAreasDetail
+DisplayName	./spec/spec_helper.rb	/^    DisplayName = 'Operation I'$/;"	C	class:TestLayerOperations.Operation1
+DisplayName	./spec/spec_helper.rb	/^    DisplayName = 'Operation II'$/;"	C	class:TestLayerOperations.Operation2
+ERROR_STATE	./app/models/polygon_upload.rb	/^  ERROR_STATE = "Unable to import any polygons"$/;"	C	class:PolygonUpload
+FINISHED_STATES	./app/models/polygon_upload.rb	/^  FINISHED_STATES = [PARTIAL_STATE, ERROR_STATE, SUCCESS_STATE, NOTHING_TO_DO_STATE]$/;"	C	class:PolygonUpload
+HabitatPercentage	./lib/modules/carbon_operations/habitat_percentage.rb	/^class CarbonOperations::HabitatPercentage < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+HumanEmission	./lib/modules/carbon_operations/human_emission.rb	/^class CarbonOperations::HumanEmission < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+IMPORTING_STATE	./app/models/polygon_upload.rb	/^  IMPORTING_STATE = "Importing"$/;"	C	class:PolygonUpload
+Magpie	./config/application.rb	/^module Magpie$/;"	m
+NOTHING_TO_DO_STATE	./app/models/polygon_upload.rb	/^  NOTHING_TO_DO_STATE = "No polygons found to import"$/;"	C	class:PolygonUpload
+NOT_YET_UPLOADED_STATE	./app/models/polygon_upload.rb	/^  NOT_YET_UPLOADED_STATE = "Not yet uploaded"$/;"	C	class:PolygonUpload
+Name	./lib/modules/carbon_operations/area_km2.rb	/^  Name = 'area_km2'$/;"	C	class:CarbonOperations.AreaKm2
+Name	./lib/modules/carbon_operations/area_percentage.rb	/^  Name = 'area_percentage'$/;"	C	class:CarbonOperations.AreaPercentage
+Name	./lib/modules/carbon_operations/carbon.rb	/^  Name = 'carbon'$/;"	C	class:CarbonOperations.Carbon
+Name	./lib/modules/carbon_operations/habitat_percentage.rb	/^  Name = 'habitat_percentage'$/;"	C	class:CarbonOperations.HabitatPercentage
+Name	./lib/modules/carbon_operations/human_emission.rb	/^  Name = 'human_emission'$/;"	C	class:CarbonOperations.HumanEmission
+Name	./lib/modules/carbon_operations/total_area.rb	/^  Name = 'total_area'$/;"	C	class:CarbonOperations.TotalArea
+Name	./lib/modules/carbon_operations/total_carbon.rb	/^  Name = 'total_carbon'$/;"	C	class:CarbonOperations.TotalCarbon
+Name	./lib/modules/protected_planet_layer_operations/pa_cover_km2.rb	/^  Name = 'pa_cover_km2'$/;"	C	class:ProtectedPlanetLayerOperations.PaCoverKm2
+Name	./lib/modules/protected_planet_layer_operations/protected_area_count.rb	/^  Name = 'protected_area_count'$/;"	C	class:ProtectedPlanetLayerOperations.ProtectedAreaCount
+Name	./lib/modules/protected_planet_layer_operations/protected_areas_detail.rb	/^  Name = 'protected_areas_details'$/;"	C	class:ProtectedPlanetLayerOperations.ProtectedAreasDetail
+Name	./spec/spec_helper.rb	/^    Name = 'operation_1'$/;"	C	class:TestLayerOperations.Operation1
+Name	./spec/spec_helper.rb	/^    Name = 'operation_2'$/;"	C	class:TestLayerOperations.Operation2
+Operation1	./spec/spec_helper.rb	/^  module Operation1$/;"	m	class:TestLayerOperations
+Operation2	./spec/spec_helper.rb	/^  module Operation2$/;"	m	class:TestLayerOperations
+PARTIAL_STATE	./app/models/polygon_upload.rb	/^  PARTIAL_STATE = "Imported with some errors"$/;"	C	class:PolygonUpload
+PROCESSING_STATE	./app/models/polygon_upload.rb	/^  PROCESSING_STATE = "Processing"$/;"	C	class:PolygonUpload
+PROJECT_LAYER_CLASSES	./app/models/project_layer.rb	/^  PROJECT_LAYER_CLASSES = %w( RasterLayer ProtectedPlanetLayer BlueCarbonLayer BlueForestsLayer )$/;"	C	class:ProjectLayer
+PaCoverKm2	./lib/modules/protected_planet_layer_operations/pa_cover_km2.rb	/^module ProtectedPlanetLayerOperations::PaCoverKm2$/;"	m	class:ProtectedPlanetLayerOperations
+Polygon	./app/models/polygon.rb	/^class Polygon < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+PolygonUpload	./app/models/polygon_upload.rb	/^class PolygonUpload < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+PolygonUploadsController	./app/controllers/polygon_uploads_controller.rb	/^class PolygonUploadsController < ApplicationController$/;"	c	inherits:ApplicationController
+PolygonsController	./app/controllers/polygons_controller.rb	/^class PolygonsController < ApplicationController$/;"	c	inherits:ApplicationController
+Project	./app/models/project.rb	/^class Project < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+ProjectLayer	./app/models/project_layer.rb	/^class ProjectLayer < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+ProjectLayer::PROJECT_LAYER_CLASSES	./spec/spec_helper.rb	/^  ProjectLayer::PROJECT_LAYER_CLASSES = ProjectLayer::PROJECT_LAYER_CLASSES.push('TestLayer')$/;"	C	class:TestLayer
+ProjectLayerHelper	./app/helpers/project_layer_helper.rb	/^module ProjectLayerHelper$/;"	m
+ProjectLayersController	./app/controllers/project_layers_controller.rb	/^class ProjectLayersController < ApplicationController$/;"	c	inherits:ApplicationController
+ProjectsController	./app/controllers/projects_controller.rb	/^class ProjectsController < ApplicationController$/;"	c	inherits:ApplicationController
+ProtectedAreaCount	./lib/modules/protected_planet_layer_operations/protected_area_count.rb	/^module ProtectedPlanetLayerOperations::ProtectedAreaCount$/;"	m	class:ProtectedPlanetLayerOperations
+ProtectedAreasDetail	./lib/modules/protected_planet_layer_operations/protected_areas_detail.rb	/^module ProtectedPlanetLayerOperations::ProtectedAreasDetail$/;"	m	class:ProtectedPlanetLayerOperations
+ProtectedPlanetLayer	./app/models/protected_planet_layer.rb	/^class ProtectedPlanetLayer < ProjectLayer$/;"	c	inherits:ProjectLayer
+ProtectedPlanetLayerOperations	./lib/modules/protected_planet_layer_operations/protected_planet_layer_operations.rb	/^module ProtectedPlanetLayerOperations$/;"	m
+QUERY_FILTERS	./lib/modules/protected_planet_layer_operations/protected_planet_layer_operations.rb	/^  QUERY_FILTERS = {$/;"	C	class:ProtectedPlanetLayerOperations
+RasterLayer	./app/models/raster_layer.rb	/^class RasterLayer < ProjectLayer$/;"	c	inherits:ProjectLayer
+RemoveNameFromWorkspaces	./db/migrate/20121115142727_remove_name_from_workspaces.rb	/^class RemoveNameFromWorkspaces < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+RemoveOperations	./db/migrate/20121129154436_remove_operations.rb	/^class RemoveOperations < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+RemoveValueJsonFromResults	./db/migrate/20130418094204_remove_value_json_from_results.rb	/^class RemoveValueJsonFromResults < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+RenameAreaIdToAreaOfInterestIdInPolygons	./db/migrate/20121115143216_rename_area_id_to_area_of_interest_id_in_polygons.rb	/^class RenameAreaIdToAreaOfInterestIdInPolygons < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+RenameCalcationToStatistic	./db/migrate/20130416125917_rename_calcation_to_statistic.rb	/^class RenameCalcationToStatistic < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+RenameCalculationIdOnResultsToStatisticId	./db/migrate/20130416130419_rename_calculation_id_on_results_to_statistic_id.rb	/^class RenameCalculationIdOnResultsToStatisticId < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+Result	./app/models/result.rb	/^class Result < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+SUCCESS_STATE	./app/models/polygon_upload.rb	/^  SUCCESS_STATE = "Successful import"$/;"	C	class:PolygonUpload
+SessionsController	./app/controllers/admins/sessions_controller.rb	/^class Admins::SessionsController < Devise::SessionsController$/;"	c	class:Admins	inherits:Devise.SessionsController
+SetupHstore	./db/migrate/20150224110229_setup_hstore.rb	/^class SetupHstore < ActiveRecord::Migration$/;"	c	inherits:ActiveRecord.Migration
+Statistic	./app/models/statistic.rb	/^class Statistic < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+TEMPLATES_BASE_PATH	./lib/modules/carbon_operations/utils.rb	/^  TEMPLATES_BASE_PATH = Rails.root.join($/;"	C	class:CarbonOperations.Utils
+TestLayer	./spec/spec_helper.rb	/^class TestLayer < ProjectLayer$/;"	c	inherits:ProjectLayer
+TestLayerOperations	./spec/spec_helper.rb	/^module TestLayerOperations$/;"	m
+TotalArea	./lib/modules/carbon_operations/total_area.rb	/^class CarbonOperations::TotalArea < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+TotalCarbon	./lib/modules/carbon_operations/total_carbon.rb	/^class CarbonOperations::TotalCarbon < CarbonOperations::Base$/;"	c	class:CarbonOperations	inherits:CarbonOperations.Base
+UPLOADED_STATE	./app/models/polygon_upload.rb	/^  UPLOADED_STATE = "Uploaded"$/;"	C	class:PolygonUpload
+UPLOADING_STATE	./app/models/polygon_upload.rb	/^  UPLOADING_STATE = "Uploading"$/;"	C	class:PolygonUpload
+Utils	./lib/modules/carbon_operations/utils.rb	/^module CarbonOperations::Utils$/;"	m	class:CarbonOperations
+Workspace	./app/models/workspace.rb	/^class Workspace < ActiveRecord::Base$/;"	c	inherits:ActiveRecord.Base
+WorkspacesController	./app/controllers/workspaces_controller.rb	/^class WorkspacesController < ApplicationController$/;"	c	inherits:ApplicationController
+app	./spec/support/api/helper.rb	/^  def app$/;"	f	class:ApiHelper
+area_of_interest	./app/models/polygon.rb	/^  belongs_to :area_of_interest$/;"	F	class:Polygon
+area_of_interest	./app/models/polygon_upload.rb	/^  belongs_to :area_of_interest$/;"	F	class:PolygonUpload
+area_of_interest	./app/models/result.rb	/^  belongs_to :area_of_interest$/;"	F	class:Result
+area_of_interest=	./app/models/polygon.rb	/^  belongs_to :area_of_interest$/;"	F	class:Polygon
+area_of_interest=	./app/models/polygon_upload.rb	/^  belongs_to :area_of_interest$/;"	F	class:PolygonUpload
+area_of_interest=	./app/models/result.rb	/^  belongs_to :area_of_interest$/;"	F	class:Result
+areas_of_interest	./app/models/workspace.rb	/^  has_many :areas_of_interest, :class_name => "AreaOfInterest", dependent: :destroy$/;"	F	class:Workspace
+areas_of_interest=	./app/models/workspace.rb	/^  has_many :areas_of_interest, :class_name => "AreaOfInterest", dependent: :destroy$/;"	F	class:Workspace
+build_area_of_interest	./app/models/polygon.rb	/^  belongs_to :area_of_interest$/;"	F	class:Polygon
+build_area_of_interest	./app/models/polygon_upload.rb	/^  belongs_to :area_of_interest$/;"	F	class:PolygonUpload
+build_area_of_interest	./app/models/result.rb	/^  belongs_to :area_of_interest$/;"	F	class:Result
+build_project_layer	./app/models/statistic.rb	/^  belongs_to :project_layer$/;"	F	class:Statistic
+build_statistic	./app/models/result.rb	/^  belongs_to :statistic$/;"	F	class:Result
+build_workspace	./app/models/area_of_interest.rb	/^  belongs_to :workspace$/;"	F	class:AreaOfInterest
+carbon_view	./app/models/blue_carbon_layer.rb	/^  def self.carbon_view _$/;"	F	class:BlueCarbonLayer
+carbon_view	./app/models/blue_forests_layer.rb	/^  def self.carbon_view country_name$/;"	F	class:BlueForestsLayer
+carbon_view_name	./lib/modules/carbon_operations/base.rb	/^  def carbon_view_name country_name$/;"	f	class:CarbonOperations.Base
+carbon_years	./lib/modules/carbon_operations/human_emission.rb	/^  def carbon_years carbon$/;"	f	class:CarbonOperations.HumanEmission
+change	./db/migrate/20121115131429_create_apps.rb	/^  def change$/;"	f	class:CreateApps
+change	./db/migrate/20121115131838_create_app_layers.rb	/^  def change$/;"	f	class:CreateAppLayers
+change	./db/migrate/20121115132543_create_calculations.rb	/^  def change$/;"	f	class:CreateCalculations
+change	./db/migrate/20121115132606_create_operations.rb	/^  def change$/;"	f	class:CreateOperations
+change	./db/migrate/20121115132726_create_polygons.rb	/^  def change$/;"	f	class:CreatePolygons
+change	./db/migrate/20121115133145_create_areas_of_interest.rb	/^  def change$/;"	f	class:CreateAreasOfInterest
+change	./db/migrate/20121115133343_create_results.rb	/^  def change$/;"	f	class:CreateResults
+change	./db/migrate/20121115133632_create_workspaces.rb	/^  def change$/;"	f	class:CreateWorkspaces
+change	./db/migrate/20121115180223_add_area_of_interest_id_and_calculation_id_to_results.rb	/^  def change$/;"	f	class:AddAreaOfInterestIdAndCalculationIdToResults
+change	./db/migrate/20121115180841_add_app_layer_id_and_operation_id_to_calculations.rb	/^  def change$/;"	f	class:AddAppLayerIdAndOperationIdToCalculations
+change	./db/migrate/20121127091704_create_projects.rb	/^  def change$/;"	f	class:CreateProjects
+change	./db/migrate/20121127093942_create_project_layers.rb	/^  def change$/;"	f	class:CreateProjectLayers
+change	./db/migrate/20121129103640_devise_create_admins.rb	/^  def change$/;"	f	class:DeviseCreateAdmins
+change	./db/migrate/20130130112158_create_polygon_uploads.rb	/^  def change$/;"	f	class:CreatePolygonUploads
+change	./db/migrate/20130130143830_add_table_name_to_polygon_upload.rb	/^  def change$/;"	f	class:AddTableNameToPolygonUpload
+change	./db/migrate/20130416125917_rename_calcation_to_statistic.rb	/^  def change$/;"	f	class:RenameCalcationToStatistic
+change	./db/migrate/20130416130419_rename_calculation_id_on_results_to_statistic_id.rb	/^  def change$/;"	f	class:RenameCalculationIdOnResultsToStatisticId
+change	./db/migrate/20130418093957_change_value_to_string.rb	/^  def change$/;"	f	class:ChangeValueToString
+change	./db/migrate/20130418094204_remove_value_json_from_results.rb	/^  def change$/;"	f	class:RemoveValueJsonFromResults
+change	./db/migrate/20130425103904_add_error_stack_and_error_message_to_results.rb	/^  def change$/;"	f	class:AddErrorStackAndErrorMessageToResults
+change	./db/migrate/20130529130446_add_value_updated_at_to_result.rb	/^  def change$/;"	f	class:AddValueUpdatedAtToResult
+change	./db/migrate/20150224110631_add_properties_to_areas_of_interest.rb	/^  def change$/;"	f	class:AddPropertiesToAreasOfInterest
+check_cartodb_import_state	./app/models/polygon_upload.rb	/^  def check_cartodb_import_state item_queue_id$/;"	f	class:PolygonUpload
+cleanup	./app/models/polygon_upload.rb	/^  def cleanup$/;"	f	class:PolygonUpload
+country_name	./lib/modules/carbon_operations/base.rb	/^  def country_name$/;"	f	class:CarbonOperations.Base
+create	./app/controllers/areas_of_interest_controller.rb	/^  def create$/;"	f	class:AreasOfInterestController
+create	./app/controllers/polygons_controller.rb	/^  def create$/;"	f	class:PolygonsController
+create	./app/controllers/project_layers_controller.rb	/^  def create$/;"	f	class:ProjectLayersController
+create	./app/controllers/projects_controller.rb	/^  def create$/;"	f	class:ProjectsController
+create	./app/controllers/workspaces_controller.rb	/^  def create$/;"	f	class:WorkspacesController
+create_area_of_interest	./app/models/polygon.rb	/^  belongs_to :area_of_interest$/;"	F	class:Polygon
+create_area_of_interest	./app/models/polygon_upload.rb	/^  belongs_to :area_of_interest$/;"	F	class:PolygonUpload
+create_area_of_interest	./app/models/result.rb	/^  belongs_to :area_of_interest$/;"	F	class:Result
+create_area_of_interest!	./app/models/polygon.rb	/^  belongs_to :area_of_interest$/;"	F	class:Polygon
+create_area_of_interest!	./app/models/polygon_upload.rb	/^  belongs_to :area_of_interest$/;"	F	class:PolygonUpload
+create_area_of_interest!	./app/models/result.rb	/^  belongs_to :area_of_interest$/;"	F	class:Result
+create_from_file	./app/controllers/polygons_controller.rb	/^  def create_from_file$/;"	f	class:PolygonsController
+create_polygons_from_cartodb	./app/models/polygon_upload.rb	/^  def create_polygons_from_cartodb$/;"	f	class:PolygonUpload
+create_project_layer	./app/models/statistic.rb	/^  belongs_to :project_layer$/;"	F	class:Statistic
+create_project_layer!	./app/models/statistic.rb	/^  belongs_to :project_layer$/;"	F	class:Statistic
+create_statistic	./app/models/result.rb	/^  belongs_to :statistic$/;"	F	class:Result
+create_statistic!	./app/models/result.rb	/^  belongs_to :statistic$/;"	F	class:Result
+create_with_file	./app/models/polygon_upload.rb	/^  def self.create_with_file(options)$/;"	F	class:PolygonUpload
+create_workspace	./app/models/area_of_interest.rb	/^  belongs_to :workspace$/;"	F	class:AreaOfInterest
+create_workspace!	./app/models/area_of_interest.rb	/^  belongs_to :workspace$/;"	F	class:AreaOfInterest
+delete_table_from_cartodb	./app/models/polygon_upload.rb	/^  def delete_table_from_cartodb$/;"	f	class:PolygonUpload
+destroy	./app/controllers/areas_of_interest_controller.rb	/^  def destroy$/;"	f	class:AreasOfInterestController
+destroy	./app/controllers/polygons_controller.rb	/^  def destroy$/;"	f	class:PolygonsController
+destroy	./app/controllers/project_layers_controller.rb	/^  def destroy$/;"	f	class:ProjectLayersController
+destroy	./app/controllers/projects_controller.rb	/^  def destroy$/;"	f	class:ProjectsController
+down	./db/migrate/20121115142727_remove_name_from_workspaces.rb	/^  def down$/;"	f	class:RemoveNameFromWorkspaces
+down	./db/migrate/20121115143216_rename_area_id_to_area_of_interest_id_in_polygons.rb	/^  def down$/;"	f	class:RenameAreaIdToAreaOfInterestIdInPolygons
+down	./db/migrate/20121127094233_delete_app_and_app_layer_tables.rb	/^  def down$/;"	f	class:DeleteAppAndAppLayerTables
+down	./db/migrate/20121129154436_remove_operations.rb	/^  def down$/;"	f	class:RemoveOperations
+down	./db/migrate/20121129155311_add_operation_to_calculations.rb	/^  def down$/;"	f	class:AddOperationToCalculations
+down	./db/migrate/20130116095605_add_inheritance_to_result.rb	/^  def down$/;"	f	class:AddInheritanceToResult
+down	./db/migrate/20150224110229_setup_hstore.rb	/^  def self.down$/;"	F	class:SetupHstore
+edit	./app/controllers/project_layers_controller.rb	/^  def edit$/;"	f	class:ProjectLayersController
+edit	./app/controllers/projects_controller.rb	/^  def edit$/;"	f	class:ProjectsController
+ensure_project	./app/controllers/application_controller.rb	/^  def ensure_project$/;"	f	class:ApplicationController
+fetch	./app/models/result.rb	/^  def fetch$/;"	f	class:Result
+fetch_result	./app/models/blue_carbon_layer.rb	/^  def self.fetch_result(operation, area_of_interest)$/;"	F	class:BlueCarbonLayer
+fetch_result	./app/models/blue_forests_layer.rb	/^  def self.fetch_result(operation, area_of_interest)$/;"	F	class:BlueForestsLayer
+fetch_result	./app/models/project_layer.rb	/^  def self.fetch_result(operation, area_of_interest)$/;"	F	class:ProjectLayer
+fetch_result	./app/models/raster_layer.rb	/^  def fetch_result(result)$/;"	f	class:RasterLayer
+find_or_create_result_for_statistic	./app/models/area_of_interest.rb	/^  def find_or_create_result_for_statistic(statistic)$/;"	f	class:AreaOfInterest
+find_project	./app/controllers/project_layers_controller.rb	/^  def find_project$/;"	f	class:ProjectLayersController
+format_operations_list_for_select	./app/helpers/project_layer_helper.rb	/^  def format_operations_list_for_select operations_list$/;"	f	class:ProjectLayerHelper
+format_providers_list_for_select	./app/helpers/project_layer_helper.rb	/^  def format_providers_list_for_select provider_list$/;"	f	class:ProjectLayerHelper
+generate_file_stamp	./app/models/polygon_upload.rb	/^  def generate_file_stamp$/;"	f	class:PolygonUpload
+generate_result	./app/models/area_of_interest.rb	/^  def generate_result(statistic)$/;"	f	class:AreaOfInterest
+generate_results	./app/models/area_of_interest.rb	/^  def generate_results only_statistics = []$/;"	f	class:AreaOfInterest
+geometries	./lib/modules/carbon_operations/base.rb	/^  def geometries$/;"	f	class:CarbonOperations.Base
+get_operations	./app/models/blue_carbon_layer.rb	/^  def self.get_operations$/;"	F	class:BlueCarbonLayer
+get_operations	./app/models/blue_forests_layer.rb	/^  def self.get_operations$/;"	F	class:BlueForestsLayer
+get_operations	./app/models/project_layer.rb	/^  def self.get_operations module_name=nil$/;"	F	class:ProjectLayer
+get_operations	./app/models/raster_layer.rb	/^  def self.get_operations$/;"	F	class:RasterLayer
+get_operations	./spec/spec_helper.rb	/^  def self.get_operations$/;"	F	class:TestLayer
+get_providers	./app/models/project_layer.rb	/^  def self.get_providers$/;"	F	class:ProjectLayer
+get_providers	./app/models/protected_planet_layer.rb	/^  def self.get_providers$/;"	F	class:ProtectedPlanetLayer
+get_providers	./app/models/raster_layer.rb	/^  def self.get_providers$/;"	F	class:RasterLayer
+habitat_view	./app/models/blue_carbon_layer.rb	/^  def self.habitat_view habitat, _$/;"	F	class:BlueCarbonLayer
+habitat_view	./app/models/blue_forests_layer.rb	/^  def self.habitat_view habitat, country_name$/;"	F	class:BlueForestsLayer
+habitat_view_name	./lib/modules/carbon_operations/base.rb	/^  def habitat_view_name habitat$/;"	f	class:CarbonOperations.Base
+has_more_recent_value_than?	./app/models/result.rb	/^  def has_more_recent_value_than? time$/;"	f	class:Result
+index	./app/controllers/project_layers_controller.rb	/^  def index$/;"	f	class:ProjectLayersController
+index	./app/controllers/projects_controller.rb	/^  def index$/;"	f	class:ProjectsController
+initialize	./lib/modules/carbon_operations/base.rb	/^  def initialize layer, area_of_interest$/;"	f	class:CarbonOperations.Base
+is_it_show_json?	./app/controllers/projects_controller.rb	/^  def is_it_show_json?$/;"	f	class:ProjectsController
+link_to_add_fields	./app/helpers/application_helper.rb	/^  def link_to_add_fields(name, f, association)$/;"	f	class:ApplicationHelper
+most_recent_polygon_updated_at	./app/models/area_of_interest.rb	/^  def most_recent_polygon_updated_at$/;"	f	class:AreaOfInterest
+name_cannot_start_with_pg_underscore	./app/models/project.rb	/^  def name_cannot_start_with_pg_underscore$/;"	f	class:Project
+new	./app/controllers/project_layers_controller.rb	/^  def new$/;"	f	class:ProjectLayersController
+new	./app/controllers/projects_controller.rb	/^  def new$/;"	f	class:ProjectsController
+new_upload_form	./app/controllers/polygons_controller.rb	/^  def new_upload_form$/;"	f	class:PolygonsController
+parse_ie_json	./app/controllers/application_controller.rb	/^  def parse_ie_json$/;"	f	class:ApplicationController
+perform	./app/workers/cartodb_polygon_upload_worker.rb	/^  def perform(database, polygon_upload_id)$/;"	f	class:CartodbPolygonUploadWorker
+perform	./lib/modules/carbon_operations/area_km2.rb	/^  def perform$/;"	f	class:CarbonOperations.AreaKm2
+perform	./lib/modules/carbon_operations/area_percentage.rb	/^  def perform$/;"	f	class:CarbonOperations.AreaPercentage
+perform	./lib/modules/carbon_operations/base.rb	/^  def self.perform layer, area_of_interest$/;"	F	class:CarbonOperations.Base
+perform	./lib/modules/carbon_operations/carbon.rb	/^  def perform$/;"	f	class:CarbonOperations.Carbon
+perform	./lib/modules/carbon_operations/habitat_percentage.rb	/^  def perform$/;"	f	class:CarbonOperations.HabitatPercentage
+perform	./lib/modules/carbon_operations/human_emission.rb	/^  def perform$/;"	f	class:CarbonOperations.HumanEmission
+perform	./lib/modules/carbon_operations/total_area.rb	/^  def perform$/;"	f	class:CarbonOperations.TotalArea
+perform	./lib/modules/carbon_operations/total_carbon.rb	/^  def perform$/;"	f	class:CarbonOperations.TotalCarbon
+perform	./lib/modules/protected_planet_layer_operations/pa_cover_km2.rb	/^  def self.perform(area_of_interest)$/;"	F	class:ProtectedPlanetLayerOperations.PaCoverKm2
+perform	./lib/modules/protected_planet_layer_operations/protected_area_count.rb	/^  def self.perform(area_of_interest)$/;"	F	class:ProtectedPlanetLayerOperations.ProtectedAreaCount
+perform	./lib/modules/protected_planet_layer_operations/protected_areas_detail.rb	/^  def self.perform(area_of_interest)$/;"	F	class:ProtectedPlanetLayerOperations.ProtectedAreasDetail
+perform	./spec/spec_helper.rb	/^    def self.perform area_of_interest$/;"	F	class:TestLayerOperations.Operation1
+perform	./spec/spec_helper.rb	/^    def self.perform area_of_interest$/;"	F	class:TestLayerOperations.Operation2
+polygon_ids	./app/models/area_of_interest.rb	/^  has_many :polygons, dependent: :destroy$/;"	F	class:AreaOfInterest
+polygon_ids=	./app/models/area_of_interest.rb	/^  has_many :polygons, dependent: :destroy$/;"	F	class:AreaOfInterest
+polygons	./app/models/area_of_interest.rb	/^  has_many :polygons, dependent: :destroy$/;"	F	class:AreaOfInterest
+polygons=	./app/models/area_of_interest.rb	/^  has_many :polygons, dependent: :destroy$/;"	F	class:AreaOfInterest
+polygons_as_geo_json	./app/models/area_of_interest.rb	/^  def polygons_as_geo_json$/;"	f	class:AreaOfInterest
+polygons_as_geo_json_multipolygon	./app/models/area_of_interest.rb	/^  def polygons_as_geo_json_multipolygon$/;"	f	class:AreaOfInterest
+polygons_as_geo_json_polygons	./app/models/area_of_interest.rb	/^  def polygons_as_geo_json_polygons$/;"	f	class:AreaOfInterest
+prepare_project	./app/models/project.rb	/^  def prepare_project$/;"	f	class:Project
+project_layer	./app/models/statistic.rb	/^  belongs_to :project_layer$/;"	F	class:Statistic
+project_layer=	./app/models/statistic.rb	/^  belongs_to :project_layer$/;"	F	class:Statistic
+query_cartodb	./lib/modules/carbon_operations/utils.rb	/^  def self.query_cartodb query$/;"	F	class:CarbonOperations.Utils
+query_protected_planet	./lib/modules/protected_planet_layer_operations/protected_planet_layer_operations.rb	/^  def self.query_protected_planet(area_of_interest)$/;"	F	class:ProtectedPlanetLayerOperations
+render_query	./lib/modules/carbon_operations/utils.rb	/^  def self.render_query query_name, with_binding$/;"	F	class:CarbonOperations.Utils
+result_class	./app/models/raster_layer.rb	/^  def self.result_class(id)$/;"	F	class:RasterLayer
+result_ids	./app/models/area_of_interest.rb	/^  has_many :results$/;"	F	class:AreaOfInterest
+result_ids	./app/models/area_of_interest.rb	/^  has_many :results, dependent: :destroy$/;"	F	class:AreaOfInterest
+result_ids=	./app/models/area_of_interest.rb	/^  has_many :results$/;"	F	class:AreaOfInterest
+result_ids=	./app/models/area_of_interest.rb	/^  has_many :results, dependent: :destroy$/;"	F	class:AreaOfInterest
+result_type	./app/models/statistic.rb	/^  def result_type$/;"	f	class:Statistic
+results	./app/models/area_of_interest.rb	/^  has_many :results$/;"	F	class:AreaOfInterest
+results	./app/models/area_of_interest.rb	/^  has_many :results, dependent: :destroy$/;"	F	class:AreaOfInterest
+results=	./app/models/area_of_interest.rb	/^  has_many :results$/;"	F	class:AreaOfInterest
+results=	./app/models/area_of_interest.rb	/^  has_many :results, dependent: :destroy$/;"	F	class:AreaOfInterest
+results_for	./lib/modules/carbon_operations/base.rb	/^  def results_for template_name$/;"	f	class:CarbonOperations.Base
+show	./app/controllers/areas_of_interest_controller.rb	/^  def show$/;"	f	class:AreasOfInterestController
+show	./app/controllers/polygon_uploads_controller.rb	/^  def show$/;"	f	class:PolygonUploadsController
+show	./app/controllers/polygons_controller.rb	/^  def show$/;"	f	class:PolygonsController
+show	./app/controllers/project_layers_controller.rb	/^  def show$/;"	f	class:ProjectLayersController
+show	./app/controllers/projects_controller.rb	/^  def show$/;"	f	class:ProjectsController
+show	./app/controllers/workspaces_controller.rb	/^  def show$/;"	f	class:WorkspacesController
+st_makevalid	./lib/modules/carbon_operations/utils.rb	/^  def self.st_makevalid(geometry)$/;"	F	class:CarbonOperations.Utils
+st_union	./lib/modules/carbon_operations/utils.rb	/^  def self.st_union(geoms)$/;"	F	class:CarbonOperations.Utils
+statistic	./app/models/result.rb	/^  belongs_to :statistic$/;"	F	class:Result
+statistic=	./app/models/result.rb	/^  belongs_to :statistic$/;"	F	class:Result
+statistic_ids	./app/models/project_layer.rb	/^  has_many :statistics, dependent: :destroy$/;"	F	class:ProjectLayer
+statistic_ids=	./app/models/project_layer.rb	/^  has_many :statistics, dependent: :destroy$/;"	F	class:ProjectLayer
+statistics	./app/models/project_layer.rb	/^  has_many :statistics, dependent: :destroy$/;"	F	class:ProjectLayer
+statistics=	./app/models/project_layer.rb	/^  has_many :statistics, dependent: :destroy$/;"	F	class:ProjectLayer
+strip_non_model_safe_params	./app/controllers/application_controller.rb	/^  def strip_non_model_safe_params parameters$/;"	f	class:ApplicationController
+subclass	./app/models/project_layer.rb	/^  def self.subclass(subclass_type)$/;"	F	class:ProjectLayer
+the_geom	./lib/modules/carbon_operations/base.rb	/^  def the_geom$/;"	f	class:CarbonOperations.Base
+to_csv	./app/models/area_of_interest.rb	/^  def to_csv(options = {})$/;"	f	class:AreaOfInterest
+to_geo_json	./app/models/polygon.rb	/^  def to_geo_json$/;"	f	class:Polygon
+to_wkt	./app/models/area_of_interest.rb	/^  def to_wkt$/;"	f	class:AreaOfInterest
+to_wkt	./app/models/polygon.rb	/^  def to_wkt$/;"	f	class:Polygon
+total_intersection_area	./lib/modules/carbon_query.rb	/^  def self.total_intersection_area(the_geom, table_name, srid)$/;"	F	class:CarbonQuery
+up	./db/migrate/20121115142727_remove_name_from_workspaces.rb	/^  def up$/;"	f	class:RemoveNameFromWorkspaces
+up	./db/migrate/20121115143216_rename_area_id_to_area_of_interest_id_in_polygons.rb	/^  def up$/;"	f	class:RenameAreaIdToAreaOfInterestIdInPolygons
+up	./db/migrate/20121127094233_delete_app_and_app_layer_tables.rb	/^  def up$/;"	f	class:DeleteAppAndAppLayerTables
+up	./db/migrate/20121129154436_remove_operations.rb	/^  def up$/;"	f	class:RemoveOperations
+up	./db/migrate/20121129155311_add_operation_to_calculations.rb	/^  def up$/;"	f	class:AddOperationToCalculations
+up	./db/migrate/20130116095605_add_inheritance_to_result.rb	/^  def up$/;"	f	class:AddInheritanceToResult
+up	./db/migrate/20150224110229_setup_hstore.rb	/^  def self.up$/;"	F	class:SetupHstore
+update	./app/controllers/areas_of_interest_controller.rb	/^  def update$/;"	f	class:AreasOfInterestController
+update	./app/controllers/polygons_controller.rb	/^  def update$/;"	f	class:PolygonsController
+update	./app/controllers/project_layers_controller.rb	/^  def update$/;"	f	class:ProjectLayersController
+update	./app/controllers/projects_controller.rb	/^  def update$/;"	f	class:ProjectsController
+update_value_timestamp	./app/models/result.rb	/^  def update_value_timestamp$/;"	f	class:Result
+upload_to_cartodb	./app/models/polygon_upload.rb	/^  def upload_to_cartodb$/;"	f	class:PolygonUpload
+use	./app/models/project.rb	/^  def use$/;"	f	class:Project
+workspace	./app/models/area_of_interest.rb	/^  belongs_to :workspace$/;"	F	class:AreaOfInterest
+workspace=	./app/models/area_of_interest.rb	/^  belongs_to :workspace$/;"	F	class:AreaOfInterest
+wrap_model_params_for_ie	./app/controllers/application_controller.rb	/^  def wrap_model_params_for_ie request_json$/;"	f	class:ApplicationController
