@@ -16,16 +16,16 @@ class CarbonOperations::Base
     CarbonOperations::Utils.query_cartodb(query)
   end
 
-  def country_name
-    @area_of_interest.properties['country']
+  def country_iso
+    @area_of_interest.properties['country_iso']
   end
 
-  def carbon_view_name country_name
-    @layer.carbon_view country_name
+  def carbon_view_name
+    @layer.carbon_view
   end
 
-  def habitat_view_name habitat, country_name
-    @layer.habitat_view habitat, country_name
+  def habitat_view_name habitat
+    @layer.habitat_view habitat
   end
 
   def the_geom

@@ -1,10 +1,9 @@
-SELECT habitat, SUM(carbon) as carbon FROM (
-  SELECT ST_AREA(
-    ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326), 27040)
-  )/10000*c_mg_ha as carbon, habitat
-  FROM <%= carbon_view_name(country_name) %> a
-  INNER JOIN
-    (SELECT ST_SetSRID(<%= the_geom %>, 4326) as the_geom) b
-    ON ST_Intersects(a.the_geom, b.the_geom)
+SELECT habitat, SUM(carbon) AS carbon
+FROM (
+  SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326), 27040))/10000*c_mg_ha AS carbon, habitat
+  FROM <%= carbon_view_name %> a
+  INNER JOIN (SELECT ST_SetSRID(<%= the_geom %>, 4326) as the_geom) b
+  ON ST_Intersects(a.the_geom, b.the_geom)
+  WHERE country_id = '<%= country_iso %>'
 ) c
 GROUP BY habitat;
