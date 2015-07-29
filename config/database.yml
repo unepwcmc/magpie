@@ -8,6 +8,7 @@ development:
   username: postgres
   password: postgres
   database: magpie_development
+  schema_search_path: 'public,shared_extensions'
   pool: 5
   timeout: 5000
   host: localhost
@@ -20,6 +21,7 @@ test:
   username: postgres
   password: postgres
   database: magpie_test
+  schema_search_path: 'public,shared_extensions'
   pool: 5
   timeout: 5000
   host: localhost
@@ -28,6 +30,7 @@ test:
 production:
   adapter: postgresql
   database: magpie_production
+  schema_search_path: 'public,shared_extensions'
   username: postgres
   pool: 5
   timeout: 5000

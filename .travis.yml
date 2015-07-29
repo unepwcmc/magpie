@@ -1,17 +1,20 @@
 language: ruby
+cache: bundler
 bundler_args: --without development production staging
+sudo: false
 rvm:
   - 1.9.3
 # uncomment this line if your project needs to run something other than `rake`:
 before_script:
-  - psql -c 'CREATE DATABASE magpie_test' -U postgres
+  - psql -U postgres -d template1 -c "CREATE SCHEMA shared_extensions AUTHORIZATION postgres;"
+  - psql -U postgres -d template1 -c "CREATE EXTENSION IF NOT EXISTS hstore SCHEMA shared_extensions;"
+  - psql -U postgres -c 'CREATE DATABASE magpie_test'
   - RAILS_ENV=test bundle exec rake db:migrate
-script: 
+script:
   - bundle exec rspec spec
 notifications:
   email:
-    - james.cox@unep-wcmc.org
-    - adam.mulligan@unep-wcmc.org
+    - andrea.rossi@unep-wcmc.org
 branches:
   only:
     - master

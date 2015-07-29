@@ -1,22 +1,25 @@
-module BlueCarbonLayerOperations
-  def self.cartodb_query query_name, geoms
-    geometry = st_union(geoms)
-    geometry = st_makevalid(geometry)
-    # See: http://spatialreference.org/ref/epsg/27040/
-    sql = CarbonQuery.send(
-      query_name.to_sym, geometry, 'bc_carbon_view', 27040)
+module CarbonOperations::Utils
+  TEMPLATES_BASE_PATH = Rails.root.join(
+    'lib', 'modules', 'carbon_operations', 'templates'
+  )
 
-    response = RestClient.post("#{CARTODB_CONFIG["host"]}/api/v2/sql" , {
-      q: sql,
+  def self.render_query query_name, with_binding
+    template = File.read(TEMPLATES_BASE_PATH.join("#{query_name}.sql.erb"))
+    ERB.new(template).result(with_binding).squish
+  end
+
+  def self.query_cartodb query
+    response = RestClient.post("#{CARTODB_CONFIG["host"]}/api/v2/sql", {
+      q: query,
       api_key: CARTODB_CONFIG["api_key"]
     })
 
     response = JSON.parse(response)
 
     if response["total_rows"] > 0
-      return response["rows"]
+      response["rows"]
     else
-      return []
+      []
     end
   end
 

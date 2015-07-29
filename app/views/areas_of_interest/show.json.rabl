@@ -1,5 +1,5 @@
 object @area_of_interest
-attributes :id, :name
+attributes :id, :name, :properties
 child polygons: :polygons do
   attributes :id
   node :geometry do |polygon|

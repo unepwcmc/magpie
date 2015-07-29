@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529130446) do
+ActiveRecord::Schema.define(:version => 20150224110631) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130529130446) do
     t.boolean  "is_summary",   :default => false, :null => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.hstore   "properties"
   end
 
   create_table "polygon_uploads", :force => true do |t|

@@ -12,7 +12,7 @@ describe "/areas_of_interest", type: :api do
 
   it "should create area of interest" do
     post "/workspaces/#{@workspace.id}/areas_of_interest", {area_of_interest: {name: 'Area of Interest'}}
-    area_of_interest = { id: AreaOfInterest.first.id, name: 'Area of Interest' }
+    area_of_interest = {id: AreaOfInterest.first.id, name: 'Area of Interest', properties: {}}
     last_response.body.should eql(area_of_interest.to_json)
   end
 end
@@ -37,6 +37,7 @@ describe "/areas_of_interest/:id", type: :api do
       expected_attributes = {
         id: @area_of_interest.id,
         name: 'My Area',
+        properties: {},
         polygons: [],
         results: []
       }
@@ -61,8 +62,8 @@ describe "/areas_of_interest/:id", type: :api do
   context "an area of interest exists with result errors" do
     before(:each) do
       @area_of_interest = FactoryGirl.create(:area_of_interest, name: 'My Area')
-      FactoryGirl.create(:result, 
-                         error_message: "An Error Message", 
+      FactoryGirl.create(:result,
+                         error_message: "An Error Message",
                          error_stack: "An Error Stack",
                          area_of_interest: @area_of_interest
                         )
@@ -195,7 +196,7 @@ describe "/areas_of_interest/:id", type: :api do
       @correct_value = "pre-calculated-value"
       @existing_result_attributes = FactoryGirl.create(:result,
         value: @correct_value,
-        statistic: statistic, 
+        statistic: statistic,
         area_of_interest: @area_of_interest
       ).attributes
     end

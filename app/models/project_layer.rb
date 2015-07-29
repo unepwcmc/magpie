@@ -4,22 +4,25 @@ class ProjectLayer < ActiveRecord::Base
   has_many :statistics, dependent: :destroy
   accepts_nested_attributes_for :statistics, reject_if: lambda { |c| c[:display_name].blank? }, allow_destroy: true
 
-  PROJECT_LAYER_CLASSES = %w( RasterLayer ProtectedPlanetLayer BlueCarbonLayer )
+  PROJECT_LAYER_CLASSES = %w( RasterLayer ProtectedPlanetLayer BlueCarbonLayer BlueForestsLayer )
 
   def self.subclass(subclass_type)
     project_layer_class = PROJECT_LAYER_CLASSES[PROJECT_LAYER_CLASSES.index(subclass_type).to_i]
     project_layer_class.constantize
   end
 
-  def self.get_operations
-    class_name  = self.to_s.underscore
-    module_name = "#{class_name}_operations"
-    operations  = []
+  def self.get_operations module_name=nil
+    if module_name.nil?
+      class_name  = self.to_s.underscore
+      module_name = "#{class_name}_operations"
+    end
+
+    operations = []
 
     Dir.chdir("#{Rails.root}/lib/modules/") do |dir|
       id = 0
       Dir["#{module_name}/**"].each do |file|
-        next if File.basename(file, '.rb') == module_name
+        next if ['base', 'templates', 'utils', module_name].include? File.basename(file, '.rb')
 
         operation_module = file.chomp(File.extname(file)).camelize.constantize
         operations << {

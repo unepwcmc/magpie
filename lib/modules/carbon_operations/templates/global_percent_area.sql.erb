@@ -1,0 +1,34 @@
+SELECT a.habitat, a.area/SUM(ST_Area(ST_Transform(ST_SetSRID(b.the_geom, 4326), 27040)))*100 as habitat_percentage
+FROM (
+  SELECT SUM (area) as area, habitat
+  FROM (
+    SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, a.the_geom), 4326), 27040)) as area, habitat
+    FROM (
+      SELECT the_geom, habitat FROM <%= habitat_view_name('mangrove') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+      UNION ALL
+      SELECT the_geom, habitat FROM <%= habitat_view_name('seagrass') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+      UNION ALL
+      SELECT the_geom, habitat FROM <%= habitat_view_name('saltmarsh') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+      UNION ALL
+      SELECT the_geom, habitat FROM <%= habitat_view_name('algal_mat') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+      UNION ALL
+      SELECT the_geom, habitat FROM <%= habitat_view_name('other') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+    ) a
+    INNER JOIN (SELECT ST_SetSRID(<%= the_geom %>, 4326) AS the_geom) b
+    ON ST_Intersects(a.the_geom, b.the_geom)
+  ) a
+  GROUP BY habitat
+) a
+INNER JOIN (
+  SELECT the_geom, habitat FROM <%= habitat_view_name('mangrove') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+  UNION ALL
+  SELECT the_geom, habitat FROM <%= habitat_view_name('seagrass') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+  UNION ALL
+  SELECT the_geom, habitat FROM <%= habitat_view_name('saltmarsh') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+  UNION ALL
+  SELECT the_geom, habitat FROM <%= habitat_view_name('algal_mat') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+  UNION ALL
+  SELECT the_geom, habitat FROM <%= habitat_view_name('other') %> WHERE action <> 'delete' AND toggle = true AND country_id = '<%= country_iso %>'
+) b
+ON a.habitat = b. habitat
+GROUP BY a.habitat, a.area;

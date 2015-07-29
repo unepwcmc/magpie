@@ -1,2 +1,2 @@
 object @area_of_interest
-attributes :id, :name
+attributes :id, :name, :properties

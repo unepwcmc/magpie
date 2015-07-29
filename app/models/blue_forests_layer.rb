@@ -1,4 +1,4 @@
-class BlueCarbonLayer < ProjectLayer
+class BlueForestsLayer < ProjectLayer
   def self.get_operations
     super('carbon_operations')
   end
@@ -8,10 +8,10 @@ class BlueCarbonLayer < ProjectLayer
   end
 
   def self.carbon_view
-    "bc_carbon_#{Rails.env}"
+    "blueforests_carbon_#{Rails.env}"
   end
 
   def self.habitat_view habitat
-    "bc_#{habitat}_#{Rails.env}"
+    "blueforests_#{habitat}_#{Rails.env}"
   end
 end
