@@ -1,20 +1,20 @@
 set :rails_env, "staging"
 # Primary domain name of your application. Used in the Apache configs
-set :domain, "unepwcmc-005.vm.brightbox.net"
+set :domain, "unepwcmc-011.vm.brightbox.net"
 ## List of servers
-server "unepwcmc-005.vm.brightbox.net", :app, :web, :db, :primary => true
+server "unepwcmc-011.vm.brightbox.net", :app, :web, :db, :primary => true
 
 set :application, "magpie"
-set :server_name, "magpie.unepwcmc-005.vm.brightbox.net"
+set :server_name, "magpie.unepwcmc-011.vm.brightbox.net"
 set :sudo_user, "rails"
-set :app_port, "80" 
+set :app_port, "80"
 
 desc "Configure VHost"
 task :config_vhost do
 vhost_config =<<-EOF
 server {
   listen 80;
-  
+
   client_max_body_size 4G;
   server_name #{application}.unepwcmc-011.vm.brightbox.net #{application}.sw01.matx.info;
   keepalive_timeout 5;
@@ -26,7 +26,7 @@ server {
     expires max;
     add_header Cache-Control public;
   }
-  
+
   if (-f $document_root/system/maintenance.html) {
     return 503;
   }
@@ -48,7 +48,7 @@ sudo "ln -s /etc/nginx/sites-available/#{application} /etc/nginx/sites-enabled/#
 end
 
 after "deploy:setup", :config_vhost
- 
+
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
   task :restart, :roles => :app, :except => { :no_release => true } do
