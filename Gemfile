@@ -1,21 +1,21 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.22'
 
 gem 'pg'
 gem 'activerecord-postgres-hstore'
 
 # Multi tenancy
-gem 'apartment'
+gem 'apartment', '~>0.18.0'
 
 gem 'rest-client'
 gem 'rabl'
 gem 'yajl-ruby', :require => "yajl"
 
-gem 'bootstrap-generators', '~> 2.1', git: 'git://github.com/decioferreira/bootstrap-generators.git'
+gem 'bootstrap-generators'
 gem 'simple_form'
 
-gem 'devise'
+gem 'devise', '~>2.2.5'
 
 # Sidekiq plus monitoring
 gem 'sidekiq'
