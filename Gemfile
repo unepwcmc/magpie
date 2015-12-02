@@ -60,7 +60,6 @@ end
 group :test do
   gem "codeclimate-test-reporter"
   gem 'rack-test'
-  gem 'simplecov', require: false
   gem 'capybara'
   gem 'headless'
   gem 'database_cleaner'
