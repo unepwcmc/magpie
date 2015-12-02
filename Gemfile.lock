@@ -40,8 +40,8 @@ GEM
     bcrypt (3.1.10)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
-    bootstrap-generators (3.3.4)
-      railties (>= 3.1.0)
+    bootstrap-generators (2.1.1)
+      railties (~> 3.1)
     brightbox (2.4.6)
       bundler (>= 1.3.4)
       capistrano (~> 2.15.7)
@@ -245,7 +245,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgres-hstore
   apartment (~> 0.18.0)
-  bootstrap-generators
+  bootstrap-generators (~> 2.1.1)
   brightbox (>= 2.3.9)
   capistrano
   capistrano-ext

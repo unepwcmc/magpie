@@ -12,7 +12,7 @@ gem 'rest-client'
 gem 'rabl'
 gem 'yajl-ruby', :require => "yajl"
 
-gem 'bootstrap-generators'
+gem 'bootstrap-generators', '~> 2.1.1'
 gem 'simple_form'
 
 gem 'devise', '~>2.2.5'
@@ -58,6 +58,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "codeclimate-test-reporter"
   gem 'rack-test'
   gem 'simplecov', require: false
   gem 'capybara'
