@@ -54,15 +54,16 @@ group :staging, :production do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~>2.11.0'
 end
 
 group :test do
-  gem "codeclimate-test-reporter"
+  gem 'test-unit'
+  #gem "codeclimate-test-reporter"
   gem 'rack-test'
   gem 'capybara'
   gem 'headless'
   gem 'database_cleaner'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_girl_rails', '~> 4.5.0'
   gem 'launchy'
 end
