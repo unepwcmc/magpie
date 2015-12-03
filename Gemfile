@@ -53,7 +53,7 @@ group :development do
 end
 
 group :staging, :production do
-  gem 'exception_notification', :require => 'exception_notifier'
+  gem 'exception_notification', '~>2.6.1', :require => 'exception_notifier'
 end
 
 group :development, :test do
@@ -61,8 +61,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'test-unit'
-  #gem "codeclimate-test-reporter"
+  gem "codeclimate-test-reporter"
   gem 'rack-test'
   gem 'capybara'
   gem 'headless'
