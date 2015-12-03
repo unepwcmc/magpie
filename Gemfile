@@ -44,9 +44,12 @@ gem 'jquery-rails'
 gem 'rack-cors', require: 'rack/cors'
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'brightbox', '>= 2.3.9'
+  gem 'capistrano', '~> 3.4', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-rvm',   '~> 0.1', require: false
+  gem 'capistrano-sidekiq'
+  gem 'capistrano-passenger', '~> 0.1.1', require: false
 end
 
 group :staging, :production do
