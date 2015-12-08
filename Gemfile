@@ -33,8 +33,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', platforms: :ruby
 
 end
 
@@ -56,6 +54,7 @@ group :staging, :production do
   gem 'exception_notification', '~>2.6.1', :require => 'exception_notifier'
 end
 
+gem 'test-unit', '~> 3.0'
 group :development, :test do
   gem 'rspec-rails', '~>2.11.0'
 end
