@@ -68,3 +68,5 @@ group :test do
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'launchy'
 end
+
+gem 'test-unit', '~> 3.0'
