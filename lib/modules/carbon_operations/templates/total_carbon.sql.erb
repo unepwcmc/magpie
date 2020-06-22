@@ -28,7 +28,7 @@ FROM (
       UNION ALL
 
        SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, mng.the_geom), 4326), 27040))/10000 AS area, habitat, mng.cartodb_id, mng.country_id country
-        FROM <%= habitat_view_name('algal_mat') %>
+        FROM <%= habitat_view_name('algal_mat') %> mng
         INNER JOIN (SELECT ST_SetSRID(<%= the_geom %>, 4326) as the_geom) b
         ON ST_Intersects(mng.the_geom, b.the_geom)
         WHERE mng.country_id = '<%= country_iso %>'

@@ -1,4 +1,4 @@
-SELECT DISTINCT(area*c_mg_ha) AS carbon, c_mg_ha, area FROM (
+SELECT DISTINCT(area*c_mg_ha) AS carbon, habitat_intersect.habitat AS habitat FROM (
   SELECT SUM(area) AS area, habitat, country
   FROM (
     SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, mng.the_geom), 4326), 27040))/10000 AS area, habitat, mng.cartodb_id, mng.country_id country
@@ -26,7 +26,7 @@ SELECT DISTINCT(area*c_mg_ha) AS carbon, c_mg_ha, area FROM (
     UNION ALL
 
      SELECT ST_AREA(ST_Transform(ST_SetSRID(ST_INTERSECTION(b.the_geom, mng.the_geom), 4326), 27040))/10000 AS area, habitat, mng.cartodb_id, mng.country_id country
-      FROM <%= habitat_view_name('algal_mat') %>
+      FROM <%= habitat_view_name('algal_mat') %> mng
       INNER JOIN (SELECT ST_SetSRID(<%= the_geom %>, 4326) as the_geom) b
       ON ST_Intersects(mng.the_geom, b.the_geom)
       WHERE mng.country_id = '<%= country_iso %>'
