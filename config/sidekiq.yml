@@ -3,7 +3,8 @@
 staging:
   :concurrency: 2
 production:
-  :concurrency: 20
+  :concurrency: 10
 :queues:
   - [default, 5]
   - [magpie, 5]
+
