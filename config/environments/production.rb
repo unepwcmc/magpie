@@ -68,5 +68,5 @@ Magpie::Application.configure do
   # Exception notification
   config.middleware.use ExceptionNotifier, :email_prefix => "[Magpie Exception] ",
     :sender_address => '"Magpie Exception Notifier" <no-reply@unep-wcmc.org>',
-    :exception_recipients => %w{ simao.belchior@unep-wcmc.org agnieszka.figiel@unep-wcmc.org }
+    :exception_recipients => %w{ informatics@unep-wcmc.org }
 end
