@@ -8,10 +8,10 @@ class BlueForestsLayer < ProjectLayer
   end
 
   def self.carbon_view
-    "blueforests_carbon_#{Rails.env}"
+    "blueforests_carbon_staging"
   end
 
   def self.habitat_view habitat
-    "blueforests_#{habitat}_#{Rails.env}"
+    "blueforests_#{habitat}_staging"
   end
 end

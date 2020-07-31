@@ -1,4 +1,4 @@
-SELECT a.habitat, a.area/10000 as area_km2
+SELECT a.habitat, a.area/1000000 as area_km2
 FROM (
   SELECT SUM (area) as area, habitat
   FROM (
